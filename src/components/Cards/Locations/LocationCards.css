@@ -23,6 +23,10 @@
     background-color: #DE3151;
 }
 
-.card-text{
+#locationCard{
+    color: white;
+}
+
+#distanceText{
     color: white;
 }

@@ -15,8 +15,8 @@ function LocationCards(props) {
                     <div className="card my-3">
                         <img src="images/miami.jpeg" className="card-img-top" alt="..." />
                         <div className="card-body" id='card1'>
-                            <h5 className="card-title">Miami</h5>
-                            <p className="card-text">1100 miles away</p>
+                            <h5 id='locationCard' className="card-title">Miami</h5>
+                            <p id='distanceText' className="card-text">1100 miles away</p>
                             <button type="button" className="btn btn-primary">Visit</button>
                         </div>
                     </div>
