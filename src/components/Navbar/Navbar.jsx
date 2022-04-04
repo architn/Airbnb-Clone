@@ -1,14 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../components/Navbar.css'
+import '../Navbar/Navbar.css'
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
-import Error from './Error'
-import LandingPage from '../Pages/LandingPage';
-import SignIn from '../Pages/SignIn';
-import SignUp from '../Pages/SignUp';
-import Events from '../Pages/Events';
-import AddProperty from '../Pages/AddProperty';
+import Error from '../../Views/Error'
+import LandingPage from '../../Views/Home/LandingPage.jsx'
+import SignIn from '../../Views/SignIn/SignIn.jsx';
+import SignUp from '../../Views/SignUp/SignUp.jsx';
+import Events from '../../Views/Events/Events.jsx';
+import AddProperty from '../../Views/NewListing/AddProperty.jsx';
 
 
 function Navbar() {

@@ -2,7 +2,7 @@
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-import '../components/Footer.css'
+import '../Footer/Footer.css'
 
 function Footer() {
   return (

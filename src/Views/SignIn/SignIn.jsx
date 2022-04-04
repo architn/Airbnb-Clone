@@ -1,7 +1,7 @@
 import React from 'react'
-import '../Pages/SignIn.css'
+import '../SignIn/SignIn.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Input from '../components/FormControl/Input';
+import Input from '../../components/FormControl/Input';
 
 function SignIn() {
   return (

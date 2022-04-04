@@ -1,5 +1,5 @@
 import React from 'react'
-import '../Home/ExperienceCard.css'
+import '../Experiences/ExperienceCard.css'
 
 function ExperienceCard() {
   return (

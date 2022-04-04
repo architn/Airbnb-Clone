@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-import '../Home/LocationCards.css'
+import '../Locations/LocationCards.css'
 
 function LocationCards(props) {
   return (
