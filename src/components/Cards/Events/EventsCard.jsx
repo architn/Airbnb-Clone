@@ -9,6 +9,7 @@ function EventsCard(props) {
      <span>
        <img src='images/favorite.png' alt='favicon' id='favicon'/>
         <span id='ratingText'>{props.rating}</span>
+        <span id='upvotesText'>({props.upvotes})</span>
         <span id='locationText'>{props.location}</span>
      </span>
       <p id='eventTitle' class="card-title">{props.title}</p>

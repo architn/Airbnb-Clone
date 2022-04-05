@@ -1,0 +1,48 @@
+#propertyImage{
+    width: 400px;
+    height: 300px;
+    border-radius: 10%;
+}
+
+#propertyDescription{
+    margin-left: 180px;
+}
+
+#propertyTitle{
+    white-space: nowrap;
+    font-size: 110%;
+}
+
+#propertyButton{
+    width: 200px;
+}
+
+#houseCapacity{
+    font-size: 80%;
+    white-space: nowrap;
+}
+
+#houseFacilities{
+    font-size: 90%;
+    white-space: nowrap;
+}
+
+#propertyType{
+    white-space: nowrap;
+    font-size: 100%;
+}
+
+.priceProperty{
+    font-size: 120%;
+    float: right;
+    left: 20px;
+}
+
+.titleLink{
+    text-decoration: none;
+    color: inherit;
+}
+
+.titleLink:hover{
+    color: red;
+}

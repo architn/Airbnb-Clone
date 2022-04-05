@@ -9,7 +9,6 @@ function Footer() {
     <div id="footer">
         
       <div className="container py-5 px-2">
-      <br/><br/>
         <div className="row">
           <div className="col-4">
             <h5>Support</h5>

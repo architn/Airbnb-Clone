@@ -9,9 +9,6 @@ function LandingPage() {
        <Carousel />
        <LocationCards />
        <ExperienceCard />
-       <footer>
-         <Footer />
-       </footer>
     </div>
   )
 }

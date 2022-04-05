@@ -9,6 +9,8 @@ import SignIn from '../../Views/SignIn/SignIn.jsx';
 import SignUp from '../../Views/SignUp/SignUp.jsx';
 import Events from '../../Views/Events/Events.jsx';
 import AddProperty from '../../Views/NewListing/AddProperty.jsx';
+import Properties from '../../Views/Properties/Properties';
+import Footer from '../../Views/Footer/Footer';
 
 
 function Navbar() {
@@ -55,15 +57,16 @@ function Navbar() {
             
         </div>
         <div className="col-12 col-md-6">
-                <form className="d-flex align-items-center">
+                <form className="d-flex align-items-center" action='/homes'>
             <input
               className="form-control me-2"
               id="myInput"
               type="text"
               placeholder="Start your search"
               aria-label="Search"
-             
+              name="searchCity"
             />
+           
             <button type="submit" className="btn btn-light">
               <img src="images/3688454_find_lens_search_magnifier_magnifying_icon.png"  alt="magnifier" className='magnifier' />
             </button>
@@ -94,9 +97,16 @@ function Navbar() {
           <Route path='/signup' element={<SignUp/>}></Route>
           <Route path='/events' element={<Events/>}></Route>
           <Route path='/host' element={<AddProperty/>}></Route>
+          <Route path='/homes' element={<Properties/>}></Route>
+          <Route path='/rooms' element={<Properties/>}></Route>
           <Route path='*' element={<Error/>}></Route>
         </Routes>
       </Router>
+      <br/><br/>
+      <footer>
+        <br/>
+         <Footer />
+       </footer>
     </div>
   )
 }
