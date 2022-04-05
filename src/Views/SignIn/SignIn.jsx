@@ -4,6 +4,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Input from '../../components/FormControl/Input';
 
 function SignIn() {
+  function validateInputs() {
+    var regExEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var object = document.getElementById('txtUsername')
+    if (!object.value.match(regExEmail)) {
+      object.style.border = "2px solid red";
+      document.getElementById("errorMsgEmail").style.display = "block";
+      object.value = "";
+    } else {
+      object.style.border = "";
+      document.getElementById("errorMsgEmail").style.display = "none";
+    }
+  }
+  
   return (
     <div id='signInComponent'>
     <div className="container">
@@ -14,16 +27,18 @@ function SignIn() {
                   <h5 className="card-title text-center mb-5 fw-light fs-5"><img src="images/airbnbLogo.png" alt="logo" /></h5>
                   <form>
                     <div className="form-floating mb-3">
-                    {/* <label htmlFor="floatingInput">Email address</label> */}
-                      {/* <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" /> */}
-                      <Input type='email' className='form-control' id='floatingInput' placeholder='Email' />
-                      
+                      <Input type='email' className='form-control' id='txtUsername' placeholder='Email' 
+                      onBlur={validateInputs}
+                      />
                     </div>
-                    <div className="form-floating mb-3">
-                      {/* <input type="password" className="form-control" id="floatingPassword" placeholder="Password" /> */}
-                      <Input type='password' className='form-control' id='floatingInput' placeholder='Password' />
 
-                      {/* <label htmlFor="floatingPassword">Password</label> */}
+                    <div id="errorMsgEmail">
+                    Invalid Email Address!
+                    <br /><br />
+                    </div>
+
+                    <div className="form-floating mb-3">
+                      <Input type='password' className='form-control' id='txtPassword' placeholder='Password' />
                     </div>
       
                     <div className="form-check mb-3">
@@ -38,18 +53,6 @@ function SignIn() {
 
                     </div>
                   </form>
-
-                  <p>
-                    <br /><br />
-                    <button className="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                      Read Terms and Conditions*
-                    </button>
-                  </p>
-                  <div className="collapse" id="collapseExample">
-                    <div className="card card-body">
-                      <strong>By creating an account, you have agreed to AirBnB's internal policies and security. Please read them before proceding.</strong>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
