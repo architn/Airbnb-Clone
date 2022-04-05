@@ -9,7 +9,7 @@ function searchedCity(city){
        )
 };
   
-function createPropertiesJumotron(properties){
+function createPropertiesJumbotron(properties){
     return <PropertiesJumbotron 
     type={properties.type} title={properties.title} img={properties.baseImg} 
     numberOfGuests={properties.numberOfGuests} numberOfBedrooms={properties.numberOfBedrooms}
@@ -25,8 +25,9 @@ function Properties() {
   return (
     <div className='container'>
         <div className='row'>
-            {filteredProperties.map(createPropertiesJumotron)}
+            {filteredProperties.map(createPropertiesJumbotron)}
         </div>
+        
     </div>
   )
 }
