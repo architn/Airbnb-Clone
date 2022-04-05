@@ -1,4 +1,4 @@
-#signInComponent {
+#signUpComponent {
     background: #eb4e63;
     }
     
@@ -29,10 +29,15 @@
       background-color: #3b5998;
     }
 
-    #signin{
+    #signup{
       background-color: #eb4e63;
       color: white;
     }
+
+    #errorMsgPassword{
+        display: none; 
+        color: red;
+      }
   
     /* Do not use GLOBAL classes - REMOVE */
     /* #loginbox{
@@ -40,8 +45,3 @@
         border-radius: 30px;
         box-shadow: 12px 12px 22px;
 }  */
-
-#errorMsgEmail{
-  display: none; 
-  color: red;
-}

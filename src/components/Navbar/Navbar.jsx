@@ -15,9 +15,9 @@ import Footer from '../../Views/Footer/Footer';
 
 function Navbar() {
   return (
-    <div>
+    <div  id = 'navcolor'>
         <Router>
-        <nav className='navbar navbar-expand-lg navbar-light bg-light'>
+        <nav className='navbar navbar-expand-lg navbar-light'>
         <div className='container-fluid'>
         <a className="navbar-brand" href='/'>
         <img src = "images/airbnbLogo.png" className='logo' alt='logo' />
@@ -98,7 +98,7 @@ function Navbar() {
           <Route path='*' element={<Error/>}></Route>
         </Routes>
       </Router>
-      <br/><br/>
+      {/* <br/><br/> */}
       <footer>
         <br/>
          <Footer />

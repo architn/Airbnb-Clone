@@ -41,3 +41,17 @@ li{
 #profileLogo{
     margin-left: 15px;
 }
+
+
+.btn-light {
+    background-color: white;
+    border-color: white;
+}
+
+.container-fluid {
+    background-color: white;
+}
+
+#navcolor {
+    background-color: white;
+}
