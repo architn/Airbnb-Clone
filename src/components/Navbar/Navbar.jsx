@@ -71,10 +71,6 @@ function Navbar() {
               <img src="images/3688454_find_lens_search_magnifier_magnifying_icon.png"  alt="magnifier" className='magnifier' />
             </button>
 
-            <button type="submit" className="btn btn-light">
-              <img src="images/103571_globe_icon.png" alt='global' className='global'/>
-            </button>
-
           </form>
         </div>
         <button

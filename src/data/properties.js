@@ -14,6 +14,8 @@ const properties = [
         city: "New York",
         zipCode: "02215", 
         price: 85,
+        reviews: 22,
+        rating: 4.8,
         description: "",
         baseImg: "https://news.airbnb.com/wp-content/uploads/sites/4/2019/06/PJM020719Q202_Luxe_WanakaNZ_LivingRoom_0264-LightOn_R1.jpg",
         imgs: [
@@ -32,6 +34,8 @@ const properties = [
         numberOfBedrooms: 1,
         numberOfBeds: 0, 
         numberOfBaths: 1, 
+        rating: 4.5,
+        reviews: 46,
         features: [
             "Wifi", "Kitchen", "Air Conditioning"
         ],

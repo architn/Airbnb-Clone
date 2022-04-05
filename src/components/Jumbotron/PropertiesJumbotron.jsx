@@ -2,11 +2,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import '../Jumbotron/PropertiesJumbotron.css'
+
 function PropertiesJumbotron(props) {
   return (
     <div className='container'>
         <hr />
-        <div className='col-7'>
+        <div className='col-8'>
             <div class="jumbotron">
                 
                  <br/>
@@ -23,14 +24,17 @@ function PropertiesJumbotron(props) {
                     </p>
                     <span><p id='houseFacilities'>Wifi &bull; Kitchen &bull;Air conditioning</p></span>
                     <br/> <br/>
-                    <p className="lead">
-                    </p>
-                    <br/><br/>
-                    <div>
-                    <span className='priceProperty'>
-                        <b>${props.price}</b> / night
+                    <span className="lead">
+                        <img src='images/favorite.png' alt='fav' className='fav'/>
+                        <span id='ratingText'>
+                            <b>{props.rating}</b>
+                            <span id='reviewText' className='lead'>({props.reviews} reviews)</span>
+                            <span id='priceT'>
+                                <strong id='price'>${props.price}</strong>
+                                </span> 
+                                <span id='night'> /  night</span>
+                           </span>
                     </span>
-                    </div>
                 </div>
                 
             </div>

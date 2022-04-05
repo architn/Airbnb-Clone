@@ -17,7 +17,7 @@ function LocationCards(props) {
                         <div className="card-body" id='card1'>
                             <h5 id='locationCard' className="card-title">Miami</h5>
                             <p id='distanceText' className="card-text">1100 miles away</p>
-                            <button type="button" className="btn btn-primary">Visit</button>
+                            <br/><br/>
                         </div>
                     </div>
                 </div>
@@ -26,8 +26,8 @@ function LocationCards(props) {
                         <img src="images/ny.jpeg" className="card-img-top" alt="..." />
                         <div className="card-body" id='card2'>
                             <h5 className="card-title">New York</h5>
-                            <p className="card-text">1000 miles away</p>
-                            <button type="button" className="btn btn-primary">Visit</button>
+                            <p id='distanceText' className="card-text">1000 miles away</p>
+                            <br/><br/>
                         </div>
                     </div>
                 </div>
@@ -36,8 +36,8 @@ function LocationCards(props) {
                         <img src="images/portland.jpeg" className="card-img-top" alt="..." />
                         <div className="card-body" id='card3'>
                             <h5 className="card-title">Portland</h5>
-                            <p className="card-text">400 miles away.</p>
-                            <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Visit</button>
+                            <p id='distanceText' className="card-text">400 miles away</p>
+                            <br/><br/>
                         </div>
                     </div>
                 </div>
@@ -46,8 +46,8 @@ function LocationCards(props) {
                         <img src="images/rutland.jpeg" className="card-img-top" alt="..." />
                         <div className="card-body" id='card4'>
                             <h5 className="card-title">Rutland</h5>
-                            <p className="card-text">400 miles away.</p>
-                             <button type="button" className="btn btn-primary">Visit</button>
+                            <p id='distanceText' className="card-text">400 miles away</p>
+                            <br/><br/>
                         </div>
                     </div>
                 </div>

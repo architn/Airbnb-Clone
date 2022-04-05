@@ -32,11 +32,9 @@
     font-size: 100%;
 }
 
-.priceProperty{
-    font-size: 120%;
-    float: right;
-    left: 20px;
-}
+#priceProperty{
+    font-size: 100%;
+    float: right;}
 
 .titleLink{
     text-decoration: none;
@@ -45,4 +43,33 @@
 
 .titleLink:hover{
     color: red;
+}
+
+.fav{
+    width: 15px;
+    margin-right: 1px;
+}
+
+#reviewText{
+    font-size: bold;
+}
+
+#ratingText{
+    font-size: 70%;
+    white-space: nowrap;
+
+}
+
+#priceT{
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+#price{
+    font-size: 120%;
+}
+
+#night{
+    font-size: 120%;
+
 }
