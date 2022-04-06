@@ -11,6 +11,8 @@ import Events from '../../Views/Events/Events.jsx';
 import AddProperty from '../../Views/NewListing/AddProperty.jsx';
 import Properties from '../../Views/Properties/Properties';
 import Footer from '../../Views/Footer/Footer';
+import Rooms from '../../Views/Rooms/Rooms';
+import PersonalInfo from '../../Views/PersonalInfo/PersonalInfo';
 
 
 function Navbar() {
@@ -48,7 +50,7 @@ function Navbar() {
                         <li>
                             <a className="dropdown-item"><Link className='navigation' to='/host'>Host your Home</Link>{"   "}</a>
                             <a className="dropdown-item"><Link className='navigation' to='/events'>Events near You</Link>{"   "}</a>
-                            <a className="dropdown-item">Help</a>
+                            <a className="dropdown-item"><Link className='navigation' to='/personalinfo'>Help</Link>{"   "}</a>
                          </li>
                     </ul>
                     </li>
@@ -94,7 +96,8 @@ function Navbar() {
           <Route path='/events' element={<Events/>}></Route>
           <Route path='/host' element={<AddProperty/>}></Route>
           <Route path='/homes' element={<Properties/>}></Route>
-          <Route path='/rooms' element={<Properties/>}></Route>
+          <Route path='/personalinfo' element={<PersonalInfo/>}></Route>
+          <Route path='/rooms/:homeID' element={<Rooms/>}></Route>
           <Route path='*' element={<Error/>}></Route>
         </Routes>
       </Router>

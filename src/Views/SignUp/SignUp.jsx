@@ -65,17 +65,12 @@ function SignUp() {
                       <Input type='password' className='form-control' id='txtConfirmPassword' name='txtConfirmPassword' placeholder='Confirm Password' 
                       onBlur={validatePassword}/>
                     </div>
-
                     <div id="errorMsgPassword">
                     Passwords do not match!
                     <br /><br />
                     </div>
-
-                    <div className="d-grid">
-                      <button className="btn btn-primary btn-login text-uppercase fw-bold" id='signup'>Sign UP
-                        </button>
-
-                    </div>
+                     
+                    <button className="btn btn-danger" id='signup'>Sign Up</button>
                   </form>
                 </div>
               </div>

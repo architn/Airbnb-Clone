@@ -31,7 +31,10 @@
 
     #signup{
       background-color: #eb4e63;
+      width: 250px;
       color: white;
+      margin-top: 10px;
+      width: 100%;
     }
 
     #errorMsgPassword{
