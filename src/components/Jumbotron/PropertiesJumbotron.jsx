@@ -1,6 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useParams
+  } from "react-router-dom";
 import '../Jumbotron/PropertiesJumbotron.css'
 
 function PropertiesJumbotron(props) {
@@ -8,7 +15,7 @@ function PropertiesJumbotron(props) {
     <div className='container'>
         <hr />
         <div className='col-8'>
-            <div class="jumbotron">
+            <div className="jumbotron">
                 
                  <br/>
                 <div className='row'>
@@ -18,7 +25,9 @@ function PropertiesJumbotron(props) {
                     </div>
                 <div className='col-4' id='propertyDescription'>
                     <p id='propertyType' className="lead">Entire {props.type} unit in {props.streetaddress}</p>
-                    <p id='propertyTitle' className="lead"><a href='/rooms' className='titleLink'>{props.title}</a></p>
+                    <p id='propertyTitle' className="lead">
+                    <Link className='titleLink' to='/rooms'>{props.title}</Link>
+                    </p>
                     <p className="lead">
                         <span id='houseCapacity'>{props.numberOfGuests} guests  &bull;{props.numberOfBedrooms} bedroom  &bull;{props.numberOfBeds} bed  &bull;{props.numberOfBaths} bath  </span>
                     </p>

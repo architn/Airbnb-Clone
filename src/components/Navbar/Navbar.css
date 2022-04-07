@@ -17,6 +17,10 @@ li{
     border-radius: 20px;
 }
 
+nav{
+    border-bottom: 0.01px solid gray;
+}
+
 .hamburger{
     width: 30%;
 }
