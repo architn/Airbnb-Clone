@@ -1,0 +1,58 @@
+#price{
+    font-weight: bold;
+    font-size: 150%;
+}
+
+#rating{
+    font-weight: bold;
+    font-size: 98%;
+}
+
+#night{
+    font-size: 120%;
+}
+
+#reviews{
+    text-decoration: underline;
+    font-size: 98%;
+}
+
+#reviewAndRatingSection{
+    float: right;
+}
+
+#btnReserve{
+    background-color: rgb(255, 56, 92);
+    color: white;
+    
+    width: 300px;
+}
+
+#cardNumberOfPeopleSection{
+    padding: 40px;
+}
+
+#guestDropdown{
+    width: 300px;
+    text-align: center;
+}
+
+#calendarSection{
+    padding: 20px;
+    
+}
+
+#checkOutSection{
+    border: 0.5px solid gray;
+    
+}
+
+#checkInSection{
+    border: 0.5px solid gray;
+    
+}
+
+label{
+    font-weight: bold;
+    font-size: 90%;
+}

@@ -51,11 +51,7 @@ const properties = [
             ""
         ],
     }, 
-    {
-        id: 3, 
-        title: "Test", 
-        city: "Boston",
-    }, 
+    
 ]
 
 export default properties;

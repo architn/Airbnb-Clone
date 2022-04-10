@@ -22,7 +22,7 @@ function Navbar() {
         <nav className='navbar navbar-expand-lg navbar-light'>
         <div className='container-fluid'>
         <a className="navbar-brand" href='/'>
-        <img src = "images/airbnbLogo.png" className='logo' alt='logo' />
+        <img src = {process.env.PUBLIC_URL + "images/airbnbLogo.png"} className='logo' alt='logo' />
         </a>
         <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <div className='col-12 col-md-6'>
@@ -97,7 +97,7 @@ function Navbar() {
           <Route path='/host' element={<AddProperty/>}></Route>
           <Route path='/homes' element={<Properties/>}></Route>
           <Route path='/personalinfo' element={<PersonalInfo/>}></Route>
-          <Route path='/rooms/:homeID' element={<Rooms/>}></Route>
+          <Route path='/rooms' element={<Rooms/>}></Route>
           <Route path='*' element={<Error/>}></Route>
         </Routes>
       </Router>
