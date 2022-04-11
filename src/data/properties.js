@@ -1,33 +1,47 @@
 const properties = [
     {
         id: 1, 
+        userID: 2,
         title: "Convenient 1 BR Haven in Greenwich Villages", 
         type: "rental",
         numberOfGuests: 2,
         numberOfBedrooms: 1,
         numberOfBeds: 1, 
         numberOfBaths: 1, 
+        lat: 1,
+        long: 2,
+        description: "Enjoy living at its finest with an unforgettable stay at this modern underground 3-bed, 3-bath home! Earthouse offers unique architectural design providing guests with an open inviting interior complete with high-end furnishings, modern decor, and abundant natural light. Whether you're exploring Springfield, visiting local colleges, making your way to Branson for the day, or getting away, this luxurious, one-of-a-kind abode will be your ideal home base!"+
+        "NO PARTIES, EVENTS, OR LARGE GATHERINGS.",
+        subtitle: "Earthen home hosted by Monica",
         features: [
-            "Wifi", "Kitchen", "Air Conditioning"
+           {
+                isWifi: true,
+                ac: true, 
+                bar: true,
+                microwave: true,
+                fridge: true,
+                fireplace: true,
+                toaster: true,
+                tv: true,
+           } 
         ],
         streetAddress: "Greenwich Village", 
         city: "New York",
+        country: "USA",
         zipCode: "02215", 
         price: 85,
         reviews: 22,
         rating: 4.8,
-        description: "",
-        baseImg: "https://news.airbnb.com/wp-content/uploads/sites/4/2019/06/PJM020719Q202_Luxe_WanakaNZ_LivingRoom_0264-LightOn_R1.jpg",
-        imgs: [
-            "https://a0.muscache.com/im/pictures/miso/Hosting-542212733133579059/original/794cfc1f-535f-49c7-87b6-f02269c255ce.jpeg?im_w=960", 
-            "", 
-            ""
-        ],
-
+        img1: "https://a0.muscache.com/im/pictures/631c8926-9ed6-4226-b5c4-c5452e84e6ba.jpg?im_w=720",
+        img2: "https://a0.muscache.com/im/pictures/631c8926-9ed6-4226-b5c4-c5452e84e6ba.jpg?im_w=720",
+        img3: "https://a0.muscache.com/im/pictures/32bfb0d7-1d94-40e7-b171-7674f169dd44.jpg?im_w=720",
+        img4: "https://a0.muscache.com/im/pictures/0c7b0963-b498-47ba-bd79-4b934381cd8c.jpg?im_w=720",
+        img5: "https://a0.muscache.com/im/pictures/fe971409-b6b6-45c1-a776-b0f6aaa87920.jpg?im_w=720",
     }, 
 
     {
         id: 2, 
+        userID: 1,
         title: "138 Bowery-Classic Queen Studio", 
         type: "apartment",
         numberOfGuests: 2,
@@ -35,21 +49,32 @@ const properties = [
         numberOfBeds: 0, 
         numberOfBaths: 1, 
         rating: 4.5,
+        lat: 1,
+        long: 2,
         reviews: 46,
         features: [
-            "Wifi", "Kitchen", "Air Conditioning"
-        ],
+            {
+                 isWifi: true,
+                 ac: false, 
+                 bar: true,
+                 microwave: false,
+                 fridge: true,
+                 fireplace: true,
+                 toaster: true,
+                 tv: false,
+            } 
+         ],
         streetAddress: "Chinatown", 
         city: "New York",
         zipCode: "02215", 
+        country: "USA",
         price: 130,
         description: "",
-        baseImg: "https://loveincorporated.blob.core.windows.net/contentimages/gallery/d2726c76-a8b3-4483-97cb-1f1c2be99f2e-airbnb-lead-image.jpg",
-        imgs: [
-            "https://a0.muscache.com/im/pictures/miso/Hosting-542212733133579059/original/794cfc1f-535f-49c7-87b6-f02269c255ce.jpeg?im_w=960", 
-            "", 
-            ""
-        ],
+        img1: "https://loveincorporated.blob.core.windows.net/contentimages/gallery/d2726c76-a8b3-4483-97cb-1f1c2be99f2e-airbnb-lead-image.jpg",
+        img2: "https://a0.muscache.com/im/pictures/631c8926-9ed6-4226-b5c4-c5452e84e6ba.jpg?im_w=720",
+        img3: "https://a0.muscache.com/im/pictures/32bfb0d7-1d94-40e7-b171-7674f169dd44.jpg?im_w=720",
+        img4: "https://a0.muscache.com/im/pictures/0c7b0963-b498-47ba-bd79-4b934381cd8c.jpg?im_w=720",
+        img5: "https://a0.muscache.com/im/pictures/fe971409-b6b6-45c1-a776-b0f6aaa87920.jpg?im_w=720",
     }, 
     
 ]
