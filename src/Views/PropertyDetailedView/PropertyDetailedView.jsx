@@ -1,5 +1,6 @@
 import React from 'react'
 import ReservationCard from '../../components/Cards/Reservation/ReservationCard'
+import MapView from '../Maps/Map'
 import '../PropertyDetailedView/PropertyDetailedView.css'
 
 function createFacilitiesList(facilities){
@@ -99,6 +100,12 @@ function PropertyDetailedView(props) {
         reviews={props.reviews}
         />
       </div>
+    </div>
+    <hr/>
+    <h4>Where you'll be staying</h4>
+    
+    <div id='mapView'>
+      <MapView lat={props.lat} lng={props.lng}/>
     </div>
     <hr/>
     <h3>Hosted by Evolve</h3>

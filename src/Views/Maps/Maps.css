@@ -1,0 +1,8 @@
+.mapView{
+    height: 500px;
+}
+
+.leaflet-container{
+    height: 600px;
+    width: 100%
+}
