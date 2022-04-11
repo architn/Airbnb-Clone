@@ -20,13 +20,13 @@ function PropertiesJumbotron(props) {
                  <br/>
                 <div className='row'>
 
-                     <div className='col-4'>
-                            <img src={props.img} alt="property" id='propertyImage' />
+                     <div className='col-6'>
+                            <img src={props.img1} alt="property" id='propertyImage' />
                     </div>
                 <div className='col-4' id='propertyDescription'>
                     <p id='propertyType' className="lead">Entire {props.type} unit in {props.streetaddress}</p>
                     <p id='propertyTitle' className="lead">
-                    <Link className='titleLink' to='/rooms'>{props.title}</Link>
+                    <Link className='titleLink' to={`/property/${props.roomid}`}>{props.title}</Link>
                     </p>
                     <p className="lead">
                         <span id='houseCapacity'>{props.numberOfGuests} guests  &bull;{props.numberOfBedrooms} bedroom  &bull;{props.numberOfBeds} bed  &bull;{props.numberOfBaths} bath  </span>

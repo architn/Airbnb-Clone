@@ -1,17 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import '../Reservation/ReservationCard.css'
-function ReservationCard() {
+function ReservationCard(props) {
   return (
-    <div class="card">
+    <div className="card">
   
-    <div class="card-body">
+    <div className="card-body">
         <span>
-        <span id='price'>$385</span> <span id='night'> / night</span>
+        <span id='price'>${props.price}</span> <span id='night'> / night</span>
         
     <span id='reviewAndRatingSection'>
-    <img className='fav' src='images/favorite.png' alt='fav' />
-    <span id='rating'>5.0</span> &bull; <span id='reviews'>12 reviews</span>
+    <img className='fav' src='https://www.citypng.com/public/uploads/preview/hd-star-silhouette-pink-icon-transparent-background-11637144467w2sss8mpmm.png' alt='fav' />
+    <span id='rating'>{props.rating}</span> &bull; <span id='reviews'>{props.reviews} reviews</span>
         </span>
     </span>
     </div>

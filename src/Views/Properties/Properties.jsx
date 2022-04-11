@@ -11,9 +11,14 @@ function searchedCity(city){
   
 function createPropertiesJumbotron(properties){
     return <PropertiesJumbotron 
+                  roomid={properties.id}
                   type={properties.type} 
                   title={properties.title} 
-                  img={properties.baseImg} 
+                  img1={properties.img1} 
+                  img2={properties.img2} 
+                  img3={properties.img3} 
+                  img4={properties.img4} 
+                  img5={properties.img5} 
                   numberOfGuests={properties.numberOfGuests} 
                   numberOfBedrooms={properties.numberOfBedrooms}
                   numberOfBeds={properties.numberOfBeds} 
@@ -22,6 +27,8 @@ function createPropertiesJumbotron(properties){
                   price={properties.price}
                   rating={properties.rating}
                   reviews={properties.reviews}
+                  features={properties.features}
+                  userid={properties.userid}
           />
 }
 
