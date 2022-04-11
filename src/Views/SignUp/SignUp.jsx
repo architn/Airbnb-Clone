@@ -59,6 +59,7 @@ function SignUp() {
     });
   }
 
+  
   return (
     <div id='signInComponent'>
     <div className="container">
