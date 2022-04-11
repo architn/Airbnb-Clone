@@ -45,3 +45,8 @@
   display: none; 
   color: red;
 }
+
+.error{
+  text-align: start;
+  color: red;
+}
