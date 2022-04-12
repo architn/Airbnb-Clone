@@ -3,11 +3,13 @@ import '../SignUp/SignUp.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Input from '../../components/FormControl/Input';
 import axios from "axios";
+import {useNavigate} from "react-router-dom"
 
 function SignUp() {
   const [details, setDetails] = useState({email:"", password:""});
   const [user, setUser] = useState({ name: "", email: "" });
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   function validateInputs() {
     var regExEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -43,7 +45,7 @@ function SignUp() {
     e.preventDefault();
     console.log(details);
     axios
-    .post("http://localhost:3000/signup", details)
+    .post("http://localhost:3002/signup", details)
     .then((response) => {
       if (response.status == 201) {
         console.log("Logged IN!");
@@ -51,7 +53,9 @@ function SignUp() {
           name: details.name,
           email: details.email,
         });
+        navigate("/login");
       }
+      
     })
     .catch((err) => {
       // console.log(err.response.data.errors[0].msg);
