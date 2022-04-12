@@ -43,7 +43,7 @@ router.get('/getAll', (req, res) => {
     user.find({}, 'email password -_id', function(err, user){
     if(err){
         res.send('Something went wrong');
-        next();
+        // next();
     }
     console.log(user);
     res.json(user);
