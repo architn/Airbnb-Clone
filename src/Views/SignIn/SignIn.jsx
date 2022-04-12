@@ -3,11 +3,13 @@ import "../SignIn/SignIn.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Input from "../../components/FormControl/Input";
 import axios from "axios";
+import {useNavigate} from "react-router-dom"
 
 function SignIn() {
   const [details, setDetails] = useState({ email: "", password: "" });
   const [user, setUser] = useState({ name: "", email: "" });
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   function validateInputs() {
     var regExEmail =
@@ -28,7 +30,7 @@ function SignIn() {
     console.log(details);
     // Login(details);
     axios
-      .post("http://localhost:3000/login", details)
+      .post("http://localhost:3002/login", details)
       .then((response) => {
         if (response.status == 200) {
           console.log("Logged IN!");
@@ -36,6 +38,7 @@ function SignIn() {
             name: details.name,
             email: details.email,
           });
+          navigate("/personalinfo");
         }
       })
       .catch((err) => {
