@@ -5,7 +5,7 @@ import properties from '../../data/properties.js'
 
 function searchedCity(city){
        return properties.filter( property => 
-          property.city.includes(city) 
+          property.searchParam.includes(city) 
        )
 };
   
@@ -29,6 +29,7 @@ function createPropertiesJumbotron(properties){
                   reviews={properties.reviews}
                   features={properties.features}
                   userid={properties.userid}
+                  searchParam={properties.searchParam}
           />
 }
 
