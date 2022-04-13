@@ -31,6 +31,20 @@
      $("body").tooltip({ selector: '[data-toggle=tooltip]' });
      });
    </script>
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxm7YnGZ8UCN5BTKP9Wmjzwdcty2l_0Xw&libraries=places" type="text/javascript"></script>
+   <script type="text/javascript">
+       $(document).ready(function() {
+        var options = {
+              types: ['(cities)'],
+              componentRestrictions: {country: "us"}
+          };
+         var input = document.getElementById('myInput');
+         var autocomplete = new google.maps.places.Autocomplete(input, options);
+          google.maps.event.addListener(autocomplete, 'place_changed', function(){
+          var place = autocomplete.getPlace();
+        });
+       })
+   </script>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.

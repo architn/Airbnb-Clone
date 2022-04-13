@@ -9,7 +9,8 @@ const properties = [
         numberOfBeds: 1, 
         numberOfBaths: 1, 
         lat: 40.7128,
-        lng: 74.0060,
+        lng: -74.0060,
+        searchParam: "New York, NY, USA",
         description: "Enjoy living at its finest with an unforgettable stay at this modern underground 3-bed, 3-bath home! Earthouse offers unique architectural design providing guests with an open inviting interior complete with high-end furnishings, modern decor, and abundant natural light. Whether you're exploring Springfield, visiting local colleges, making your way to Branson for the day, or getting away, this luxurious, one-of-a-kind abode will be your ideal home base!"+
         "NO PARTIES, EVENTS, OR LARGE GATHERINGS.",
         subtitle: "Earthen home hosted by Monica",
@@ -68,6 +69,7 @@ const properties = [
         city: "New York",
         zipCode: "02215", 
         country: "USA",
+        searchParam: "New York, NY, USA",
         price: 130,
         description: "",
         img1: "https://loveincorporated.blob.core.windows.net/contentimages/gallery/d2726c76-a8b3-4483-97cb-1f1c2be99f2e-airbnb-lead-image.jpg",
