@@ -24,7 +24,8 @@ router.post('/signup', validateEmail(), validatePassword(), async (req,res)=>{
     }
     const data = new user({
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        name : req.body.name
     })
     
     data.password = await bcrypt.hash(data.password, saltRounds);

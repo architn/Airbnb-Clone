@@ -32,8 +32,11 @@ function SignIn() {
     axios
       .post("http://localhost:3002/login", details)
       .then((response) => {
-        if (response.status == 200) {
+        if (response.status === 200) {
           console.log("Logged IN!");
+          sessionStorage.setItem("user", details.email);
+          sessionStorage.setItem("isUserLoggedIn", true);
+          sessionStorage.setItem("name", details.name);
           setUser({
             name: details.name,
             email: details.email,
