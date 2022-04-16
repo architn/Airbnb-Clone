@@ -27,14 +27,15 @@ function SignIn() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(details);
     // Login(details);
     axios
       .post("http://localhost:3002/login", details)
       .then((response) => {
         if (response.status === 200) {
-          console.log("Logged IN!");
-          sessionStorage.setItem("user", details.email);
+          //console.log("Logged IN!");
+          sessionStorage.setItem("userid", details.id);
+          sessionStorage.setItem("user", details);
+          sessionStorage.setItem("email", details.email);
           sessionStorage.setItem("isUserLoggedIn", true);
           sessionStorage.setItem("name", details.name);
           setUser({

@@ -5,6 +5,7 @@ import '../PersonalInfo/PersonalInfo.css'
 
 
 function PersonalInfo() {
+	
   return (
       <div className="jumbotron jumbotron-fluid">
 		  <hr style={{color: "grey" }} /><br/>
