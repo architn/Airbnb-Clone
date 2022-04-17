@@ -71,6 +71,18 @@ const propertySchema = new Schema({
   Price: {
     type: Number,
   },
+
+  features: {
+    isWifi: { type: Boolean, default: false },
+    ac: { type: Boolean, default: false },
+    bar: { type: Boolean, default: false },
+    microwave: { type: Boolean, default: false },
+    fireplace: { type: Boolean, default: false },
+    toaster: { type: Boolean, default: false },
+    fridge: { type: Boolean, default: false },
+    tv: { type: Boolean, default: false }
+  },
+
 });
 
 const propertyModel = mongoose.model("property", propertySchema);

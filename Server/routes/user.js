@@ -166,6 +166,16 @@ router.post("/host", async (req, res) => {
     SearchParam: req.body.City + "," +" " + req.body.State + ","+ +" "+ req.body.Country,
     Description: req.body.Description,
     Price: req.body.Price,
+    features: {
+        isWifi: req.body.isWifi,
+        ac: req.body.ac,
+        bar: req.body.bar,
+        microwave: req.body.microwave,
+        fridge: req.body.fridge,
+        fireplace: req.body.fireplace,
+        toaster: req.body.toaster,
+        tv: req.body.tv,
+    }
   });
 
   try {
