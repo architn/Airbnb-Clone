@@ -64,6 +64,10 @@ const propertySchema = new Schema({
     type: String,
   },
 
+  SearchParam: {
+    type: String,
+  },
+
   Price: {
     type: Number,
   },

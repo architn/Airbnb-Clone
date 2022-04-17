@@ -154,22 +154,22 @@ router.post("/host", async (req, res) => {
     user: session.userid,
     ApartmentType: req.body.ApartmentType,
     SpaceType: req.body.SpaceType,
-    Space: req.body.Space,
     Street: req.body.Street,
     City: req.body.City,
     State: req.body.State,
     Zip: req.body.Zip,
-    County: req.body.County,
     Country: req.body.Country,
     Guests: req.body.Guests,
     Beds: req.body.Beds,
     Bathrooms: req.body.Bathrooms,
     Title: req.body.Title,
+    SearchParam: req.body.City + "," +" " + req.body.State + ","+ +" "+ req.body.Country,
     Description: req.body.Description,
     Price: req.body.Price,
   });
 
   try {
+    console.log(propertyData);
     let doc = await propertyData.save();
     res.status(201).send(doc);
     console.log("Property added successfully");
