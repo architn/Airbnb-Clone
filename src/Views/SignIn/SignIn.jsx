@@ -29,10 +29,12 @@ function SignIn() {
     e.preventDefault();
     // Login(details);
     axios
-      .post("http://localhost:3002/login", details)
+      .post("http://localhost:3002/login", details, {
+        withCredentials: true,
+      })
       .then((response) => {
         if (response.status === 200) {
-          //console.log("Logged IN!");
+          console.log("Logged IN!");
           sessionStorage.setItem("userid", details.id);
           sessionStorage.setItem("user", details);
           sessionStorage.setItem("email", details.email);
