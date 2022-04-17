@@ -121,8 +121,8 @@ router.post('/login', async (req, res, next) => {
 
 router.post('/host', async (req, res) => {
     console.log(req.body);
-    const x =sessionStorage.getItem('userid')
-    console.log(JSON.parse(x));
+    // const x =sessionStorage.getItem('userid')
+    // console.log(JSON.parse(x));
 
     const propertyData= new property({
         // user: sessionStorage.getItem('userid'),
