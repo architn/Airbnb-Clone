@@ -98,6 +98,10 @@ router.delete('/delete', async (req, res, next) => {
 
 router.post('/login', async (req, res, next) => {
     const userAuth = await user.findOne({ email: req.body.email })
+    console.log(userAuth);
+    // let x = userAuth._id.toString();
+    // sessionStorage.setItem("userid", userAuth._id);
+    // console.log(x);
     if (!userAuth) {
         console.log("User does not exist");
         return res.status(400).json({ msg: "User does not exist" })
@@ -121,7 +125,7 @@ router.post('/host', async (req, res) => {
     console.log(JSON.parse(x));
 
     const propertyData= new property({
-        user: sessionStorage.getItem('userid'),
+        // user: sessionStorage.getItem('userid'),
         ApartmentType: req.body.ApartmentType,
         SpaceType: req.body.SpaceType,
         Space: req.body.Space,
