@@ -28,21 +28,34 @@ function validateIfNotNegativeBath() {
 
 function AddProperty() {
   const [details, setDetails] = useState({
+    Title: "",
+    Description: "",
+    Price: "",
     ApartmentType: "Choose Apartment Type",
-    SpaceType: "Choose Space Type",
     Space: "",
     Street: "",
     City: "",
     State: "",
     Zip: "",
-    County: "",
-    Country: "",
+    Country: "USA",
     Guests: 0,
     Beds: 0,
     Bathrooms: 0,
-    Title: "",
-    Description: "",
-    Price: "",
+    Reviews: 0,
+    Rating: 0,
+    SearchParam: "",
+    features:[
+      {
+        isWifi: false,
+        ac: false, 
+        bar: false,
+        microwave: false,
+        fridge: false,
+        fireplace: false,
+        toaster: false,
+        tv: false,
+      }
+    ]
   });
 
   const submitHandler = (e) => {
@@ -58,24 +71,7 @@ function AddProperty() {
         }
       });
   };
-  //     setDetails({
-  //       ApartmentType:details.ApartmentType,
-  //       SpaceType:details.SpaceType,
-  //       Space:details.Space,
-  //       Street:details.Street,
-  //       City:details.City,
-  //       State:details.State,
-  //       Zip:details.Zip,
-  //       County:details.County,
-  //       Country:details.Country,
-  //       Guests:details.Guests,
-  //       Beds:details.Beds,
-  //       Bathrooms:details.Bathrooms,
-  //       Title:details.Title,
-  //       Description:details.Description,
-  //       Price:details.Price
-  //     });
-  // navigate("");
+ 
 
   return (
     <div className="container px-5">
@@ -83,7 +79,8 @@ function AddProperty() {
         {/* <div className="col-4">
           <Carousel />
         </div> */}
-
+        <br/><br/>
+        <h2>Add New Property</h2>
         <div>
           <form
             action="addProperty"
@@ -91,6 +88,51 @@ function AddProperty() {
             onSubmit={submitHandler}
           >
             <div className="row g-2 my-2">
+            <div className="form-floating mb-3 col-4">
+                <input
+                  className="form-control"
+                  type="text"
+                  id="floatingInput"
+                  name="title"
+                  placeholder="Create a title"
+                  onChange={(e) =>
+                    setDetails({ ...details, Title: e.target.value })
+                  }
+                  value={details.Title}
+                />
+
+                <label for="title">Create your title</label>
+              </div>
+              <div className="form-floating mb-3 col-4">
+                <input
+                  className="form-control"
+                  type="text"
+                  name="description"
+                  id="floatingInput"
+                  placeholder="Describe your property"
+                  onChange={(e) =>
+                    setDetails({ ...details, Description: e.target.value })
+                  }
+                  value={details.Description}
+                />
+
+                <label for="title">Enter a description</label>
+              </div>
+              <div className="form-floating mb-3 col-4">
+                <input
+                  className="form-control"
+                  id="floatingInput"
+                  name="price"
+                  type="number"
+                  placeholder="$00 per night"
+                  onChange={(e) =>
+                    setDetails({ ...details, Price: e.target.value })
+                  }
+                  value={details.Price}
+                />
+
+                <label for="floatingInput">Set property price /night</label>
+              </div>
               <div className="col-3">
                 <label for="aptType">What kind of place will you host?</label>
               </div>
@@ -103,7 +145,7 @@ function AddProperty() {
                   }
                   value={details.ApartmentType}
                 >
-                  <option value="ChooseApartmentType">
+                  <option value="-1">
                     Choose Apartment Type
                   </option>
                   <option value="Apartment">Apartment</option>
@@ -117,32 +159,7 @@ function AddProperty() {
             </div>
             <br></br>
 
-            <div className="row g-2 my-2">
-              <div className="col-3">
-                <label for="spaceType">
-                  Which of this best describes your place
-                </label>
-              </div>
-
-              <div className="col-3">
-                <select
-                  name="spaceType"
-                  id="spaceType"
-                  onChange={(e) =>
-                    setDetails({ ...details, SpaceType: e.target.value })
-                  }
-                  value={details.SpaceType}
-                >
-                  <option value="ChooseSpaceType">Choose Space Type</option>
-                  <option value="RentalUnit">Rental Unit</option>
-                  <option value="Condo">Condo</option>
-                  <option value="Loft">Loft</option>
-                  <option value="ServicedApartment">Serviced apartment</option>
-                  <option value="CasaParticular">Casa particular</option>
-                  <option value="VacationHome">Vacation home</option>
-                </select>
-              </div>
-            </div>
+            
             <br></br>
 
             <div className="row g-2 my-2">
@@ -232,19 +249,7 @@ function AddProperty() {
                         value={details.Zip}
                       />
                     </div>
-                    <div class="col-12 my-2">
-                      <input
-                        type="county"
-                        class="form-control"
-                        id="inputCounty"
-                        placeholder="County"
-                        name="county"
-                        onChange={(e) =>
-                          setDetails({ ...details, County: e.target.value })
-                        }
-                        value={details.County}
-                      />
-                    </div>
+                    
                     <div class="col-12 my-2">
                       <input
                         type="country"
@@ -252,10 +257,12 @@ function AddProperty() {
                         id="inputCountry"
                         placeholder="Country"
                         name="country"
+                        value={details.Country}
+                        readonly="readonly"
                         onChange={(e) =>
                           setDetails({ ...details, Country: e.target.value })
                         }
-                        value={details.Country}
+                        
                       />
                     </div>
                   </div>
@@ -413,62 +420,47 @@ function AddProperty() {
               </div>
             </div>
             <br></br>
+           <label>What features do you have?</label>
+           <br/><br/>
+            <div className="row">
+              <div className="col-6">
+              <input type="checkbox" id="feature1" name="feature1" value="WiFi" className="featureInput"/>
+                <label for='feature1'> WiFi </label>
+                  <br/>  <br/>
 
-            {/* <div>
-              <label>
-                <input type="checkbox" id="feature1" name="feature1" value="WiFi"/>
-                  WiFi
-              </label>
-            </div> */}
+                <input type="checkbox" id="feature2" name="feature2" value="AC" className="featureInput"/>
+                <label for='feature2'> AC </label>
+                <br/>  <br/>
+                <input type="checkbox" id="feature3" name="feature3" value="Bar" className="featureInput"/>
+                <label for='feature3'> Bar </label>
+                <br/>  <br/>
+                <input type="checkbox" id="feature4" name="feature4" value="Microwave" className="featureInput"/>
+                <label for='feature4'> Microwave </label>
+
+              </div>
+
+              <div className="col-6">
+              <input type="checkbox" id="feature5" name="feature5" value="Fridge" className="featureInput"/>
+                <label for='feature5'> Fridge </label>
+                  <br/>  <br/>
+                <input type="checkbox" id="feature6" name="feature6" value="Fireplace" className="featureInput"/>
+                <label for='feature6'> Fireplace </label>
+                <br/>  <br/>
+                <input type="checkbox" id="feature7" name="feature7" value="Toaster" className="featureInput"/>
+                <label for='feature7'> Toaster </label>
+                <br/>  <br/>
+                <input type="checkbox" id="feature8" name="feature8" value="TV"  className="featureInput"/>
+                <label for='feature8'> TV </label>
+                
+                </div>
+                
+
+               
+             
+            </div>
 
             <br></br>
-            <div className="row g-2 my-2">
-              <div className="form-floating mb-3 col-4">
-                <input
-                  className="form-control"
-                  type="text"
-                  id="floatingInput"
-                  name="title"
-                  placeholder="Create a title"
-                  onChange={(e) =>
-                    setDetails({ ...details, Title: e.target.value })
-                  }
-                  value={details.Title}
-                />
-
-                <label for="title">Create your title</label>
-              </div>
-              <div className="form-floating mb-3 col-4">
-                <input
-                  className="form-control"
-                  type="text"
-                  name="description"
-                  id="floatingInput"
-                  placeholder="Describe your property"
-                  onChange={(e) =>
-                    setDetails({ ...details, Description: e.target.value })
-                  }
-                  value={details.Description}
-                />
-
-                <label for="title">Enter a description</label>
-              </div>
-              <div className="form-floating mb-3 col-4">
-                <input
-                  className="form-control"
-                  id="floatingInput"
-                  name="price"
-                  type="number"
-                  placeholder="$00 per night"
-                  onChange={(e) =>
-                    setDetails({ ...details, Price: e.target.value })
-                  }
-                  value={details.Price}
-                />
-
-                <label for="floatingInput">Set property price /night</label>
-              </div>
-            </div>
+           
             <div className="row g-2 text-center justify-content-center my-4">
               <div className="col-2 subButton">
                 <button className="btn btn-danger" id="signup">
