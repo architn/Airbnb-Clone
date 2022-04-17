@@ -174,7 +174,7 @@ router.post("/host", async (req, res) => {
     res.status(201).send(doc);
     console.log("Property added successfully");
   } catch (error) {
-    console.log("Error");
+    console.log(error);
   }
 });
 
