@@ -44,18 +44,14 @@ function AddProperty() {
     Reviews: 0,
     Rating: 0,
     SearchParam: "",
-    features:[
-      {
-        isWifi: false,
-        ac: false, 
-        bar: false,
-        microwave: false,
-        fridge: false,
-        fireplace: false,
-        toaster: false,
-        tv: false,
-      }
-    ]
+    isWifi: false,
+    ac : false,
+    bar: false,
+    microwave: false,
+    fridge: false,
+    fireplace: false,
+    toaster: false,
+    tv: false,
   });
 
   const submitHandler = (e) => {
@@ -157,9 +153,6 @@ function AddProperty() {
                 </select>
               </div>
             </div>
-            <br></br>
-
-            
             <br></br>
 
             <div className="row g-2 my-2">
@@ -424,32 +417,56 @@ function AddProperty() {
            <br/><br/>
             <div className="row">
               <div className="col-6">
-              <input type="checkbox" id="feature1" name="feature1" value="WiFi" className="featureInput"/>
+              <input type="checkbox" id="feature1" name="Wifi" className="featureInput"
+              onChange={(e) =>
+                setDetails({ ...details, isWifi : e.target.checked })
+              }/>
                 <label for='feature1'> WiFi </label>
                   <br/>  <br/>
 
-                <input type="checkbox" id="feature2" name="feature2" value="AC" className="featureInput"/>
+                <input type="checkbox" id="feature2" name="feature2" className="featureInput"
+                onChange={(e) =>
+                  setDetails({ ...details, ac : e.target.checked })
+                }/>
                 <label for='feature2'> AC </label>
                 <br/>  <br/>
-                <input type="checkbox" id="feature3" name="feature3" value="Bar" className="featureInput"/>
+                <input type="checkbox" id="feature3" name="feature3" className="featureInput"
+                onChange={(e) =>
+                  setDetails({ ...details, bar : e.target.checked })
+                }/>
                 <label for='feature3'> Bar </label>
                 <br/>  <br/>
-                <input type="checkbox" id="feature4" name="feature4" value="Microwave" className="featureInput"/>
+                <input type="checkbox" id="feature4" name="feature4" className="featureInput"
+                onChange={(e) =>
+                  setDetails({ ...details, microwave : e.target.checked })
+                }/>
                 <label for='feature4'> Microwave </label>
 
               </div>
 
               <div className="col-6">
-              <input type="checkbox" id="feature5" name="feature5" value="Fridge" className="featureInput"/>
+              <input type="checkbox" id="feature5" name="feature5" className="featureInput"
+              onChange={(e) =>
+                setDetails({ ...details, fridge : e.target.checked })
+              }/>
                 <label for='feature5'> Fridge </label>
                   <br/>  <br/>
-                <input type="checkbox" id="feature6" name="feature6" value="Fireplace" className="featureInput"/>
+                <input type="checkbox" id="feature6" name="feature6" className="featureInput"
+                onChange={(e) =>
+                  setDetails({ ...details, fireplace : e.target.checked })
+                }/>
                 <label for='feature6'> Fireplace </label>
                 <br/>  <br/>
-                <input type="checkbox" id="feature7" name="feature7" value="Toaster" className="featureInput"/>
+                <input type="checkbox" id="feature7" name="feature7" className="featureInput"
+                onChange={(e) =>
+                  setDetails({ ...details, toaster : e.target.checked })
+                }/>
                 <label for='feature7'> Toaster </label>
                 <br/>  <br/>
-                <input type="checkbox" id="feature8" name="feature8" value="TV"  className="featureInput"/>
+                <input type="checkbox" id="feature8" name="feature8" className="featureInput"
+                onChange={(e) =>
+                  setDetails({ ...details, tv : e.target.checked })
+                }/>
                 <label for='feature8'> TV </label>
                 
                 </div>
