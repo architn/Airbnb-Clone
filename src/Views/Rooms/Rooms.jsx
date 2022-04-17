@@ -14,7 +14,7 @@ function Rooms() {
   const [property, setPropertyData] = useState([]);
   useEffect( () => {
     setPropertyData(Properties.filter(prop => 
-      prop.id.toString().includes(propertyid) ))
+      prop.id === Number(propertyid) ))
   },[propertyid])
   console.log(property)
   return (
