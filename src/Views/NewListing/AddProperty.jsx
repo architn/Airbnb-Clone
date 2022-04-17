@@ -1,25 +1,9 @@
-import React from "react";
+import React,{useState} from "react";
 import "../NewListing/AddProperty.css";
 import Carousel from "../../components/Carousel/Carousel.jsx";
-
-//No of guests
-function increaseValueGuests() {
-  var value = document.getElementById("numberGuests").value;
-  console.log(value);
-  value++;
-  document.getElementById("numberGuests").value = value;
-}
-
-function decreaseValueGuests() {
-  var value = document.getElementById("numberGuests").value;
-  if (validateIfNotNegativeGuests()) {
-    value = 0;
-    document.getElementById("numberGuests").value = value;
-  } else {
-    value--;
-    document.getElementById("numberGuests").value = value;
-  }
-}
+import axios from "axios";
+// import { response } from "../../../Server/routes/user";
+import { Navigate } from "react-router-dom";
 
 function validateIfNotNegativeGuests() {
   var value = document.getElementById("numberGuests").value;
@@ -28,50 +12,10 @@ function validateIfNotNegativeGuests() {
   }
 }
 
-
-//Number of beds
-function increaseValueBeds() {
-  var value = document.getElementById("numberBeds").value;
-  console.log(value);
-  value++;
-  document.getElementById("numberBeds").value = value;
-}
-
-function decreaseValueBeds() {
-  var value = document.getElementById("numberBeds").value;
-  if (validateIfNotNegativeBeds()) {
-    value = 0;
-    document.getElementById("numberBeds").value = value;
-  } else {
-    value--;
-    document.getElementById("numberBeds").value = value;
-  }
-}
-
 function validateIfNotNegativeBeds() {
   var value = document.getElementById("numberBeds").value;
   if (value < 1) {
     return true;
-  }
-}
-
-
-//Number of Bathrooms
-function increaseValueBath() {
-  var value = document.getElementById("numberBath").value;
-  console.log(value);
-  value++;
-  document.getElementById("numberBath").value = value;
-}
-
-function decreaseValueBath() {
-  var value = document.getElementById("numberBath").value;
-  if (validateIfNotNegativeBath()) {
-    value = 0;
-    document.getElementById("numberBath").value = value;
-  } else {
-    value--;
-    document.getElementById("numberBath").value = value;
   }
 }
 
@@ -83,6 +27,42 @@ function validateIfNotNegativeBath() {
 }
 
 function AddProperty() {
+
+  const [details,setDetails] = useState({ApartmentType:"Choose Apartment Type",SpaceType:"Choose Space Type",Space:"",
+    Street:"",City:"",State:"",Zip:"",County:"",Country:"",Guests:0,Beds:0,Bathrooms:0,Title:"", Description:"",
+    Price:""});
+
+    const submitHandler = e => {
+      e.preventDefault();
+      console.log(details);
+      axios
+      .post("http://localhost:3002/host",details)
+      .then((response) => {
+        if(response.status === 201){
+          console.log("Property added successfully!");
+        }
+      })
+    }
+      //     setDetails({
+      //       ApartmentType:details.ApartmentType,
+      //       SpaceType:details.SpaceType,
+      //       Space:details.Space,
+      //       Street:details.Street,
+      //       City:details.City,
+      //       State:details.State,
+      //       Zip:details.Zip,
+      //       County:details.County,
+      //       Country:details.Country,
+      //       Guests:details.Guests,
+      //       Beds:details.Beds,
+      //       Bathrooms:details.Bathrooms,
+      //       Title:details.Title,
+      //       Description:details.Description,
+      //       Price:details.Price
+      //     });
+        // navigate("");
+     
+
   return (
     <div className="container px-5">
       <div className="row px-5">
@@ -91,20 +71,20 @@ function AddProperty() {
         </div> */}
 
         <div>
-          <form action="addProperty" className="form-group px-5">
+          <form action="addProperty" className="form-group px-5" onSubmit={submitHandler}>
             <div className="row g-2 my-2">
               <div className="col-3">
                 <label for="aptType">What kind of place will you host?</label>
               </div>
               <div className="col-3">
-                <select name="aptType" id="aptType">
-                  <option value="chooseApt">Choose Apartment Type</option>
-                  <option value="apt">Apartment</option>
-                  <option value="house">House</option>
-                  <option value="secUnit">Secondary Unit</option>
-                  <option value="uniqueSpace">Unique space</option>
-                  <option value="BednBreak">Bed and breakfast</option>
-                  <option value="Boutique hotel">Boutique hotel</option>
+                <select name="aptType" id="aptType" onChange={e => setDetails({...details,ApartmentType:e.target.value})} value = {details.ApartmentType}>
+                  <option value="ChooseApartmentType">Choose Apartment Type</option>
+                  <option value="Apartment">Apartment</option>
+                  <option value="House">House</option>
+                  <option value="SecondaryUnit">Secondary Unit</option>
+                  <option value="UniqueSpace">Unique space</option>
+                  <option value="BedAndBreakfast">Bed and breakfast</option>
+                  <option value="Boutiquehotel">Boutique hotel</option>
                 </select>
               </div>
               </div>
@@ -119,14 +99,14 @@ function AddProperty() {
               </div>
 
               <div className="col-3">
-                <select name="spaceType" id="spaceType">
-                  <option value="chooseRS">Choose Space Type</option>
-                  <option value="rentalUnit">Rental Unit</option>
-                  <option value="condo">Condo</option>
+                <select name="spaceType" id="spaceType" onChange={e => setDetails({...details,SpaceType:e.target.value})} value = {details.SpaceType}>
+                  <option value="ChooseSpaceType">Choose Space Type</option>
+                  <option value="RentalUnit">Rental Unit</option>
+                  <option value="Condo">Condo</option>
                   <option value="Loft">Loft</option>
-                  <option value="serApt">Serviced apartment</option>
-                  <option value="casaPart">Casa particular</option>
-                  <option value="boutiqueHotel">Vacation home</option>
+                  <option value="ServicedApartment">Serviced apartment</option>
+                  <option value="CasaParticular">Casa particular</option>
+                  <option value="VacationHome">Vacation home</option>
                 </select>
               </div>
 
@@ -141,11 +121,11 @@ function AddProperty() {
                 </label>
               </div>
               <div className="col-9">
-                <select name="spaceType" id="spaceType">
-                  <option value="chooseRS">Choose Space</option>
-                  <option value="rentalUnit">Entire place</option>
-                  <option value="condo">Private room</option>
-                  <option value="Loft">Shared room</option>
+                <select name="space" id="space" onChange={e => setDetails({...details,Space:e.target.value})} value = {details.Space}>
+                  <option value="choosespace">Choose Space</option>
+                  <option value="entireplace">Entire place</option>
+                  <option value="privateroom">Private room</option>
+                  <option value="sharedroom">Shared room</option>
                 </select>
               </div>
             </div>
@@ -166,6 +146,7 @@ function AddProperty() {
                         id="autocomplete"
                         placeholder="Street"
                         name="Street"
+                        onChange = {e => setDetails({...details, Street : e.target.value})} value = {details.Street}
                       />
                     </div>
                     <div className="col-4">
@@ -175,6 +156,7 @@ function AddProperty() {
                         id="inputCity"
                         placeholder="City"
                         name="city"
+                        onChange = {e => setDetails({...details, City : e.target.value})} value = {details.City}
                       />
                     </div>
 
@@ -185,6 +167,7 @@ function AddProperty() {
                         id="inputState"
                         placeholder="State"
                         name="state"
+                        onChange = {e => setDetails({...details, State : e.target.value})} value = {details.State}
                       />
                     </div>
                   </div>
@@ -197,6 +180,7 @@ function AddProperty() {
                         id="inputZip"
                         placeholder="Zip"
                         name="zip"
+                        onChange = {e => setDetails({...details, Zip : e.target.value})} value = {details.Zip}
                       />
                     </div>
                     <div class="col-12 my-2">
@@ -206,6 +190,7 @@ function AddProperty() {
                         id="inputCounty"
                         placeholder="County"
                         name="county"
+                        onChange = {e => setDetails({...details, County : e.target.value})} value = {details.County}
                       />
                     </div>
                     <div class="col-12 my-2">
@@ -215,6 +200,7 @@ function AddProperty() {
                         id="inputCountry"
                         placeholder="Country"
                         name="country"
+                        onChange = {e => setDetails({...details, Country : e.target.value})} value = {details.Country}
                       />
                     </div>
                   </div>
@@ -235,7 +221,11 @@ function AddProperty() {
                   type="button"
                   className="value-button"
                   id="decrease"
-                  onClick={decreaseValueGuests}
+                  onClick={() => {
+                    if(!validateIfNotNegativeGuests()){
+                      setDetails({...details, Guests : details.Guests - 1})
+                    }
+                  }}
                   value="Decrease Value"
                 >
                   -
@@ -244,16 +234,24 @@ function AddProperty() {
                   type="number"
                   id="numberGuests"
                   name="guests"
-                  value="0"
+                  value={details.Guests}
                   min={0}
                   max={10}
-                  onChange={validateIfNotNegativeGuests}
+                  onChange = {e => {
+                    if(!validateIfNotNegativeGuests()){
+                      setDetails({...details, Guests : e.target.value})
+                    }
+                    
+                  }
+                }
                 />
                 <button
                   type="button"
                   className="value-button"
                   id="increase"
-                  onClick={increaseValueGuests}
+                  onClick={() => {
+                    setDetails({...details, Guests : details.Guests + 1})
+                  }}
                   value="Increase Value"
                 >
                   +
@@ -274,7 +272,11 @@ function AddProperty() {
                   type="button"
                   className="value-button"
                   id="decrease"
-                  onClick={decreaseValueBeds}
+                  onClick={() => {
+                    if(!validateIfNotNegativeBeds()){
+                      setDetails({...details, Beds : details.Beds - 1})
+                    }
+                  }}
                   value="Decrease Value"
                 >
                   -
@@ -282,17 +284,25 @@ function AddProperty() {
                 <input
                   type="number"
                   id="numberBeds"
-                  value="0"
+                  value={details.Beds}
                   name="beds"
                   min={0}
                   max={10}
-                  onChange={validateIfNotNegativeBeds}
+                  onChange = {e => {
+                    if(!validateIfNotNegativeBeds()){
+                      setDetails({...details, Beds : e.target.value})
+                    }
+                    
+                  }
+                }
                 />
                 <button
                   type="button"
                   className="value-button"
                   id="increase"
-                  onClick={increaseValueBeds}
+                  onClick={() => {
+                    setDetails({...details, Beds : details.Beds + 1})
+                  }}
                   value="Increase Value"
                 >
                   +
@@ -316,7 +326,11 @@ function AddProperty() {
                   type="button"
                   className="value-button"
                   id="decrease"
-                  onClick={decreaseValueBath}
+                  onClick={() => {
+                    if(!validateIfNotNegativeBath()){
+                      setDetails({...details, Bathrooms : details.Bathrooms - 1})
+                    }
+                  }}
                   value="Decrease Value"
                 >
                   -
@@ -324,23 +338,37 @@ function AddProperty() {
                 <input
                   type="number"
                   id="numberBath"
-                  value="0"
+                  value={details.Bathrooms}
                   min={0}
                   max={10}
                   name ="bath"
-                  onChange={validateIfNotNegativeBath}
+                  onChange={e => {
+                    validateIfNotNegativeBath();
+                    setDetails({...details, Bathrooms : e.target.value})
+                  }
+                }
                 />
                 <button
                   type="button"
                   className="value-button"
                   id="increase"
-                  onClick={increaseValueBath}
+                  onClick={() => {
+                    setDetails({...details, Bathrooms : details.Bathrooms + 1})
+                  }}
                   value="Increase Value"
                 >
                   +
                 </button>
               </div>
             </div>
+            <br></br>
+
+            {/* <div>
+              <label>
+                <input type="checkbox" id="feature1" name="feature1" value="WiFi"/>
+                  WiFi
+              </label>
+            </div> */}
 
             <br></br>
             <div className="row g-2 my-2">
@@ -351,7 +379,8 @@ function AddProperty() {
                   id="floatingInput"
                   name="title"
                   placeholder="Create a title"
-                />
+                  onChange = {e => setDetails({...details, Title : e.target.value})} value = {details.Title}/>
+                
                 <label for="title">Create your title</label>
               </div>
               <div className="form-floating mb-3 col-4">
@@ -361,7 +390,8 @@ function AddProperty() {
                   name="description"
                   id="floatingInput"
                   placeholder="Describe your property"
-                />
+                  onChange = {e => setDetails({...details, Description : e.target.value})} value = {details.Description}/>
+                
                 <label for="title">Enter a description</label>
               </div>
               <div className="form-floating mb-3 col-4">
@@ -371,7 +401,8 @@ function AddProperty() {
                   name="price"
                   type="number"
                   placeholder="$00 per night"
-                />
+                  onChange = {e => setDetails({...details, Price : e.target.value})} value = {details.Price}/>
+                
                 <label for="floatingInput">Set property price /night</label>
               </div>
             </div>
