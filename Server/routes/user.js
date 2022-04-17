@@ -4,6 +4,7 @@ const user = require('../model/user');
 const router = express();
 const bcrypt = require("bcrypt");
 const {check, validationResult} = require('express-validator');
+const property = require('../model/property')
 
 const saltRounds = 10;
 
@@ -112,6 +113,41 @@ router.post('/login', async (req, res, next) => {
         }
 
     })
+})
+
+router.post('/host', async (req, res) => {
+    console.log(req.body);
+    const x =sessionStorage.getItem('userid')
+    console.log(JSON.parse(x));
+
+    const propertyData= new property({
+        user: sessionStorage.getItem('userid'),
+        ApartmentType: req.body.ApartmentType,
+        SpaceType: req.body.SpaceType,
+        Space: req.body.Space,
+        Street: req.body.Street,
+        City: req.body.City,
+        State: req.body.State,
+        Zip: req.body.Zip,
+        County: req.body.County,
+        Country: req.body.Country,
+        Guests: req.body.Guests,
+        Beds: req.body.Beds,
+        Bathrooms: req.body.Bathrooms,
+        Title: req.body.Title,
+        Description: req.body.Description,
+        Price: req.body.Price,
+    })
+
+    try {
+        let doc = await propertyData.save();
+        res.status(201).send(doc);
+        console.log("Property added successfully");
+    }
+    catch(error) {
+        console.log("Error");
+    }
+
 })
 
 module.exports = router;
