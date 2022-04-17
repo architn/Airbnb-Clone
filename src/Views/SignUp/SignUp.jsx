@@ -6,7 +6,7 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom"
 
 function SignUp() {
-  const [details, setDetails] = useState({email:"", password:""});
+  const [details, setDetails] = useState({email:"", password:"", name: ""});
   const [user, setUser] = useState({ name: "", email: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -47,7 +47,7 @@ function SignUp() {
     axios
     .post("http://localhost:3002/signup", details)
     .then((response) => {
-      if (response.status == 201) {
+      if (response.status === 201) {
         console.log("Logged IN!");
         setUser({
           name: details.name,

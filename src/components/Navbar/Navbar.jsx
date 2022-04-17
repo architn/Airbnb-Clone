@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Navbar/Navbar.css'
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
@@ -16,6 +17,13 @@ import PersonalInfo from '../../Views/PersonalInfo/PersonalInfo';
 
 
 function Navbar() {
+  var [isUserLoggedIn, setUserLogin] = useState(); 
+  var [nameOfLoggedInUser, setNameOfLoggedInUser] = useState();
+
+  useEffect( () => {
+    setNameOfLoggedInUser(sessionStorage.getItem("name"));
+    setUserLogin(sessionStorage.getItem("isUserLoggedIn"));
+  }, [isUserLoggedIn]);
   return (
     <div  id = 'navcolor'>
         <Router>
@@ -28,7 +36,7 @@ function Navbar() {
             <div className='col-12 col-md-6'>
                 <ul className='navbar'>
                     <li className='nav-item'>
-                    <a className="nav-link active" id = "host" aria-current="page">Become a host</a>
+                        {isUserLoggedIn? <p>Welcome {nameOfLoggedInUser}!</p>: null}
                     </li>
 
                     <li className='nav-item dropdown'>
@@ -38,25 +46,38 @@ function Navbar() {
                         role="button"
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
-                    >
-                <img src="images/134216_menu_lines_hamburger_icon.png" alt='hamburger' className='hamburger' />
-                <img src="images/profile.png" alt='profile' id='profileLogo' className='hamburger' />
+                      >
+                    <img src="images/134216_menu_lines_hamburger_icon.png" alt='hamburger' className='hamburger' />
+                    <img src="images/profile.png" alt='profile' id='profileLogo' className='hamburger' />
                 
-                </a>
+                    </a>
+                    {isUserLoggedIn ? 
                     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a className="dropdown-item"><Link className='navigation' to='/login'>Login</Link>{"   "}</a></li>
-                            <li><a className="dropdown-item"><Link className='navigation' to='/signup'>Sign Up</Link>{"   "}</a></li>
-                            <li><hr className="dropdown-divider" /></li>
+                        <li><a className="dropdown-item"><Link className='navigation' to='/host'>List New Property</Link>{"   "}</a></li>
+                        <li><a className="dropdown-item"><Link className='navigation' to='/personalinfo'>Edit Profile</Link>{"   "}</a></li>
+                        <li><hr className="dropdown-divider" /></li>
                         <li>
-                            <a className="dropdown-item"><Link className='navigation' to='/host'>Host your Home</Link>{"   "}</a>
-                            <a className="dropdown-item"><Link className='navigation' to='/events'>Events near You</Link>{"   "}</a>
-                            <a className="dropdown-item"><Link className='navigation' to='/personalinfo'>Help</Link>{"   "}</a>
-                         </li>
+                          <a className="dropdown-item"><Link className='navigation' to='/events'>Your Properties</Link>{"   "}</a>
+                          <a className="dropdown-item"><Link className='navigation' to='/events'>Your Reservations</Link>{"   "}</a>
+                          <a className="dropdown-item"><Link className='navigation' to='/events'>Events near You</Link>{"   "}</a>
+                          <a className="dropdown-item"><Link className='navigation' to='/logout'>Logout</Link>{"   "}</a>
+                        </li>
                     </ul>
+                     : 
+                     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                     <li><a className="dropdown-item"><Link className='navigation' to='/login'>Login</Link>{"   "}</a></li>
+                     <li><a className="dropdown-item"><Link className='navigation' to='/signup'>Sign Up</Link>{"   "}</a></li>
+                     <li><hr className="dropdown-divider" /></li>
+                 <li>
+                     <a className="dropdown-item"><Link className='navigation' to='/homes?searchCity=New+York%2C+NY%2C+USA'>View Properties near you</Link>{"   "}</a>
+                     <a className="dropdown-item"><Link className='navigation' to='/events'>Events near You</Link>{"   "}</a>
+                     <a className="dropdown-item"><Link className='navigation' to='/personalinfo'>Help</Link>{"   "}</a>
+                  </li>
+             </ul>
+                     }
                     </li>
                 </ul>
             </div>
-            
         </div>
         <div className="col-12 col-md-6">
                 <form className="d-flex align-items-center" action='/homes'>

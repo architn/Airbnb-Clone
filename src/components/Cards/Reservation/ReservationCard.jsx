@@ -2,6 +2,7 @@
 import React from 'react'
 import '../Reservation/ReservationCard.css'
 function ReservationCard(props) {
+    var isUserLoggedIn = sessionStorage.getItem("isUserLoggedIn");
   return (
     <div className="card">
   
@@ -33,7 +34,9 @@ function ReservationCard(props) {
                 <option value='3'>3</option>
             </select>
         <br/><br/><br/>
-    <button id='btnReserve' className='btn btn-primary'>Reserve</button>
+        {isUserLoggedIn ? <button id='btnReserve' className='btn btn-primary'>Reserve</button>
+         :<button id='btnReserve' className='btn btn-primary' disabled>Reserve</button>
+         }
     </div>
 </div>
   )
