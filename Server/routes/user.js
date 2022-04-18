@@ -47,8 +47,14 @@ router.post(
   }
 );
 
-router.get("/getAll", (req, res) => {
-  user.find({}, "email password -_id", function (err, user) {
+router.get("/property", (req, res) => {
+  let session = req.session;
+  if (!session.userid) {
+    res.sendStatus(401);
+  }
+  // console.log(session.userid);
+
+  property.find({user : session.userid}, function (err, user) {
     if (err) {
       res.send("Something went wrong");
       // next();
@@ -58,65 +64,65 @@ router.get("/getAll", (req, res) => {
   });
 });
 
-router.post(
-  "/edit",
-  validateEmail(),
-  validatePassword(),
-  async (req, res, next) => {
-    const result = validationResult(req);
-    if (!result.isEmpty()) {
-      console.log(result.errors.map((error) => error.msg).join(", "));
-      return res.status(400).json(result);
-    }
-    const userToUpdate = await user.findOne({ email: req.query.email }).exec();
-    console.log(userToUpdate);
-    if (!userToUpdate) {
-      res.status(400).send("User does not exist");
-      return;
-    }
-    const hash = await bcrypt.hash(req.body.password, saltRounds);
-    user.findOneAndUpdate(
-      { _id: userToUpdate._id },
-      { email: req.body.email, password: hash },
-      { new: true },
-      async (err, docs) => {
-        if (err) {
-          console.error("Email should be unique");
-        } else {
-          console.log("User updated successfully");
-        }
-        res.json(docs);
-      }
-    );
-  }
-);
+// router.post(
+//   "/edit",
+//   validateEmail(),
+//   validatePassword(),
+//   async (req, res, next) => {
+//     const result = validationResult(req);
+//     if (!result.isEmpty()) {
+//       console.log(result.errors.map((error) => error.msg).join(", "));
+//       return res.status(400).json(result);
+//     }
+//     const userToUpdate = await user.findOne({ email: req.query.email }).exec();
+//     console.log(userToUpdate);
+//     if (!userToUpdate) {
+//       res.status(400).send("User does not exist");
+//       return;
+//     }
+//     const hash = await bcrypt.hash(req.body.password, saltRounds);
+//     user.findOneAndUpdate(
+//       { _id: userToUpdate._id },
+//       { email: req.body.email, password: hash },
+//       { new: true },
+//       async (err, docs) => {
+//         if (err) {
+//           console.error("Email should be unique");
+//         } else {
+//           console.log("User updated successfully");
+//         }
+//         res.json(docs);
+//       }
+//     );
+//   }
+// );
 
-router.delete("/delete", async (req, res, next) => {
-  const userToDelete = await user.findOne({ email: req.query.email });
-  if (!userToDelete) {
-    console.log("User does not exist");
-    return res.status(400).json({ msg: "User does not exist" });
-  }
-  bcrypt.compare(
-    req.query.password,
-    userToDelete.password,
-    async (err, data) => {
-      if (err) throw err;
-      if (data) {
-        await user.findByIdAndRemove(userToDelete._id).exec();
-        console.log("User deleted successfully");
-        return res.status(200).json({ msg: "User deleted successfully" });
-      } else {
-        console.log(
-          "Not able to delete User since email or password provided does not match"
-        );
-        return res.status(400).json({
-          msg: "Not able to delete User since email or password provided does not match",
-        });
-      }
-    }
-  );
-});
+// router.delete("/delete", async (req, res, next) => {
+//   const userToDelete = await user.findOne({ email: req.query.email });
+//   if (!userToDelete) {
+//     console.log("User does not exist");
+//     return res.status(400).json({ msg: "User does not exist" });
+//   }
+//   bcrypt.compare(
+//     req.query.password,
+//     userToDelete.password,
+//     async (err, data) => {
+//       if (err) throw err;
+//       if (data) {
+//         await user.findByIdAndRemove(userToDelete._id).exec();
+//         console.log("User deleted successfully");
+//         return res.status(200).json({ msg: "User deleted successfully" });
+//       } else {
+//         console.log(
+//           "Not able to delete User since email or password provided does not match"
+//         );
+//         return res.status(400).json({
+//           msg: "Not able to delete User since email or password provided does not match",
+//         });
+//       }
+//     }
+//   );
+// });
 
 router.post("/login", async (req, res, next) => {
   const userAuth = await user.findOne({ email: req.body.email });
