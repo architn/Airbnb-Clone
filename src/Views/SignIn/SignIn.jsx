@@ -4,8 +4,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Input from "../../components/FormControl/Input";
 import axios from "axios";
 import {useNavigate} from "react-router-dom"
+import Navbar from "../../components/Navbar/Navbar";
 
 function SignIn() {
+  
   const [details, setDetails] = useState({ email: "", password: "" });
   const [user, setUser] = useState({ name: "", email: "" });
   const [error, setError] = useState("");
@@ -54,8 +56,8 @@ function SignIn() {
   };
 
   return (
-    <div id="signInComponent">
-      <div className="container">
+      <div id="signInComponent" className="container">
+      <Navbar />
         <div className="row">
           <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div className="card border-0 shadow-lg p-3 mb-5 bg-white rounded rounded-3 my-5">
@@ -113,7 +115,6 @@ function SignIn() {
           </div>
         </div>
       </div>
-    </div>
   );
 }
 

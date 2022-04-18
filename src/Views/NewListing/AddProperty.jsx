@@ -4,6 +4,7 @@ import Carousel from "../../components/Carousel/Carousel.jsx";
 import axios from "axios";
 // import { response } from "../../../Server/routes/user";
 import { Navigate } from "react-router-dom";
+import Navbar from "../../components/Navbar/Navbar";
 
 function validateIfNotNegativeGuests() {
   var value = document.getElementById("numberGuests").value;
@@ -75,6 +76,7 @@ function AddProperty() {
 
   return (
     <div className="container px-5">
+      <Navbar />
       <div className="row px-5">
         {/* <div className="col-4">
           <Carousel />

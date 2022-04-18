@@ -1,14 +1,16 @@
 import React from 'react'
 //import InfoJumbotron from '../../components/Jumbotron/InfoJumbotron'
 import Divider from '../../components/Divider/Divider'
+import Navbar from '../../components/Navbar/Navbar'
 import '../PersonalInfo/PersonalInfo.css'
 
 
 function PersonalInfo() {
 	
   return (
-      <div className="jumbotron jumbotron-fluid">
-		  <hr style={{color: "grey" }} /><br/>
+	  <div className='container'>
+		  <Navbar />
+		<div className="jumbotron jumbotron-fluid">
       <div className="container col-sm col-md col-lg">
       <div className="row">
 		  <div className="col-8">
@@ -32,6 +34,8 @@ function PersonalInfo() {
 	  </div>
     </div>
   </div>
+	  </div>
+      
 
   )
 }
