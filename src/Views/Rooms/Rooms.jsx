@@ -6,10 +6,12 @@ import Properties from '../../data/properties'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import PropertyDetailedView from '../PropertyDetailedView/PropertyDetailedView'
+import Navbar from '../../components/Navbar/Navbar'
 
 
 
 function Rooms() {
+  <Navbar />
   const {propertyid} = useParams();
   const [property, setPropertyData] = useState([]);
   useEffect( () => {

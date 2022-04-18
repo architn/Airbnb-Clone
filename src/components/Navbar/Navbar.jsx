@@ -4,29 +4,17 @@ import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Navbar/Navbar.css'
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
-import Error from '../../Views/Error'
-import LandingPage from '../../Views/Home/LandingPage.jsx'
-import SignIn from '../../Views/SignIn/SignIn.jsx';
-import SignUp from '../../Views/SignUp/SignUp.jsx';
-import Events from '../../Views/Events/Events.jsx';
-import AddProperty from '../../Views/NewListing/AddProperty.jsx';
-import Properties from '../../Views/Properties/Properties';
-import Footer from '../../Views/Footer/Footer';
-import Rooms from '../../Views/Rooms/Rooms';
-import PersonalInfo from '../../Views/PersonalInfo/PersonalInfo';
 
 
 function Navbar() {
-  var [isUserLoggedIn, setUserLogin] = useState(); 
-  var [nameOfLoggedInUser, setNameOfLoggedInUser] = useState();
-
+  var [isUserLoggedIn, setUserLogin] = useState(false); 
   useEffect( () => {
-    setNameOfLoggedInUser(sessionStorage.getItem("name"));
-    setUserLogin(sessionStorage.getItem("isUserLoggedIn"));
+    console.log("Called " +isUserLoggedIn)
+    return setUserLogin(sessionStorage.getItem("isUserLoggedIn"));
   }, [isUserLoggedIn]);
   return (
     <div  id = 'navcolor'>
-        <Router>
+     
         <nav className='navbar navbar-expand-lg navbar-light'>
         <div className='container-fluid'>
         <a className="navbar-brand" href='/'>
@@ -35,9 +23,7 @@ function Navbar() {
         <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <div className='col-12 col-md-6'>
                 <ul className='navbar'>
-                    <li className='nav-item'>
-                        {isUserLoggedIn? <p>Welcome {nameOfLoggedInUser}!</p>: null}
-                    </li>
+                    
 
                     <li className='nav-item dropdown'>
                     <a
@@ -110,22 +96,8 @@ function Navbar() {
         </div>
  
         </nav>
-        <Routes>
-          <Route path='/' element={<LandingPage/>}></Route>
-          <Route path='/login' element={<SignIn/>}></Route>
-          <Route path='/signup' element={<SignUp/>}></Route>
-          <Route path='/events' element={<Events/>}></Route>
-          <Route path='/host' element={<AddProperty/>}></Route>
-          <Route path='/homes' element={<Properties/>}></Route>
-          <Route path='/personalinfo' element={<PersonalInfo/>}></Route>
-          <Route path='/property/:propertyid' element={<Rooms/>}></Route>
-          <Route path='*' element={<Error/>}></Route>
-        </Routes>
-      </Router>
-      <footer>
+       
         <br/>
-         <Footer />
-       </footer>
     </div>
   )
 }

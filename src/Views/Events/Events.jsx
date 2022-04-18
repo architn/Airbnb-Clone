@@ -1,5 +1,6 @@
 import React from 'react'
 import EventsCard from '../../components/Cards/Events/EventsCard'
+import Navbar from '../../components/Navbar/Navbar'
 import events from '../../data/events.js'
 
 const filterRecords = events.filter( (eve) => {
@@ -16,8 +17,10 @@ function createEventsCard(events){
 }
 
 function Events() {
+  
   return (
     <div className='container'>
+      <Navbar />
       <br/>
       <h5>All Experiences</h5>
       <br/>
