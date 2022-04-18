@@ -31,7 +31,7 @@ function AddProperty() {
   const [details, setDetails] = useState({
     Title: "",
     Description: "",
-    Price: "",
+    Price: 0,
     ApartmentType: "Choose Apartment Type",
     Space: "",
     Street: "",

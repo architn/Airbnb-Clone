@@ -12,10 +12,6 @@ const propertySchema = new Schema({
     type: String,
   },
 
-  SpaceType: {
-    type: String,
-  },
-
   Space: {
     type: String,
   },
@@ -25,7 +21,7 @@ const propertySchema = new Schema({
   },
 
   City: {
-    tyep: String,
+    type: String,
   },
 
   State: {
@@ -33,13 +29,8 @@ const propertySchema = new Schema({
   },
 
   Zip: {
-    type: Number,
-  },
-
-  County: {
     type: String,
   },
-
   Country: {
     type: String,
   },
