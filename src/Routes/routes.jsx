@@ -24,6 +24,7 @@ function RoutesApp() {
           <Route path='/host' element={<AddProperty/>}></Route>
           <Route path='/homes' element={<Properties/>}></Route>
           <Route path='/personalinfo' element={<PersonalInfo/>}></Route>
+          <Route path='/property' element={<Rooms/>}></Route>
           <Route path='/property/:propertyid' element={<Rooms/>}></Route>
           <Route path='*' element={<Error/>}></Route>
         </Routes>
