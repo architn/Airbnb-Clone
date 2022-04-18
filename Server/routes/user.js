@@ -163,7 +163,7 @@ router.post("/host", async (req, res) => {
     Beds: req.body.Beds,
     Bathrooms: req.body.Bathrooms,
     Title: req.body.Title,
-    SearchParam: req.body.City + "," +" " + req.body.State + ","+ +" "+ req.body.Country,
+    SearchParam: `${req.body.City}, ${req.body.State}, ${req.body.Country}`,
     Description: req.body.Description,
     Price: req.body.Price,
     features: {
