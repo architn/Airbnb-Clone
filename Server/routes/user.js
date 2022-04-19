@@ -78,7 +78,7 @@ router.get("/getUserDetails", (req, res) => {
 
 
 router.get("/getPropertyByLocation",(req, res) => {
-  console.log(req.query);
+  // console.log(req.query.search);
   property.find({SearchParam : req.query.search}, function (err, user) {
     if (err) {
       res.send("Something went wrong");
