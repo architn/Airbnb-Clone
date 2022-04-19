@@ -16,11 +16,11 @@ function createEventsCard(events){
   )
 }
 
-function Events() {
+function Events(props) {
   
   return (
     <div className='container'>
-      <Navbar />
+      {props.reusability ? null : <Navbar />}
       <br/>
       <h5>All Experiences</h5>
       <br/>

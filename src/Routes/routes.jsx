@@ -13,6 +13,7 @@ import UserProperties from '../Views/Properties/UserProperties';
 import Rooms from '../Views/Rooms/Rooms';
 import SignIn from '../Views/SignIn/SignIn';
 import SignUp from '../Views/SignUp/SignUp';
+import UserCustomView from '../Views/UserCustomView/UserCustomView';
 
 function RoutesApp() {
   return (
@@ -26,8 +27,9 @@ function RoutesApp() {
           <Route path='/events' element={<Events/>}></Route>
           <Route path='/host' element={<AddProperty/>}></Route>
           <Route path='/homes' element={<Properties/>}></Route>
-          <Route path='/hosting' element={<UserProperties/>}></Route>
+          <Route path='/hosting' element={<UserCustomView/>}></Route>
           <Route path='/payment' element={<Payment/>}></Route>
+          <Route path='/test' element={<UserProperties/>}></Route>
           <Route path='/admin' element={<AdminView/>}></Route>
           <Route path='/personalinfo' element={<PersonalInfo/>}></Route>
           <Route path='/property' element={<Rooms/>}></Route>
