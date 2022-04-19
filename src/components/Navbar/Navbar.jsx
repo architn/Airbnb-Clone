@@ -18,7 +18,7 @@ function Navbar() {
     e.preventDefault();
     // Login(details);
     axios
-      .get("http://localhost:3002/homes", {params:details}, {
+      .get("http://localhost:3002/getPropertyByLocation", {params:details}, {
         withCredentials: true,
       })
       .then((response) => {

@@ -59,7 +59,7 @@ function AddProperty() {
     e.preventDefault();
     console.log(details);
     axios
-      .post("http://localhost:3002/host", details, {
+      .post("http://localhost:3002/getPropertyByUser", details, {
         withCredentials: true,
       })
       .then((response) => {

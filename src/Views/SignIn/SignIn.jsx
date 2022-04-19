@@ -31,7 +31,7 @@ function SignIn() {
     e.preventDefault();
     // Login(details);
     axios
-      .post("http://localhost:3002/login", details, {
+      .post("http://localhost:3002/userSignIn", details, {
         withCredentials: true,
       })
       .then((response) => {
