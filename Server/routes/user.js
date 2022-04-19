@@ -64,6 +64,26 @@ router.get("/property", (req, res) => {
   });
 });
 
+
+router.get("/homes",(req, res) => {
+  console.log(req.query);
+
+  // let session = req.session;
+  // if (!session.userid) {
+  //   res.sendStatus(401);
+  // }
+  // console.log(session.userid);
+
+  property.find({SearchParam : req.query.search}, function (err, user) {
+    if (err) {
+      res.send("Something went wrong");
+      return;
+      // next();
+    }
+    console.log(user);
+    res.json(user);
+  });
+});
 // router.post(
 //   "/edit",
 //   validateEmail(),
