@@ -1,15 +1,21 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect } from 'react'
 import { useState } from 'react';
+import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Navbar/Navbar.css'
-import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
+import { Link} from 'react-router-dom';
+import {useNavigate} from "react-router-dom"
+
 
 
 function Navbar() {
+  const navigate = useNavigate();
+  const [details, setDetails] = useState({ search: "" });
+
   var [isUserLoggedIn, setUserLogin] = useState(false); 
   useEffect( () => {
-    console.log("Called " +isUserLoggedIn)
+    
     return setUserLogin(sessionStorage.getItem("isUserLoggedIn"));
   }, [isUserLoggedIn]);
   return (

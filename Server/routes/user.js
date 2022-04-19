@@ -17,10 +17,10 @@ const validatePassword = () => {
     "password",
     "Invalid Password. Password must contain 1 uppercase, 1 lowercase, 1 numeric character and 1 special character atleast"
   ).matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/);
-  // next();
 };
+
 router.post(
-  "/signup",
+  "/userSignUp",
   validateEmail(),
   validatePassword(),
   async (req, res) => {
@@ -47,78 +47,49 @@ router.post(
   }
 );
 
-router.get("/getAll", (req, res) => {
-  user.find({}, "email password -_id", function (err, user) {
+router.get("/getPropertyByUser", (req, res) => {
+  let session = req.session;
+  if (!session.userid) {
+    res.sendStatus(401);
+  }
+  property.find({user : session.userid}, function (err, user) {
     if (err) {
       res.send("Something went wrong");
-      // next();
     }
     console.log(user);
     res.json(user);
   });
 });
 
-router.post(
-  "/edit",
-  validateEmail(),
-  validatePassword(),
-  async (req, res, next) => {
-    const result = validationResult(req);
-    if (!result.isEmpty()) {
-      console.log(result.errors.map((error) => error.msg).join(", "));
-      return res.status(400).json(result);
-    }
-    const userToUpdate = await user.findOne({ email: req.query.email }).exec();
-    console.log(userToUpdate);
-    if (!userToUpdate) {
-      res.status(400).send("User does not exist");
-      return;
-    }
-    const hash = await bcrypt.hash(req.body.password, saltRounds);
-    user.findOneAndUpdate(
-      { _id: userToUpdate._id },
-      { email: req.body.email, password: hash },
-      { new: true },
-      async (err, docs) => {
-        if (err) {
-          console.error("Email should be unique");
-        } else {
-          console.log("User updated successfully");
-        }
-        res.json(docs);
-      }
-    );
+router.get("/getUserDetails", (req, res) => {
+  let session = req.session;
+  if (!session.userid) {
+    res.sendStatus(401);
   }
-);
-
-router.delete("/delete", async (req, res, next) => {
-  const userToDelete = await user.findOne({ email: req.query.email });
-  if (!userToDelete) {
-    console.log("User does not exist");
-    return res.status(400).json({ msg: "User does not exist" });
-  }
-  bcrypt.compare(
-    req.query.password,
-    userToDelete.password,
-    async (err, data) => {
-      if (err) throw err;
-      if (data) {
-        await user.findByIdAndRemove(userToDelete._id).exec();
-        console.log("User deleted successfully");
-        return res.status(200).json({ msg: "User deleted successfully" });
-      } else {
-        console.log(
-          "Not able to delete User since email or password provided does not match"
-        );
-        return res.status(400).json({
-          msg: "Not able to delete User since email or password provided does not match",
-        });
-      }
+  user.find({_id : session.userid}, function (err, user) {
+    if (err) {
+      res.send("Something went wrong");
     }
-  );
+    console.log(user);
+    res.json(user);
+  });
 });
 
-router.post("/login", async (req, res, next) => {
+
+
+router.get("/getPropertyByLocation",(req, res) => {
+  // console.log(req.query.search);
+  property.find({SearchParam : req.query.search}, function (err, user) {
+    if (err) {
+      res.send("Something went wrong");
+      return;
+    }
+    console.log(user);
+    res.json(user);
+  });
+});
+
+router.post("/userSignIn", async (req, res, next) => {
   const userAuth = await user.findOne({ email: req.body.email });
   if (!userAuth) {
     console.log("User does not exist");
@@ -130,7 +101,6 @@ router.post("/login", async (req, res, next) => {
       let session = req.session;
       session.userid = userAuth._id.toString();
       console.log(session);
-      // console.log(data);
       console.log("User logged in successfully");
       return res.status(200).json({ msg: "User logged in successfully" });
     } else {
@@ -144,7 +114,7 @@ router.post("/login", async (req, res, next) => {
   });
 });
 
-router.post("/host", async (req, res) => {
+router.post("/addNewProperty", async (req, res) => {
   console.log(req.body);
   let session = req.session;
   if (!session.userid) {
@@ -187,5 +157,67 @@ router.post("/host", async (req, res) => {
     console.log(error);
   }
 });
+
+// router.post(
+//   "/edit",
+//   validateEmail(),
+//   validatePassword(),
+//   async (req, res, next) => {
+//     const result = validationResult(req);
+//     if (!result.isEmpty()) {
+//       console.log(result.errors.map((error) => error.msg).join(", "));
+//       return res.status(400).json(result);
+//     }
+//     const userToUpdate = await user.findOne({ email: req.query.email }).exec();
+//     console.log(userToUpdate);
+//     if (!userToUpdate) {
+//       res.status(400).send("User does not exist");
+//       return;
+//     }
+//     const hash = await bcrypt.hash(req.body.password, saltRounds);
+//     user.findOneAndUpdate(
+//       { _id: userToUpdate._id },
+//       { email: req.body.email, password: hash },
+//       { new: true },
+//       async (err, docs) => {
+//         if (err) {
+//           console.error("Email should be unique");
+//         } else {
+//           console.log("User updated successfully");
+//         }
+//         res.json(docs);
+//       }
+//     );
+//   }
+// );
+
+// router.delete("/delete", async (req, res, next) => {
+//   const userToDelete = await user.findOne({ email: req.query.email });
+//   if (!userToDelete) {
+//     console.log("User does not exist");
+//     return res.status(400).json({ msg: "User does not exist" });
+//   }
+//   bcrypt.compare(
+//     req.query.password,
+//     userToDelete.password,
+//     async (err, data) => {
+//       if (err) throw err;
+//       if (data) {
+//         await user.findByIdAndRemove(userToDelete._id).exec();
+//         console.log("User deleted successfully");
+//         return res.status(200).json({ msg: "User deleted successfully" });
+//       } else {
+//         console.log(
+//           "Not able to delete User since email or password provided does not match"
+//         );
+//         return res.status(400).json({
+//           msg: "Not able to delete User since email or password provided does not match",
+//         });
+//       }
+//     }
+//   );
+// });
+
+
 
 module.exports = router;

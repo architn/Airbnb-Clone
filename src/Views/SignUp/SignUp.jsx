@@ -47,7 +47,7 @@ function SignUp() {
     e.preventDefault();
     console.log(details);
     axios
-    .post("http://localhost:3002/signup", details)
+    .post("http://localhost:3002/userSignUp", details)
     .then((response) => {
       if (response.status === 201) {
         console.log("Logged IN!");
