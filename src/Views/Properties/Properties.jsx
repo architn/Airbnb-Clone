@@ -1,14 +1,15 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useState } from 'react'
 import { useSearchParams } from "react-router-dom";
 import PropertiesJumbotron from '../../components/Jumbotron/PropertiesJumbotron.jsx';
 import Navbar from '../../components/Navbar/Navbar.jsx';
 import properties from '../../data/properties.js'
 
-function searchedCity(city){
-       return properties.filter( property => 
-          property.searchParam.includes(city) 
-       )
-};
+// function searchedCity(city){
+//        return properties.filter( property => 
+//           property.searchParam.includes(city) 
+//        )
+// };
   
 function createPropertiesJumbotron(properties){
     return <PropertiesJumbotron 
@@ -35,15 +36,31 @@ function createPropertiesJumbotron(properties){
 }
 
 function Properties() {
- 
+    const [properties, setProperty] = useState([]);
     let [searchParams] = useSearchParams();
     let city = searchParams.get("searchCity");
-    const filteredProperties = searchedCity(city);
+    console.log(city);
+    axios
+    .get('http://localhost:3002/getPropertyByLocation', {params:city}, {
+      withCredentials: true,
+    })
+    .then((response) => {
+      if (response.status === 200) {
+        console.log(response.data)
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      //setError(err.response.data.msg);
+    });
+
+
+    //const filteredProperties = searchedCity(city);
   return (
     <div className='container'>
        <Navbar />
         <div className='row'>
-            {filteredProperties.map(createPropertiesJumbotron)}
+            {/* {filteredProperties.map(createPropertiesJumbotron)} */}
         </div>
         
     </div>

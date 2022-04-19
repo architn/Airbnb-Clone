@@ -13,30 +13,9 @@ function Navbar() {
   const navigate = useNavigate();
   const [details, setDetails] = useState({ search: "" });
 
-  const submitHandler = (e) => {
-    console.log(details);
-    e.preventDefault();
-    // Login(details);
-    axios
-      .get("http://localhost:3002/getPropertyByLocation", {params:details}, {
-        withCredentials: true,
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          console.log(response.data)
-          navigate("/homes");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        //setError(err.response.data.msg);
-      });
-  };
-
-
   var [isUserLoggedIn, setUserLogin] = useState(false); 
   useEffect( () => {
-    console.log("Called " +isUserLoggedIn)
+    
     return setUserLogin(sessionStorage.getItem("isUserLoggedIn"));
   }, [isUserLoggedIn]);
   return (
@@ -93,7 +72,7 @@ function Navbar() {
             </div>
         </div>
         <div className="col-12 col-md-6">
-                <form className="d-flex align-items-center" action='/homes' onSubmit={submitHandler}>
+                <form className="d-flex align-items-center" action='/homes'>
             <input
               className="form-control me-2"
               id="myInput"
@@ -101,10 +80,6 @@ function Navbar() {
               placeholder="Start your search"
               aria-label="Search"
               name="searchCity"
-              onChange={(e) =>
-                setDetails({ ...details, search: e.target.value })
-              }
-              value={details.search}
             />
            
             <button type="submit" className="btn btn-light">
