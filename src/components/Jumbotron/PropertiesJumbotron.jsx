@@ -13,7 +13,6 @@ import '../Jumbotron/PropertiesJumbotron.css'
 function PropertiesJumbotron(props) {
   return (
     <div className='container'>
-        <hr />
         <div className='col-8'>
             <div className="jumbotron">
                 

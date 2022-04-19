@@ -35,12 +35,13 @@ function createPropertiesJumbotron(properties){
 }
 
 function Properties() {
-  <Navbar />
+ 
     let [searchParams] = useSearchParams();
     let city = searchParams.get("searchCity");
     const filteredProperties = searchedCity(city);
   return (
     <div className='container'>
+       <Navbar />
         <div className='row'>
             {filteredProperties.map(createPropertiesJumbotron)}
         </div>
