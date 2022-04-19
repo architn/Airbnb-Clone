@@ -17,10 +17,10 @@ const validatePassword = () => {
     "password",
     "Invalid Password. Password must contain 1 uppercase, 1 lowercase, 1 numeric character and 1 special character atleast"
   ).matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/);
-  // next();
 };
+
 router.post(
-  "/signup",
+  "/userSignUp",
   validateEmail(),
   validatePassword(),
   async (req, res) => {
@@ -47,17 +47,28 @@ router.post(
   }
 );
 
-router.get("/property", (req, res) => {
+router.get("/getPropertyByUser", (req, res) => {
   let session = req.session;
   if (!session.userid) {
     res.sendStatus(401);
   }
-  // console.log(session.userid);
-
   property.find({user : session.userid}, function (err, user) {
     if (err) {
       res.send("Something went wrong");
-      // next();
+    }
+    console.log(user);
+    res.json(user);
+  });
+});
+
+router.get("/getUserDetails", (req, res) => {
+  let session = req.session;
+  if (!session.userid) {
+    res.sendStatus(401);
+  }
+  user.find({_id : session.userid}, function (err, user) {
+    if (err) {
+      res.send("Something went wrong");
     }
     console.log(user);
     res.json(user);
@@ -65,25 +76,88 @@ router.get("/property", (req, res) => {
 });
 
 
-router.get("/homes",(req, res) => {
+
+router.get("/getPropertyByLocation",(req, res) => {
   console.log(req.query);
-
-  // let session = req.session;
-  // if (!session.userid) {
-  //   res.sendStatus(401);
-  // }
-  // console.log(session.userid);
-
   property.find({SearchParam : req.query.search}, function (err, user) {
     if (err) {
       res.send("Something went wrong");
       return;
-      // next();
     }
     console.log(user);
     res.json(user);
   });
 });
+
+router.post("/userSignIn", async (req, res, next) => {
+  const userAuth = await user.findOne({ email: req.body.email });
+  if (!userAuth) {
+    console.log("User does not exist");
+    return res.status(400).json({ msg: "User does not exist" });
+  }
+  bcrypt.compare(req.body.password, userAuth.password, async (err, data) => {
+    if (err) throw err;
+    if (data) {
+      let session = req.session;
+      session.userid = userAuth._id.toString();
+      console.log(session);
+      console.log("User logged in successfully");
+      return res.status(200).json({ msg: "User logged in successfully" });
+    } else {
+      console.log(
+        "Not able to login User since email or password provided does not match"
+      );
+      return res.status(400).json({
+        msg: "Not able to login User since email or password provided does not match",
+      });
+    }
+  });
+});
+
+router.post("/addNewProperty", async (req, res) => {
+  console.log(req.body);
+  let session = req.session;
+  if (!session.userid) {
+    res.sendStatus(401);
+  }
+  const propertyData = new property({
+    user: session.userid,
+    ApartmentType: req.body.ApartmentType,
+    SpaceType: req.body.SpaceType,
+    Street: req.body.Street,
+    City: req.body.City,
+    State: req.body.State,
+    Zip: req.body.Zip,
+    Country: req.body.Country,
+    Guests: req.body.Guests,
+    Beds: req.body.Beds,
+    Bathrooms: req.body.Bathrooms,
+    Title: req.body.Title,
+    SearchParam: `${req.body.City}, ${req.body.State}, ${req.body.Country}`,
+    Description: req.body.Description,
+    Price: req.body.Price,
+    features: {
+        isWifi: req.body.isWifi,
+        ac: req.body.ac,
+        bar: req.body.bar,
+        microwave: req.body.microwave,
+        fridge: req.body.fridge,
+        fireplace: req.body.fireplace,
+        toaster: req.body.toaster,
+        tv: req.body.tv,
+    }
+  });
+
+  try {
+    console.log(propertyData);
+    let doc = await propertyData.save();
+    res.status(201).send(doc);
+    console.log("Property added successfully");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 // router.post(
 //   "/edit",
 //   validateEmail(),
@@ -144,74 +218,6 @@ router.get("/homes",(req, res) => {
 //   );
 // });
 
-router.post("/login", async (req, res, next) => {
-  const userAuth = await user.findOne({ email: req.body.email });
-  if (!userAuth) {
-    console.log("User does not exist");
-    return res.status(400).json({ msg: "User does not exist" });
-  }
-  bcrypt.compare(req.body.password, userAuth.password, async (err, data) => {
-    if (err) throw err;
-    if (data) {
-      let session = req.session;
-      session.userid = userAuth._id.toString();
-      console.log(session);
-      // console.log(data);
-      console.log("User logged in successfully");
-      return res.status(200).json({ msg: "User logged in successfully" });
-    } else {
-      console.log(
-        "Not able to login User since email or password provided does not match"
-      );
-      return res.status(400).json({
-        msg: "Not able to login User since email or password provided does not match",
-      });
-    }
-  });
-});
 
-router.post("/host", async (req, res) => {
-  console.log(req.body);
-  let session = req.session;
-  if (!session.userid) {
-    res.sendStatus(401);
-  }
-  const propertyData = new property({
-    user: session.userid,
-    ApartmentType: req.body.ApartmentType,
-    SpaceType: req.body.SpaceType,
-    Street: req.body.Street,
-    City: req.body.City,
-    State: req.body.State,
-    Zip: req.body.Zip,
-    Country: req.body.Country,
-    Guests: req.body.Guests,
-    Beds: req.body.Beds,
-    Bathrooms: req.body.Bathrooms,
-    Title: req.body.Title,
-    SearchParam: `${req.body.City}, ${req.body.State}, ${req.body.Country}`,
-    Description: req.body.Description,
-    Price: req.body.Price,
-    features: {
-        isWifi: req.body.isWifi,
-        ac: req.body.ac,
-        bar: req.body.bar,
-        microwave: req.body.microwave,
-        fridge: req.body.fridge,
-        fireplace: req.body.fireplace,
-        toaster: req.body.toaster,
-        tv: req.body.tv,
-    }
-  });
-
-  try {
-    console.log(propertyData);
-    let doc = await propertyData.save();
-    res.status(201).send(doc);
-    console.log("Property added successfully");
-  } catch (error) {
-    console.log(error);
-  }
-});
 
 module.exports = router;
