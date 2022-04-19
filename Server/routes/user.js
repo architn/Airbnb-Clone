@@ -158,6 +158,17 @@ router.post("/addNewProperty", async (req, res) => {
   }
 });
 
+router.get("/property/:id", async (req, res) => {
+  property.find({_id : req.params.id}, function (err, user) {
+    if (err) {
+      res.send("Something went wrong");
+      return;
+    }
+    console.log(user);
+    res.json(user);
+  });
+})
+
 // router.post(
 //   "/edit",
 //   validateEmail(),

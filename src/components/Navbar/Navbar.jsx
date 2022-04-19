@@ -49,9 +49,10 @@ function Navbar() {
                         <li><a className="dropdown-item"><Link className='navigation' to='/personalinfo'>Edit Profile</Link>{"   "}</a></li>
                         <li><hr className="dropdown-divider" /></li>
                         <li>
-                          <a className="dropdown-item"><Link className='navigation' to='/events'>Your Properties</Link>{"   "}</a>
-                          <a className="dropdown-item"><Link className='navigation' to='/events'>Your Reservations</Link>{"   "}</a>
+                          <a className="dropdown-item"><Link className='navigation' to='/hosting'>Your Properties</Link>{"   "}</a>
+                          <a className="dropdown-item"><Link className='navigation' to='/hosting'>Your Reservations</Link>{"   "}</a>
                           <a className="dropdown-item"><Link className='navigation' to='/events'>Events near You</Link>{"   "}</a>
+                          <a className="dropdown-item"><Link className='navigation' to='/homes?searchCity=New+York%2C+NY%2C+USA'>View Properties near you</Link>{"   "}</a>
                           <a className="dropdown-item"><Link className='navigation' to='/logout'>Logout</Link>{"   "}</a>
                         </li>
                     </ul>

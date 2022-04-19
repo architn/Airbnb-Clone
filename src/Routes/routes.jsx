@@ -10,6 +10,7 @@ import Payment from '../Views/Payment/Payment';
 import PersonalInfo from '../Views/PersonalInfo/PersonalInfo';
 import Properties from '../Views/Properties/Properties';
 import UserProperties from '../Views/Properties/UserProperties';
+import PropertyDetailedView from '../Views/PropertyDetailedView/PropertyDetailedView';
 import Rooms from '../Views/Rooms/Rooms';
 import SignIn from '../Views/SignIn/SignIn';
 import SignUp from '../Views/SignUp/SignUp';
@@ -33,7 +34,7 @@ function RoutesApp() {
           <Route path='/admin' element={<AdminView/>}></Route>
           <Route path='/personalinfo' element={<PersonalInfo/>}></Route>
           <Route path='/property' element={<Rooms/>}></Route>
-          <Route path='/property/:propertyid' element={<Rooms/>}></Route>
+          <Route path='/property/:propertyid' element={<PropertyDetailedView/>}></Route>
           <Route path='*' element={<Error/>}></Route>
         </Routes>
         </Router>
