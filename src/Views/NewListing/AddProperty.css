@@ -59,3 +59,63 @@ input[type=number]::-webkit-outer-spin-button {
 .featureInput{
   margin-right: 10px;
 }
+
+#TitleerrorMsg{
+  display: none; 
+  color: red;
+}
+
+#PriceerrorMsg{
+  display: none; 
+  color: red;
+}
+
+#DescerrorMsg{
+  display: none; 
+  color: red;
+}
+
+#ApterrorMsg{
+  display: none; 
+  color: red;
+}
+
+#SpaceerrorMsg{
+  display: none; 
+  color: red;
+}
+
+#StateerrorMsg{
+  display: none; 
+  color: red;  
+}
+
+#CityerrorMsg{
+  display: none; 
+  color: red;   
+}
+
+#StreeterrorMsg{
+  display: none; 
+  color: red;   
+}
+
+#ZiperrorMsg{
+  display: none; 
+  color: red;   
+}
+
+#GuesterrorMsg{
+  display: none; 
+  color: red;   
+}
+
+#BederrorMsg{
+  display: none; 
+  color: red;   
+}
+
+#BatherrorMsg{
+  display: none; 
+  color: red;   
+}
