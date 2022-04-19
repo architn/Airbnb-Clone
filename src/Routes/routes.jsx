@@ -1,12 +1,15 @@
 import React from 'react'
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
+import AdminView from '../Views/AdministratorView/AdminView';
 import Error from '../Views/Error';
 import Events from '../Views/Events/Events';
 import Footer from '../Views/Footer/Footer';
 import LandingPage from '../Views/Home/LandingPage';
 import AddProperty from '../Views/NewListing/AddProperty';
+import Payment from '../Views/Payment/Payment';
 import PersonalInfo from '../Views/PersonalInfo/PersonalInfo';
 import Properties from '../Views/Properties/Properties';
+import UserProperties from '../Views/Properties/UserProperties';
 import Rooms from '../Views/Rooms/Rooms';
 import SignIn from '../Views/SignIn/SignIn';
 import SignUp from '../Views/SignUp/SignUp';
@@ -23,6 +26,9 @@ function RoutesApp() {
           <Route path='/events' element={<Events/>}></Route>
           <Route path='/host' element={<AddProperty/>}></Route>
           <Route path='/homes' element={<Properties/>}></Route>
+          <Route path='/hosting' element={<UserProperties/>}></Route>
+          <Route path='/payment' element={<Payment/>}></Route>
+          <Route path='/admin' element={<AdminView/>}></Route>
           <Route path='/personalinfo' element={<PersonalInfo/>}></Route>
           <Route path='/property' element={<Rooms/>}></Route>
           <Route path='/property/:propertyid' element={<Rooms/>}></Route>

@@ -1,5 +1,6 @@
 import React from 'react'
 import ReservationCard from '../../components/Cards/Reservation/ReservationCard'
+import Navbar from '../../components/Navbar/Navbar'
 import MapView from '../Maps/Map'
 import '../PropertyDetailedView/PropertyDetailedView.css'
 
@@ -46,6 +47,7 @@ function createFacilitiesList(facilities){
 function PropertyDetailedView(props) {
   return (
     <div>     
+      <Navbar />
     <h4>{props.title}</h4>
     <span>
       <img src='https://www.citypng.com/public/uploads/preview/hd-star-silhouette-pink-icon-transparent-background-11637144467w2sss8mpmm.png' alt='fav' className='fav'/>
