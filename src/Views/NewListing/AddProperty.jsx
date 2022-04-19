@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../NewListing/AddProperty.css";
-import Carousel from "../../components/Carousel/Carousel.jsx";
 import axios from "axios";
 // import { response } from "../../../Server/routes/user";
 import { Navigate } from "react-router-dom";
