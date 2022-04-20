@@ -8,3 +8,48 @@
     -ms-flex: 50%; /* IE10 */
     flex: 50%;
   }
+
+  #NameerrorMsg{
+    display: none; 
+    color: red;
+  }
+
+  #FullNameerrorMsg{
+    display: none; 
+    color: red;
+  }
+
+  #ZiperrorMsg{
+    display: none; 
+    color: red;
+  }
+
+  #StateerrorMsg{
+    display: none; 
+    color: red;
+  }
+
+  #CityerrorMsg{
+    display: none; 
+    color: red;
+  }
+
+  #EmailerrorMsg{
+    display: none; 
+    color: red;
+  }
+
+  #CCerrorMsg{
+    display: none; 
+    color: red;
+  }
+
+  #CvcerrorMsg{
+    display: none; 
+    color: red;    
+  }
+
+  #MerrorMsg{
+    display: none; 
+    color: red;     
+  }

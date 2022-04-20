@@ -15,6 +15,7 @@
     "popper.js": "^1.16.1",
     "react": "^17.0.2",
     "react-bootstrap": "^2.2.2",
+    "react-credit-cards": "^0.8.3",
     "react-dom": "^17.0.2",
     "react-leaflet": "^3.2.1",
     "react-native-ico-payment-method": "^3.3.1",

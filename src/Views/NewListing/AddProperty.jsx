@@ -37,7 +37,6 @@ function validateIfNotNegativeBath() {
 
 function validateDescFieldIsNotEmpty() {
   var object = document.getElementById("description");
-  console.log("description field object " + object);
   if (object.value === "") {
     object.style.border = "2px solid red";
     document.getElementById("DescerrorMsg").style.display = "block";
@@ -49,7 +48,6 @@ function validateDescFieldIsNotEmpty() {
 
 function validateTitleFieldIsNotEmpty() {
   var object = document.getElementById("title");
-  console.log("title field object " + object);
   if (object.value === "") {
     object.style.border = "2px solid red";
     document.getElementById("TitleerrorMsg").style.display = "block";
@@ -219,9 +217,6 @@ function AddProperty() {
     <div className="container px-5">
       <Navbar />
       <div className="row px-5">
-        {/* <div className="col-4">
-          <Carousel />
-        </div> */}
         <br />
         <br />
         <h2>Add New Property</h2>
@@ -251,7 +246,7 @@ function AddProperty() {
               </div>
 
               <div className="form-floating mb-3 col-4">
-                <input
+                <textarea
                   className="form-control"
                   type="text"
                   name="description"
