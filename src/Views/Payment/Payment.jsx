@@ -3,6 +3,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import "../Payment/Payment.css";
 import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
+import emailjs from 'emailjs-com'
 
 function validateNameFieldIsNotEmpty() {
   var object = document.getElementById("cname");
@@ -116,6 +117,18 @@ function Payment(props) {
   const [cvc, setCvc] = useState("");
   const [focus, setFocus] = useState("");
 
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_wu950db', 'template_zqp8d76', e.target, '-cF8OdK8pPjA5-1Zz')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+      e.target.reset();
+  };
+
   return (
     <div className="container px-5">
       <Navbar />
@@ -129,7 +142,7 @@ function Payment(props) {
           focused={focus}
         />
       </div>
-      <form className="form-control">
+      <form className="form-control" onSubmit={sendEmail}>
         <div className="row g-2 my-2">
           <div className="col-5">
             <label for="cname">Name on Card</label>
