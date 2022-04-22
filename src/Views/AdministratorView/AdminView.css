@@ -10,7 +10,7 @@
     color: white;
 }
 
-.input-group-text:hover{
+#search-addon:hover{
 /* background-color: rgb(234, 66, 128); */
 background: linear-gradient(0.25turn, #f14b93, #f24c6d);
 }
