@@ -87,7 +87,7 @@ function createPropertyDetailedView(property){
         </ul>
       </div>
       <div className='col-4'>
-        <ReservationCard 
+        <ReservationCard id={property._id}
         price={property.Price} 
         rating={3.2} 
         reviews={22}

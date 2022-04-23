@@ -35,6 +35,7 @@ function RoutesApp() {
           <Route path='/personalinfo' element={<PersonalInfo/>}></Route>
           <Route path='/property' element={<Rooms/>}></Route>
           <Route path='/property/:propertyid' element={<PropertyDetailedView/>}></Route>
+          <Route path='/property/:propertyid/payment' element={<Payment/>}></Route>
           <Route path='*' element={<Error/>}></Route>
         </Routes>
         </Router>

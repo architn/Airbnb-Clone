@@ -2,6 +2,8 @@
 import React, { useState } from 'react'
 import Navbar from '../../Navbar/Navbar';
 import '../Reservation/ReservationCard.css'
+
+
 function ReservationCard(props) {
     const [totalPrice, setTotalPrice] = useState();
     var isUserLoggedIn = sessionStorage.getItem("isUserLoggedIn");
@@ -9,7 +11,7 @@ function ReservationCard(props) {
             <div className="card">
                 
                 <div className="card-body">
-                    <form className='form-group'>
+                    <form className='form-group' action={`/property/${props.id}/payment`}>
                         <span>
                         <span id='price'>${props.price}</span> <span id='night'> / night</span>
                 
@@ -21,12 +23,12 @@ function ReservationCard(props) {
                         <div id='calendarSection' className='row'>
                         <div id='checkInSection' className='col-6'>
                             <label htmlFor='checkInDate'>CHECK IN DATE: </label>
-                            <input id='checkInDate' type='date' className='form-control' />
+                            <input id='checkInDate' name='checkInDate' type='date' className='form-control' />
                         </div>
                         <div id='checkOutSection' className='col-6'>
                             <label htmlFor='checkInDate'>CHECK OUT DATE: </label>
                             
-                            <input id='checkOutDate' type='date' className='form-control' />
+                            <input id='checkOutDate' name='checkOutDate' type='date' className='form-control' />
                         </div>
                     </div>
                     <div id='cardNumberOfPeopleSection' class="card-body">
@@ -37,8 +39,11 @@ function ReservationCard(props) {
                         <option value='3'>3</option>
                     </select>
                     <br/><br/><br/>
-                        {isUserLoggedIn ? <button id='btnReserve' className='btn btn-primary'>RESERVE</button>
-                                :<button id='btnReserve' className='btn btn-primary' disabled>RESERVE</button>
+                        {isUserLoggedIn 
+                        ? 
+                        <button id='btnReserve' className='btn btn-primary'>RESERVE</button>
+                                :
+                        <button id='btnReserve' className='btn btn-primary' disabled>RESERVE</button>
                         }
                 </div>
             </form>
