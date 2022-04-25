@@ -164,7 +164,7 @@ router.get("/property/:id", async (req, res) => {
       res.send("Something went wrong");
       return;
     }
-    console.log(user);
+    // console.log(user);
     res.json(user);
   });
 })

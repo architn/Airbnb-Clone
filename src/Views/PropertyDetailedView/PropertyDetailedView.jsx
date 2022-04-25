@@ -5,9 +5,14 @@ import Navbar from '../../components/Navbar/Navbar'
 import MapView from '../Maps/Map'
 import {useParams} from 'react-router-dom'
 import '../PropertyDetailedView/PropertyDetailedView.css'
-
+import Images from '../../data/images'
 
 function createPropertyDetailedView(property){
+  const shuffled = Images.sort(() => 0.5 - Math.random());
+
+  // Get sub-array of first n elements after shuffled
+  let selected = shuffled.slice(0, 5);
+
   return (
     <div>
       <h4>{property.title}</h4>
@@ -19,24 +24,24 @@ function createPropertyDetailedView(property){
     <br/><br/>
     <div className='row'>
       <div className='col-6'>
-         <img src={property.img1} alt='image1' className='bigImage' />
+         <img src={selected[0]} alt='image1' className='bigImage' />
       </div>
       <div className='col-3'>
          <div className='col-6'>
-              <img className='image2' src={property.img2} alt='image2' />
+              <img className='image2' src={selected[1]} alt='image2' />
          </div>
          <div className='col-6'>
            <br/>
-            <img className='image2' src={property.img3} alt='image3' />
+            <img className='image2' src={selected[2]} alt='image3' />
          </div>
       </div>
       <div className='col-3'>
       <div className='col-6'>
-          <img className='image2' src={property.img4} alt='image3' />
+          <img className='image2' src={selected[3]} alt='image3' />
          </div>
          <div className='col-6'>
          <br/>
-            <img className='image2' src={property.img5} alt='image3' />
+            <img className='image2' src={selected[4]} alt='image3' />
            
          </div>
          </div>
@@ -111,6 +116,7 @@ function createPropertyDetailedView(property){
 function PropertyDetailedView() {
   const {propertyid} = useParams();
   const [detailedProperty, setProperty] = useState([]);
+  
   useEffect( () => {
     axios
         .get(`http://localhost:3002/property/${propertyid}` ,

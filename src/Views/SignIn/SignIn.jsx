@@ -46,7 +46,7 @@ function SignIn() {
             name: details.name,
             email: details.email,
           });
-          navigate("/personalinfo");
+          navigate("/hosting");
         }
       })
       .catch((err) => {
@@ -60,7 +60,7 @@ function SignIn() {
       <Navbar />
         <div className="row">
           <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <div className="card border-0 shadow-lg p-3 mb-5 bg-white rounded rounded-3 my-5">
+            <div className="">
               <div className="card-body p-4 p-sm-5" id="loginbox">
                 <h5 className="card-title text-center mb-5 fw-light fs-5">
                   <img src="images/airbnbLogo.png" alt="logo" />
@@ -106,14 +106,16 @@ function SignIn() {
                       type="submit"
                       value="Login"
                     >
-                      Sign in
+                      SIGN IN
                     </button>
                   </div>
                 </form>
+               
               </div>
             </div>
           </div>
         </div>
+        <br /> <br /> <br />
       </div>
   );
 }

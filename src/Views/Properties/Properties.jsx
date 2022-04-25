@@ -11,11 +11,6 @@ function createPropertiesJumbotron(properties) {
           roomid={properties._id}
           type={properties.ApartmentType}
           title={properties.Title}
-          img1='https://a0.muscache.com/im/pictures/631c8926-9ed6-4226-b5c4-c5452e84e6ba.jpg?im_w=720'
-          img2={properties.img2}
-          img3={properties.img3}
-          img4={properties.img4}
-          img5={properties.img5}
           numberOfGuests={properties.Guests}
           numberOfBedrooms={properties.Beds}
           numberOfBeds={properties.Beds}

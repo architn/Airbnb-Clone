@@ -22,9 +22,9 @@
 }
 
 #btnReserve{
-    background-color: rgb(255, 56, 92);
+    background-color: #eb4e63;
     color: white;
-    
+    font-weight: bold;
     width: 300px;
 }
 
@@ -45,4 +45,9 @@
 label{
     font-weight: bold;
     font-size: 90%;
+}
+
+#totalCost{
+    float: right;
+    font-weight: bold;
 }

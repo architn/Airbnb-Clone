@@ -116,7 +116,7 @@ function Payment(props) {
   const [expiry, setExpiry] = useState("");
   const [cvc, setCvc] = useState("");
   const [focus, setFocus] = useState("");
-
+  
   const sendEmail = (e) => {
     e.preventDefault();
 

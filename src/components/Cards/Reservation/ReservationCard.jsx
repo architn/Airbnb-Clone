@@ -5,7 +5,14 @@ import '../Reservation/ReservationCard.css'
 
 
 function ReservationCard(props) {
-    const [totalPrice, setTotalPrice] = useState();
+    const [totalPrice, setTotalPrice] = useState(props.price);
+    function calculatePrice(){
+        let checkInDate = new Date(document.getElementById('checkInDate').value) ;
+        let checkOutDate = new Date(document.getElementById('checkOutDate').value) ;
+        const diffTime = Math.abs(checkOutDate - checkInDate);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+        setTotalPrice(props.price * diffDays);
+    }
     var isUserLoggedIn = sessionStorage.getItem("isUserLoggedIn");
   return (
             <div className="card">
@@ -28,17 +35,29 @@ function ReservationCard(props) {
                         <div id='checkOutSection' className='col-6'>
                             <label htmlFor='checkInDate'>CHECK OUT DATE: </label>
                             
-                            <input id='checkOutDate' name='checkOutDate' type='date' className='form-control' />
+                            <input id='checkOutDate' name='checkOutDate' type='date' className='form-control' onChange={calculatePrice} />
                         </div>
                     </div>
                     <div id='cardNumberOfPeopleSection' class="card-body">
+                        <label htmlFor='numberOfGuests'>Number of Guests</label>
                     <select id='numberOfGuests' name='numberOfGuests' className='form-control' >
                         <option value='-1'>Select Number of Guests</option>
                         <option value='1'>1</option>
                         <option value='2'>2</option>
                         <option value='3'>3</option>
                     </select>
-                    <br/><br/><br/>
+                    <br/>
+                    <hr/>
+                        <div className='row'>
+                            <div className='col-3'>
+                                <strong>Total</strong>
+                            </div>
+                            <div className='col-9'>
+                                <span id='totalCost'>${totalPrice}</span>
+                                <input type="hidden" name='totalCost' value={totalPrice} />
+                            </div>
+                            <br /> <br/><hr/>
+                        </div>  
                         {isUserLoggedIn 
                         ? 
                         <button id='btnReserve' className='btn btn-primary'>RESERVE</button>

@@ -20,10 +20,15 @@ function createPropertiesJumbotron(properties){
          </div>
 }
 
+function createNameElement(user){
+    return <h3>Hi {user.name}!</h3>
+}
+
 
 function UserCustomView() {
     const [properties, setProperties] = useState([]);
     const [reservations, setReservations] = useState([]);
+    const [user, setUser] = useState([]);
     useEffect( () => {
     axios
         .get('http://localhost:3002/getPropertyByUser', {
@@ -38,13 +43,21 @@ function UserCustomView() {
         console.log(err);
             //setError(err.response.data.msg);
         });
+    axios.get('http://localhost:3002/getUserDetails', {
+        withCredentials: true,
+    })
+    .then( (response) => {
+        if(response.status === 200){
+            setUser(response.data)
+        }
+    })
     }, [properties._id])
 
   return (
     <div className='container'>
         <Navbar />
        
-        <h3>Hi Archit!</h3>
+       {user && user.map(createNameElement)}
         <br/><br/>
         <div className='row'>
            <h4>Your Properties ({properties.length})</h4>

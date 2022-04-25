@@ -1,6 +1,6 @@
-#signInComponent {
+/* #signInComponent {
     background: #eb4e63;
-    }
+    } */
     
     .btn-login {
       font-size: 0.9rem;
@@ -32,21 +32,26 @@
     #signin{
       background-color: #eb4e63;
       color: white;
+      margin-left: 130px;
+      width: 150px;
     }
   
     /* Do not use GLOBAL classes - REMOVE */
-    /* #loginbox{
+    #loginbox{
       background: linear-gradient(to right, #ec586c, #f34c54);
         border-radius: 30px;
         box-shadow: 12px 12px 22px;
-}  */
+} 
 
 #errorMsgEmail{
   display: none; 
-  color: red;
+  color: white;
+  font-weight: bold;
 }
 
 .error{
   text-align: start;
   color: red;
+  color: white;
+  font-weight: bold;
 }
