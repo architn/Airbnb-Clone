@@ -26,7 +26,7 @@ function createPropertyAdminView(property){
           guests = {property.Guests}
           beds = {property.Beds}
           bathroom = {property.Bathrooms}
-          price = {property.Price}
+          cost = {property.Price}
           id={property._id} />
     </div>
   )
