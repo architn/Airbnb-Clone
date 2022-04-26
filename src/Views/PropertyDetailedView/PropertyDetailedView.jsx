@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import BookingCard from '../../components/Cards/Booking/BookingCard'
+import BookingCard from '../../components/Cards/Booking/BookingCard.jsx'
 import Navbar from '../../components/Navbar/Navbar'
 import MapView from '../Maps/Map'
 import {useParams} from 'react-router-dom'
