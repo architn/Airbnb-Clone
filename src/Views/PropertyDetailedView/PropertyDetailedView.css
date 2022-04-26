@@ -6,3 +6,18 @@
     margin-left: 10px;
     text-decoration: underline;
 }
+
+.fav{
+    width: 15px;
+    margin-right: 1px;
+}
+
+.bigImage{
+    width: 650px;
+    height: 400px;
+}
+
+.image2{
+    width: 310px;
+    height: 189px;
+}

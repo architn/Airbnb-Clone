@@ -63,15 +63,16 @@ function AdminView() {
   return (
     <div className='container'>
       <Navbar />
-      <form className="form-control" action="/search">
+      <h4>Welcome to Administrator View</h4>
         <div className="row g-2 my-2">
+        <label htmlFor='drop'>Search By: </label>
           <div className="col-4">
+            
             <select  
             className="form-group col-6 input-group-text border-1" 
             name="searchCriteria" 
             id="drop"
            onChange={onChangeEvent}>
-            <option value="1">Select</option>
             <option value="Properties">Properties</option>
             <option value="Users">Users</option>
             </select>
@@ -95,7 +96,6 @@ function AdminView() {
 
         
         </div>
-      </form>
 
       <table>
         <th></th>

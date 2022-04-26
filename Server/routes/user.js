@@ -164,7 +164,7 @@ router.post("/addNewProperty", async (req, res) => {
   const propertyData = new property({
     user: session.userid,
     ApartmentType: req.body.ApartmentType,
-    SpaceType: req.body.SpaceType,
+    SpaceType: req.body.Space,
     Street: req.body.Street,
     City: req.body.City,
     State: req.body.State,
@@ -174,6 +174,8 @@ router.post("/addNewProperty", async (req, res) => {
     Beds: req.body.Beds,
     Bathrooms: req.body.Bathrooms,
     Title: req.body.Title,
+    Lat: 40.7549,
+    Long: -73.9840,
     SearchParam: `${req.body.City}, ${req.body.State}, ${req.body.Country}`,
     Description: req.body.Description,
     Price: req.body.Price,

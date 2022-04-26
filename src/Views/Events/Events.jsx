@@ -1,4 +1,3 @@
-import React from 'react'
 import EventsCard from '../../components/Cards/Events/EventsCard'
 import Navbar from '../../components/Navbar/Navbar'
 import events from '../../data/events.js'

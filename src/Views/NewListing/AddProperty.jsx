@@ -312,7 +312,7 @@ function AddProperty() {
               </div>
               <div className="col-3">
                 <select
-                  name="space"
+                  name="SpaceType"
                   className="form-control"
                   id="space"
                   onBlur={validateSpaceFieldIsNotEmpty}

@@ -9,6 +9,10 @@ import {useNavigate} from "react-router-dom"
 
 
 function Navbar() {
+
+  function pageRefresh(){
+    window.location.reload(true);
+  }
   const navigate = useNavigate();
   const [details, setDetails] = useState({ search: "" });
 
@@ -16,7 +20,7 @@ function Navbar() {
   useEffect( () => {
     
     return setUserLogin(sessionStorage.getItem("isUserLoggedIn"));
-  }, [isUserLoggedIn]);
+  }, []);
   return (
     <div  id = 'navcolor'>
      
@@ -44,26 +48,26 @@ function Navbar() {
                     </a>
                     {isUserLoggedIn ? 
                     <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a className="dropdown-item"><Link className='navigation' to='/host'>List New Property</Link>{"   "}</a></li>
-                        <li><a className="dropdown-item"><Link className='navigation' to='/personalinfo'>Edit Profile</Link>{"   "}</a></li>
+                        <li><a className="dropdown-item" onClick={pageRefresh}><Link className='navigation' to='/host'>List New Property</Link>{"   "}</a></li>
+                        <li><a className="dropdown-item" onClick={pageRefresh}><Link className='navigation' to='/personalinfo'>Edit Profile</Link>{"   "}</a></li>
                         <li><hr className="dropdown-divider" /></li>
                         <li>
-                          <a className="dropdown-item"><Link className='navigation' to='/hosting'>Your Properties</Link>{"   "}</a>
-                          <a className="dropdown-item"><Link className='navigation' to='/hosting'>Your Reservations</Link>{"   "}</a>
-                          <a className="dropdown-item"><Link className='navigation' to='/events'>Events near You</Link>{"   "}</a>
-                          <a className="dropdown-item"><Link className='navigation' to='/homes?searchCity=New+York%2C+NY%2C+USA'>View Properties near you</Link>{"   "}</a>
-                          <a className="dropdown-item"><Link className='navigation' to='/logout'>Logout</Link>{"   "}</a>
+                          <a className="dropdown-item" onClick={pageRefresh}><Link className='navigation' to='/hosting'>Your Properties</Link>{"   "}</a>
+                          <a className="dropdown-item" onClick={pageRefresh}><Link className='navigation' to='/hosting'>Your Reservations</Link>{"   "}</a>
+                          <a className="dropdown-item" onClick={pageRefresh}><Link className='navigation' to='/events'>Events near You</Link>{"   "}</a>
+                          <a className="dropdown-item" onClick={pageRefresh}><Link className='navigation' to='/homes?searchCity=New+York%2C+NY%2C+USA'>View Properties near you</Link>{"   "}</a>
+                          <a className="dropdown-item" onClick={pageRefresh}><Link className='navigation' to='/logout'>Logout</Link>{"   "}</a>
                         </li>
                     </ul>
                      : 
                      <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                     <li><a className="dropdown-item"><Link className='navigation' to='/login'>Login</Link>{"   "}</a></li>
-                     <li><a className="dropdown-item"><Link className='navigation' to='/signup'>Sign Up</Link>{"   "}</a></li>
+                     <li><a className="dropdown-item" onClick={pageRefresh}><Link className='navigation' to='/login'>Login</Link>{"   "}</a></li>
+                     <li><a className="dropdown-item" onClick={pageRefresh}><Link className='navigation' to='/signup'>Sign Up</Link>{"   "}</a></li>
                      <li><hr className="dropdown-divider" /></li>
                  <li>
-                     <a className="dropdown-item"><Link className='navigation' to='/homes?searchCity=New+York%2C+NY%2C+USA'>View Properties near you</Link>{"   "}</a>
-                     <a className="dropdown-item"><Link className='navigation' to='/events'>Events near You</Link>{"   "}</a>
-                     <a className="dropdown-item"><Link className='navigation' to='/personalinfo'>Help</Link>{"   "}</a>
+                     <a className="dropdown-item" onClick={pageRefresh}><Link className='navigation' to='/homes?searchCity=New+York%2C+NY%2C+USA'>View Properties near you</Link>{"   "}</a>
+                     <a className="dropdown-item" onClick={pageRefresh}><Link className='navigation' to='/events'>Events near You</Link>{"   "}</a>
+                     <a className="dropdown-item" onClick={pageRefresh}><Link className='navigation' to='/personalinfo'>Help</Link>{"   "}</a>
                   </li>
              </ul>
                      }

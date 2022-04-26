@@ -63,6 +63,16 @@ const propertySchema = new Schema({
     type: Number,
   },
 
+  lat: {
+    type: Number,
+    default: 40.7549
+  },
+  
+  long: {
+    type: Number,
+    default: -73.9840
+  },
+
   features: {
     isWifi: { type: Boolean, default: false },
     ac: { type: Boolean, default: false },

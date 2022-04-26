@@ -16,6 +16,10 @@ function PropertyCard(props) {
   const shuffled = Images.sort(() => 0.5 - Math.random());
   const navigate = useNavigate();
 
+  function pageRefresh(){
+    window.location.reload(true);
+  }
+
   function deleteProperty(){
     axios.delete(`http://localhost:3002/deleteProperty/${props.roomid}`, (req, res) => {
       

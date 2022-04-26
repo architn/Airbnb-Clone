@@ -8,6 +8,7 @@ import '../PropertyDetailedView/PropertyDetailedView.css'
 import Images from '../../data/images'
 
 function createPropertyDetailedView(property){
+  
   const shuffled = Images.sort(() => 0.5 - Math.random());
 
   // Get sub-array of first n elements after shuffled
@@ -49,7 +50,7 @@ function createPropertyDetailedView(property){
     <br/><br/>
     <div className='row'>
       <div className='col-8'>
-        <h4>{property.subtitle}</h4>
+        <h4>{property.Subtitle}</h4>
         <span>{property.Guests} Guests &bull; {property.Beds} bedrooms &bull; {property.Beds} beds &bull; {property.Bathrooms} baths</span>
         <br/><hr/>
         <p>{property.Description}
@@ -103,7 +104,7 @@ function createPropertyDetailedView(property){
     <h4>Where you'll be staying</h4>
     
     <div id='mapView'>
-      <MapView lat={property.lat} lng={property.lng}/>
+      <MapView lat={property.lat} lng={property.long}/>
     </div>
     <hr/>
     <h3>Hosted by Evolve</h3>
@@ -118,6 +119,8 @@ function PropertyDetailedView() {
   const [detailedProperty, setProperty] = useState([]);
   
   useEffect( () => {
+
+    
     axios
         .get(`http://localhost:3002/property/${propertyid}` ,
           { 

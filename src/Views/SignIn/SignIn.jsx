@@ -13,6 +13,8 @@ function SignIn() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  
+
   function validateInputs() {
     var regExEmail =
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -47,6 +49,7 @@ function SignIn() {
             email: details.email,
           });
           navigate("/hosting");
+          window.location.reload(true);
         }
         else if(response.statusText.includes("admin")){
           navigate("/admin");
