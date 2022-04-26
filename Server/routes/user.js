@@ -222,6 +222,12 @@ router.delete('/deleteReservation/:id', async (req, res) => {
   res.status(201).send();
 })
 
+router.delete('/deleteUser/:id',  async (req, res) => {
+  let userID = req.params.id;
+  await user.deleteOne({id: userID});
+  res.status(201).send();
+})
+
 router.patch('/editUser', async(req, res) => {
   
   let session = req.session;
