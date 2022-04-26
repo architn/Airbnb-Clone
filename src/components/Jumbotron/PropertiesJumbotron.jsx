@@ -9,8 +9,12 @@ import {
     useParams
   } from "react-router-dom";
 import '../Jumbotron/PropertiesJumbotron.css'
-
+import Images from '../../data/images'
 function PropertiesJumbotron(props) {
+    const shuffled = Images.sort(() => 0.5 - Math.random());
+
+  // Get sub-array of first n elements after shuffled
+  let selected = shuffled.slice(0, 1);
   return (
     <div className='container'>
         <div className='col-8'>
@@ -20,7 +24,7 @@ function PropertiesJumbotron(props) {
                 <div className='row'>
 
                      <div className='col-6'>
-                            <img src={props.img1} alt="property" id='propertyImage' />
+                            <img src={selected[0]} alt="property" id='propertyImage' />
                     </div>
                 <div className='col-4' id='propertyDescription'>
                     <p id='propertyType' className="lead">Entire {props.type} unit in {props.streetaddress}</p>

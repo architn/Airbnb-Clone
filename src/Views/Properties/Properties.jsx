@@ -4,7 +4,6 @@ import { useSearchParams } from "react-router-dom";
 import PropertiesJumbotron from "../../components/Jumbotron/PropertiesJumbotron.jsx";
 import Navbar from "../../components/Navbar/Navbar.jsx";
 
-
 function createPropertiesJumbotron(properties) {
   return (
     <PropertiesJumbotron
@@ -29,6 +28,7 @@ function createPropertiesJumbotron(properties) {
 function Properties() {
   const [properties, setProperty] = useState([]);
   let [searchParams] = useSearchParams();
+  
   let city = searchParams.get("searchCity");
     useEffect( () => {
        axios
