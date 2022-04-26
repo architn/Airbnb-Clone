@@ -48,6 +48,9 @@ function SignIn() {
           });
           navigate("/hosting");
         }
+        else if(response.statusText.includes("admin")){
+          navigate("/admin");
+        }
       })
       .catch((err) => {
         // console.log(err.response.data.msg);

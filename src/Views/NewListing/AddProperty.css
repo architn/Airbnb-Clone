@@ -119,3 +119,7 @@ input[type=number]::-webkit-outer-spin-button {
   display: none; 
   color: red;   
 }
+
+#description{
+  height: 150px;
+}

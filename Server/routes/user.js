@@ -131,16 +131,17 @@ router.get("/getPropertyByLocation",(req, res) => {
 
 router.post("/userSignIn", async (req, res, next) => {
   const userAuth = await user.findOne({ email: req.body.email });
+  
   if (!userAuth) {
     console.log("User does not exist");
     return res.status(400).json({ msg: "User does not exist" });
   }
+
   bcrypt.compare(req.body.password, userAuth.password, async (err, data) => {
     if (err) throw err;
     if (data) {
       let session = req.session;
       session.userid = userAuth._id.toString();
-      console.log(session);
       console.log("User logged in successfully");
       return res.status(200).json({ msg: "User logged in successfully" });
     } else {
@@ -220,6 +221,40 @@ router.delete('/deleteReservation/:id', async (req, res) => {
   await property.deleteOne({id: reservationID});
   res.status(201).send();
 })
+
+router.patch('/editUser', async(req, res) => {
+  
+  let session = req.session;
+  const doesUserExist = await user.findOne({__id: session.userid})
+  if(doesUserExist){
+    // Add validations for email ID
+    // Add validations for password
+     try{
+        await user.updateOne({_id: session.userid},
+        {$set : req.body })
+        res.status(201).send();
+        console.log("Updated succesfully!")
+     }
+     catch{
+      res.status(400).send();
+     }
+  }
+})
+
+router.get('/getAllProperties', async (req, res) => {
+      property.find({}, (err, results) => {
+          res.send(results);
+      });
+
+})
+
+router.get('/getAllUsers', async (req, res) => {
+  user.find({}, (err, results) => {
+      res.send(results);
+  });
+
+})
+
 // router.post(
 //   "/edit",
 //   validateEmail(),

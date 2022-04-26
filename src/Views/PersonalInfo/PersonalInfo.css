@@ -7,3 +7,15 @@
   .jumbotron #button{
     float: right; 
   }
+
+  .editBtn{
+    width: 35px;
+  }
+
+  .onEdit{
+    display: none;
+  }
+
+  #cancelBtn{
+    float: right;
+  }

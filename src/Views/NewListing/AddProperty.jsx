@@ -245,6 +245,7 @@ function AddProperty() {
                   type="text"
                   name="description"
                   id="description"
+                  
                   placeholder="Describe your property"
                   onBlur={validateDescFieldIsNotEmpty}
                   onChange={(e) =>
