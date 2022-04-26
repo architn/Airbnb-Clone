@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import ReservationCard from '../../components/Cards/Reservation/ReservationCard'
+import BookingCard from '../../components/Cards/Booking/BookingCard'
 import Navbar from '../../components/Navbar/Navbar'
 import MapView from '../Maps/Map'
 import {useParams} from 'react-router-dom'
@@ -92,7 +92,7 @@ function createPropertyDetailedView(property){
         </ul>
       </div>
       <div className='col-4'>
-        <ReservationCard id={property._id}
+        <BookingCard id={property._id}
         price={property.Price} 
         rating={3.2} 
         reviews={22}

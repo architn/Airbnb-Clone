@@ -53,3 +53,15 @@
     display: none; 
     color: red;     
   }
+
+  #payment{
+    white-space: nowrap;
+    font-weight: bold;
+    background-color: #eb4e63;
+
+  }
+
+  #propertyView{
+    width: 200px;
+    float: right;
+  }

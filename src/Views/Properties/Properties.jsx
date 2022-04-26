@@ -30,7 +30,6 @@ function Properties() {
   const [properties, setProperty] = useState([]);
   let [searchParams] = useSearchParams();
   let city = searchParams.get("searchCity");
-  console.log(city);
     useEffect( () => {
        axios
         .get(

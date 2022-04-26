@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import axios from "axios";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Navbar/Navbar.css'
 import { Link} from 'react-router-dom';

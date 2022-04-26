@@ -1,5 +1,4 @@
 import React from 'react'
-import ReservationCard from '../../components/Cards/Reservation/ReservationCard'
 import '../Rooms/Rooms.css'
 import {useParams} from 'react-router-dom'
 import Properties from '../../data/properties'

@@ -5,6 +5,7 @@ import Error from '../Views/Error';
 import Events from '../Views/Events/Events';
 import Footer from '../Views/Footer/Footer';
 import LandingPage from '../Views/Home/LandingPage';
+import Logout from '../Views/Logout/Logout';
 import AddProperty from '../Views/NewListing/AddProperty';
 import Payment from '../Views/Payment/Payment';
 import PersonalInfo from '../Views/PersonalInfo/PersonalInfo';
@@ -23,7 +24,7 @@ function RoutesApp() {
         <Routes>
           <Route path='/' element={<LandingPage/>}></Route>
           <Route path='/login' element={<SignIn/>}></Route>
-          <Route path='/logout' element={<SignIn/>}></Route>
+          <Route path='/logout' element={<Logout/>}></Route>
           <Route path='/signup' element={<SignUp/>}></Route>
           <Route path='/events' element={<Events/>}></Route>
           <Route path='/host' element={<AddProperty/>}></Route>

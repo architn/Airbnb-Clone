@@ -1,5 +1,8 @@
+import axios from 'axios';
 import {React, useState} from 'react'
 import { Button, Modal } from 'react-bootstrap';
+import {useNavigate} from "react-router-dom"
+
 import {
     BrowserRouter as Router,
     Switch,
@@ -11,7 +14,13 @@ import {
 import '../Property/PropertyCard.css'
 function PropertyCard(props) {
   const shuffled = Images.sort(() => 0.5 - Math.random());
+  const navigate = useNavigate();
 
+  function deleteProperty(){
+    axios.delete(`http://localhost:3002/deleteProperty/${props.roomid}`, (req, res) => {
+      // Implement Handling
+    })
+  }
   // Get sub-array of first n elements after shuffled
   let selected = shuffled.slice(0, 1);
   return (
@@ -31,7 +40,7 @@ function PropertyCard(props) {
      <hr/>
       <span>
         <button className='btn btn-primary' id="btnEdit">EDIT</button>
-        <button type="button" className='btn btn-danger' id="btnDelete" data-ds-toggle="modal" data-bs-target="#exampleModal">DELETE</button>
+        <button type="button" className='btn btn-danger' id="btnDelete" data-ds-toggle="modal" data-bs-target="#exampleModal" onClick={deleteProperty}>DELETE</button>
        
         
         <br/><br/>

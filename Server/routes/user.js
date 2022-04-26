@@ -5,7 +5,7 @@ const router = express();
 const bcrypt = require("bcrypt");
 const { check, validationResult } = require("express-validator");
 const property = require("../model/property");
-
+const reservation = require('../model/reservation')
 const saltRounds = 10;
 
 const validateEmail = () => {
@@ -19,8 +19,7 @@ const validatePassword = () => {
   ).matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/);
 };
 
-router.post(
-  "/userSignUp",
+router.post("/userSignUp",
   validateEmail(),
   validatePassword(),
   async (req, res) => {
@@ -75,6 +74,47 @@ router.get("/getUserDetails", (req, res) => {
   });
 });
 
+router.post("/addReservation", async (req, res) => {
+  console.log("Hi");
+  console.log(req.body);
+  let session = req.session;
+  if (!session.userid) {
+    res.sendStatus(401);
+  }
+  const reservationData = new reservation({
+    user: session.userid,
+    property: req.body.propertyID,
+    checkInDate: req.body.checkInDate,
+    checkOutDate: req.body.checkOutDate, 
+    totalCost: req.body.totalCost, 
+    numberOfGuests: req.body.numberOfGuests
+  });
+
+  try {
+    console.log(reservationData);
+    let doc = await reservationData.save();
+    res.status(201).send(doc);
+    console.log("Reservation added successfully");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+
+router.get('/getReservationsByUser', (req, res) => {
+  let session = req.session;
+  if (!session.userid) {
+    res.sendStatus(401);
+  }
+  reservation.find({user : session.userid}, function (err, user) {
+    if (err) {
+      res.send("Something went wrong");
+    }
+    console.log(user);
+    res.json(user);
+  });
+
+});
 
 
 router.get("/getPropertyByLocation",(req, res) => {
@@ -169,6 +209,17 @@ router.get("/property/:id", async (req, res) => {
   });
 })
 
+router.delete('/deleteProperty/:id', async (req, res) => {
+  let propertyID = req.params.id;
+  await property.deleteOne({id: propertyID});
+  res.send("Deleted");
+})
+
+router.delete('/deleteReservation/:id', async (req, res) => {
+  let reservationID = req.params.id;
+  await property.deleteOne({id: reservationID});
+  res.send("Deleted");
+})
 // router.post(
 //   "/edit",
 //   validateEmail(),

@@ -1,9 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import "../Payment/Payment.css";
 import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 import emailjs from 'emailjs-com'
+import { useSearchParams } from "react-router-dom";
+import Images from '../../data/images'
+import axios from 'axios'
+import {useParams} from 'react-router-dom'
+import {useNavigate} from "react-router-dom"
+
 
 function validateNameFieldIsNotEmpty() {
   var object = document.getElementById("cname");
@@ -110,30 +116,98 @@ function validatMonthExpFieldIsNotEmpty() {
   }
 }
 
-function Payment(props) {
+function Payment() {
   const [number, setNumber] = useState("");
   const [name, setName] = useState("");
   const [expiry, setExpiry] = useState("");
   const [cvc, setCvc] = useState("");
+  const [checkInDate, setCheckInDate] = useState(new Date());
+  const [checkOutDate, setCheckOutDate] = useState(new Date());
+  const [totalCost, setTotalCost] = useState(0);
+  const [numberOfGuests, setNumberOfGuests] = useState(0);
+  let [searchParams] = useSearchParams();
   const [focus, setFocus] = useState("");
-  
-  const sendEmail = (e) => {
-    e.preventDefault();
+  const {propertyid} = useParams();
+  const navigate = useNavigate();
+  const [property, setProperty] = useState([]);
+  const delay = ms => new Promise(res => setTimeout(res, ms));
+  const [reservation, setReservation] = useState({
+    user: "",
+    propertyID: propertyid,
+    checkInDate: checkInDate,
+    checkOutDate: checkOutDate,
+    numberOfGuests: numberOfGuests,
+    totalCost: totalCost,
+  });
 
-    emailjs.sendForm('service_wu950db', 'template_zqp8d76', e.target, '-cF8OdK8pPjA5-1Zz')
-      .then((result) => {
-          console.log(result.text);
-      }, (error) => {
-          console.log(error.text);
+  const shuffled = Images.sort(() => 0.5 - Math.random());
+
+  // Get sub-array of first n elements after shuffled
+  let selected = shuffled.slice(0, 1);
+
+  useEffect( () => {
+    setCheckInDate(searchParams.get("checkInDate"));
+    setCheckOutDate(searchParams.get("checkOutDate"));
+    setTotalCost(searchParams.get("totalCost"));
+    setNumberOfGuests(searchParams.get("numberOfGuests"));
+    axios
+        .get(`http://localhost:3002/property/${propertyid}` ,
+          { 
+            withCredentials: true,
+          }
+      )
+      .then((response) => {
+        if (response.status === 200) {
+          setProperty(response.data)
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        //setError(err.response.data.msg);
       });
-      e.target.reset();
+  
+     },[] )
+
+  const sendEmail = (e) => {
+    setReservation({
+      checkInDate: checkInDate,
+      checkOutDate: checkOutDate,
+      numberOfGuests: numberOfGuests,
+      propertyID: propertyid
+    }
+      
+    )
+    e.preventDefault();
+    console.log(reservation);
+     axios
+      .post("http://localhost:3002/addReservation", reservation, {
+        withCredentials: true,
+      })
+      .then( async (response) => {
+        if (response.status === 201) {
+           setTimeout(20000);
+
+        }
+      });
+    // emailjs.sendForm('service_wu950db', 'template_zqp8d76', e.target, '-cF8OdK8pPjA5-1Zz')
+    //   .then((result) => {
+    //       console.log(result.text);
+    //   }, (error) => {
+    //       console.log(error.text);
+    //   });
+    //   e.target.reset();
+    navigate("/hosting")
   };
 
   return (
     <div className="container px-5">
       <Navbar />
-      <h3 className="mb-3">Pay and Checkout</h3>
+      <div className="row">
+        <div className="col-8">
+        <h3>Pay and Checkout</h3>
+      
       <div className="float-end my-3 mx-3">
+        
         <Cards
           number={number}
           name={name}
@@ -353,16 +427,40 @@ function Payment(props) {
               <div id="ZiperrorMsg">Enter a valid postal code!</div>
             </div>
           </div>
-
+            <input type="hidden" name="checkInDate" value={checkInDate} />
+            <input type="hidden" name="propertyID" value={propertyid} />
+            <input type="hidden" name="checkOutDate" value={checkOutDate} />
+            <input type="hidden" name="numberOfGuests" value={numberOfGuests} />
+            <input type="hidden" name="totalCost" value={totalCost} />
           <div className="row g-2 text-center justify-content-center my-4 font-weight-bold">
             <div className="col-2 subButton">
               <button className="btn btn-danger" id="payment">
-                Confirm Payment
+                CONFIRM RESERVATION
               </button>
             </div>
           </div>
+              <input type="hidden" name="checkInDate" value={checkInDate}/>
+              <input type="hidden" name="propertyID" value={propertyid} />
+              <input type="hidden" name="checkOutDate" value={checkOutDate} />
+              <input type="hidden" name="numberOfGuests" value={numberOfGuests} />
+              <input type="hidden" name="totalCost" value={totalCost} />
         </div>
       </form>
+        </div>
+        <div className="col-4">
+        <h3>Property Summary</h3>
+            <div className="card" id="propertySummary">
+            
+              
+              <div id="propertyDiv">
+              <img id="propertyView" class="card-img-top" src={selected[0]} alt="Card cap" />
+              </div>
+             
+          </div>
+        </div>
+      </div>
+      
+      
       <br></br>
     </div>
   );

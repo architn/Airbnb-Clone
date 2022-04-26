@@ -19,15 +19,6 @@ function validateIfNotNegativeBed() {
   }
 }
 
-// function validateIfNotNegative() {
-//   if (
-//     document.getElementById("bed").value < 1 ||
-//     document.getElementById("bath").value < 1 ||
-//     document.getElementById("guest").value < 1
-//   )
-//     return true;
-// }
-
 function validateIfNotNegativeBath() {
   var value = document.getElementById("bath").value;
   if (value < 1) {

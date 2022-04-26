@@ -14,20 +14,22 @@ const reservationSchema = new Schema({
     },
 
     checkInDate: {
-        type: Date
+        type: Date,
 
     },
 
     checkOutDate: {
-        type: Date
+        type: Date,
 
     },
     cost: {
         type: Number,
 
+    },
+    numberOfGuests: {
+        type: Number,
     }
 })
 
 const reservationModel = mongoose.model("reservation", reservationSchema);
-
 module.exports = reservationModel;

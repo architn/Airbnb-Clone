@@ -20,6 +20,13 @@ function createPropertiesJumbotron(properties){
          </div>
 }
 
+function createReservationCard(reservation){
+    return(
+        <div>
+
+        </div>
+    )
+}
 function createNameElement(user){
     return <h3>Hi {user.name}!</h3>
 }
@@ -50,9 +57,17 @@ function UserCustomView() {
         if(response.status === 200){
             setUser(response.data)
         }
+    });
+    axios.get('http://localhost:3002/getReservationsByUser', {
+        withCredentials: true,
     })
-    }, [properties._id])
-
+    .then( (response) => {
+        if(response.status === 200){
+            setReservations(response.data)
+        }
+    })
+    }, [properties._id]);
+    
   return (
     <div className='container'>
         <Navbar />
@@ -65,10 +80,10 @@ function UserCustomView() {
            {properties.length === 0 ? <div className='nothingReserved'>You have not listed any property yet!</div>: properties.map(createPropertiesJumbotron)}
         </div>
         <br/>
-        <div>
+        <div className='row'>
             <h4>Your Reservations ({reservations.length})</h4>
             <br/><br/>
-            {reservations.length === 0 ? <div className='nothingReserved'><span classname='msgText'>You have not reserved any property yet</span></div>: properties.map(createPropertiesJumbotron)}
+            {reservations.length === 0 ? <div className='nothingReserved'><span classname='msgText'>You have not reserved any property yet</span></div>: reservations.map(createPropertiesJumbotron)}
         </div>
         <br/><br/>
         <div>
