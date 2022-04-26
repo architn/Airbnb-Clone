@@ -15,7 +15,7 @@ function createPropertyDetailedView(property){
 
   return (
     <div>
-      <h4>{property.title}</h4>
+      <h4>{property.Title}</h4>
     <span>
       <img src='https://www.citypng.com/public/uploads/preview/hd-star-silhouette-pink-icon-transparent-background-11637144467w2sss8mpmm.png' alt='fav' className='fav'/>
       <span id='rating'>{5.0}</span>

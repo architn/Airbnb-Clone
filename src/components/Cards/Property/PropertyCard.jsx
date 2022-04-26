@@ -18,8 +18,16 @@ function PropertyCard(props) {
 
   function deleteProperty(){
     axios.delete(`http://localhost:3002/deleteProperty/${props.roomid}`, (req, res) => {
-      // Implement Handling
+      
     })
+    .then( (response) => {
+       if(response.status === 201){
+         alert('Successfully deleted');
+         setTimeout( () => {
+            navigate('/hosting')
+         }, 2000)
+       }
+    } )
   }
   // Get sub-array of first n elements after shuffled
   let selected = shuffled.slice(0, 1);

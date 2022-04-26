@@ -212,13 +212,13 @@ router.get("/property/:id", async (req, res) => {
 router.delete('/deleteProperty/:id', async (req, res) => {
   let propertyID = req.params.id;
   await property.deleteOne({id: propertyID});
-  res.send("Deleted");
+  res.status(201).send();
 })
 
 router.delete('/deleteReservation/:id', async (req, res) => {
   let reservationID = req.params.id;
   await property.deleteOne({id: reservationID});
-  res.send("Deleted");
+  res.status(201).send();
 })
 // router.post(
 //   "/edit",

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../NewListing/AddProperty.css";
 import axios from "axios";
 // import { response } from "../../../Server/routes/user";
-import { Navigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom"
 import Navbar from "../../components/Navbar/Navbar";
 
 function validateIfNotNegativeGuest() {
@@ -163,6 +163,7 @@ function validateBathFieldIsNotEmpty() {
 }
 
 function AddProperty() {
+  const navigate = useNavigate();
   const [details, setDetails] = useState({
     Title: "",
     Description: "",
@@ -200,6 +201,8 @@ function AddProperty() {
       .then((response) => {
         if (response.status === 201) {
           console.log("Property added successfully!");
+          alert('Property added!')
+          navigate('/hosting')
         }
       });
   };
