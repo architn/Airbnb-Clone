@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import PropertyCard from '../../components/Cards/Property/PropertyCard';
+import ReservationCard from '../../components/Cards/Reservation/ReservationCard.jsx';
 import Navbar from '../../components/Navbar/Navbar'
 import Events from '../Events/Events'
 import '../UserCustomView/UserCustomView.css'
@@ -16,14 +17,21 @@ function createPropertiesJumbotron(properties){
           rating = {4.0}
           reviews = {3.9}
           price={properties.Price}
+          img1 = {properties.img1}
           />
          </div>
 }
 
 function createReservationCard(reservation){
     return(
-        <div>
-
+        <div className='col-3'>
+            <ReservationCard 
+            reservationID={reservation._id}
+            propertyID = {reservation.property}
+            checkInDate = {reservation.checkInDate}
+            checkOutDate = {reservation.checkOutDate}
+            guests = {reservation.numberOfGuests}
+            price = {reservation.cost}/>
         </div>
     )
 }
@@ -83,7 +91,7 @@ function UserCustomView() {
         <div className='row'>
             <h4>Your Reservations ({reservations.length})</h4>
             <br/><br/>
-            {reservations.length === 0 ? <div className='nothingReserved'><span classname='msgText'>You have not reserved any property yet</span></div>: reservations.map(createPropertiesJumbotron)}
+            {reservations.length === 0 ? <div className='nothingReserved'><span classname='msgText'>You have not reserved any property yet</span></div>: reservations.map(createReservationCard)}
         </div>
         <br/><br/>
         <div>

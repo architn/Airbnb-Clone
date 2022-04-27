@@ -30,12 +30,12 @@ function ReservationCard(props) {
                         <div id='calendarSection' className='row'>
                         <div id='checkInSection' className='col-6'>
                             <label htmlFor='checkInDate'>CHECK IN DATE: </label>
-                            <input id='checkInDate' name='checkInDate' type='date' className='form-control' />
+                            <input id='checkInDate' name='checkInDate' type='date' className='form-control' min={new Date().toISOString().split('T')[0]}/>
                         </div>
                         <div id='checkOutSection' className='col-6'>
                             <label htmlFor='checkInDate'>CHECK OUT DATE: </label>
                             
-                            <input id='checkOutDate' name='checkOutDate' type='date' className='form-control' onChange={calculatePrice} />
+                            <input id='checkOutDate' name='checkOutDate' type='date' className='form-control' onChange={calculatePrice} min={new Date().toISOString().split('T')[0]}/>
                         </div>
                     </div>
                     <div id='cardNumberOfPeopleSection' class="card-body">

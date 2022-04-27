@@ -6,7 +6,9 @@ const bcrypt = require("bcrypt");
 const { check, validationResult } = require("express-validator");
 const property = require("../model/property");
 const reservation = require('../model/reservation')
+let Images = require('../modules/images');
 const saltRounds = 10;
+
 
 const validateEmail = () => {
   return check("email", "Invalid Email Address").isEmail();
@@ -155,7 +157,10 @@ router.post("/userSignIn", async (req, res, next) => {
 });
 
 router.post("/addNewProperty", async (req, res) => {
-  console.log(req.body);
+  const shuffled = Images.sort(() => 0.5 - Math.random());
+
+  // Get sub-array of first n elements after shuffled
+  let selected = shuffled.slice(0, 5);
   let session = req.session;
   if (!session.userid) {
     res.sendStatus(401);
@@ -175,6 +180,11 @@ router.post("/addNewProperty", async (req, res) => {
     Title: req.body.Title,
     Lat: 40.7549,
     Long: -73.9840,
+    img1: selected[0],
+    img2: selected[1],
+    img3: selected[2],
+    img4: selected[3],
+    img5: selected[4],
     SearchParam: `${req.body.City}, ${req.body.State}, ${req.body.Country}`,
     Description: req.body.Description,
     Price: req.body.Price,

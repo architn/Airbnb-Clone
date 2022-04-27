@@ -131,14 +131,7 @@ function Payment() {
   const navigate = useNavigate();
   const [property, setProperty] = useState([]);
   const delay = ms => new Promise(res => setTimeout(res, ms));
-  // const [reservation, setReservation] = useState({
-  //   user: "",
-  //   propertyID: propertyid,
-  //   checkInDate: checkInDate,
-  //   checkOutDate: checkOutDate,
-  //   numberOfGuests: numberOfGuests,
-  //   totalCost: totalCost,
-  // });
+  
 
   const shuffled = Images.sort(() => 0.5 - Math.random());
 
@@ -166,7 +159,7 @@ function Payment() {
         //setError(err.response.data.msg);
       });
   
-     },[] )
+     },[propertyid, searchParams] )
 
   const sendEmail = (e) => {
     // setReservation({
@@ -449,9 +442,7 @@ function Payment() {
         </div>
         <div className="col-4">
         <h3>Property Summary</h3>
-            <div className="card" id="propertySummary">
-            
-              
+            <div className="card" id="propertySummary">              
               <div id="propertyDiv">
               <img id="propertyView" class="card-img-top" src={selected[0]} alt="Card cap" />
               </div>

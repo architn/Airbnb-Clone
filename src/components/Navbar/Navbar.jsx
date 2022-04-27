@@ -27,7 +27,7 @@ function Navbar() {
         <nav className='navbar navbar-expand-lg navbar-light'>
         <div className='container-fluid'>
         <a className="navbar-brand" href='/'>
-        <img src = {process.env.PUBLIC_URL + "images/airbnbLogo.png"} className='logo' alt='logo' />
+        <img src = "https://static.dezeen.com/uploads/2014/07/Airbnb-rebrand-by-DesignStudio_dezeen_468_8.jpg" className='logo' alt='logo' />
         </a>
         <div className='collapse navbar-collapse' id='navbarSupportedContent'>
             <div className='col-12 col-md-6'>
@@ -87,7 +87,7 @@ function Navbar() {
             />
            
             <button type="submit" className="btn btn-light">
-              <img src="images/3688454_find_lens_search_magnifier_magnifying_icon.png"  alt="magnifier" className='magnifier' />
+              <img src="https://i.ibb.co/pbSM5Jb/3688454-find-lens-search-magnifier-magnifying-icon.png"  alt="magnifier" className='magnifier' />
             </button>
 
           </form>

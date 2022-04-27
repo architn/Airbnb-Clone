@@ -8,41 +8,36 @@ import '../PropertyDetailedView/PropertyDetailedView.css'
 import Images from '../../data/images'
 
 function createPropertyDetailedView(property){
-  
-  const shuffled = Images.sort(() => 0.5 - Math.random());
-
-  // Get sub-array of first n elements after shuffled
-  let selected = shuffled.slice(0, 5);
 
   return (
     <div>
       <h4>{property.Title}</h4>
     <span>
       <img src='https://www.citypng.com/public/uploads/preview/hd-star-silhouette-pink-icon-transparent-background-11637144467w2sss8mpmm.png' alt='fav' className='fav'/>
-      <span id='rating'>{5.0}</span>
+      <span id='rating'>{4.3}</span>
       <span id='streetaddress'>{property.Street}, {property.City} - {property.Zip}, {property.Country}</span>
     </span>
     <br/><br/>
     <div className='row'>
       <div className='col-6'>
-         <img src={selected[0]} alt='image1' className='bigImage' />
+         <img src={property.img1} alt='image1' className='bigImage' />
       </div>
       <div className='col-3'>
          <div className='col-6'>
-              <img className='image2' src={selected[1]} alt='image2' />
+              <img className='image2' src={property.img2} alt='image2' />
          </div>
          <div className='col-6'>
            <br/>
-            <img className='image2' src={selected[2]} alt='image3' />
+            <img className='image2' src={property.img3} alt='image3' />
          </div>
       </div>
       <div className='col-3'>
       <div className='col-6'>
-          <img className='image2' src={selected[3]} alt='image3' />
+          <img className='image2' src={property.img4} alt='image3' />
          </div>
          <div className='col-6'>
          <br/>
-            <img className='image2' src={selected[4]} alt='image3' />
+            <img className='image2' src={property.img5} alt='image3' />
            
          </div>
          </div>
@@ -95,7 +90,7 @@ function createPropertyDetailedView(property){
       <div className='col-4'>
         <BookingCard id={property._id}
         price={property.Price} 
-        rating={3.2} 
+        rating={4.3} 
         reviews={22}
         />
       </div>

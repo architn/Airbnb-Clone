@@ -23,7 +23,7 @@ function ReservationCard(props) {
     <div id='propertyCard' class="card">
     <img class="card-img-top" src={selected[0]} alt="Property" id='eventImage' />
     <div class="card-body">
-    <Link className='titleLink' to={`/property/${props.reservationID}`}>Stay for 3 nights</Link>
+    <Link className='titleLink' to={`/property/${props.propertyID}`}>Stay for 3 nights</Link>
       <p class="card-text"></p>
      <span>
        <img src='images/favorite.png' alt='favicon' id='favicon'/>
@@ -35,7 +35,7 @@ function ReservationCard(props) {
       <p><b>Total Cost ${props.price}</b></p>
      <hr/>
       <span>
-        <button type="button" className='btn btn-danger' id="btnDelete" data-ds-toggle="modal" data-bs-target="#exampleModal" onClick={cancelReservation}>CANCEL RESERVATION</button>
+        <button type="button" className='btn btn-danger' id="btnCancel" data-ds-toggle="modal" data-bs-target="#exampleModal" onClick={cancelReservation}>CANCEL RESERVATION</button>
        
         <br/><br/>
         <hr/>

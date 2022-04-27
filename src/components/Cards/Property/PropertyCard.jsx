@@ -13,7 +13,6 @@ import {
   import Images from '../../../data/images'
 import '../Property/PropertyCard.css'
 function PropertyCard(props) {
-  const shuffled = Images.sort(() => 0.5 - Math.random());
   const navigate = useNavigate();
 
   function pageRefresh(){
@@ -34,10 +33,10 @@ function PropertyCard(props) {
     } )
   }
   // Get sub-array of first n elements after shuffled
-  let selected = shuffled.slice(0, 1);
+  
   return (
     <div id='propertyCard' class="card">
-    <img class="card-img-top" src={selected[0]} alt="Property" id='eventImage' />
+    <img class="card-img-top" src={props.img1} alt="Property" id='eventImage' />
     <div class="card-body">
     <Link className='titleLink' to={`/property/${props.roomid}`}>{props.title}</Link>
       <p class="card-text"></p>
