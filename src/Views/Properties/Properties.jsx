@@ -18,6 +18,7 @@ function createPropertiesJumbotron(properties) {
           price={properties.Price}
           rating={3.2}
           reviews={22}
+          img1 = {properties.img3}
           features={properties.features}
           userid={properties.user}
           searchParam={properties.SearchParam}

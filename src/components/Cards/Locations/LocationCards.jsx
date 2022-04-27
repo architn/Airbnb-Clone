@@ -7,7 +7,7 @@ function LocationCards(props) {
     <div className='container'>
     <br /><br />
     <div className="jumbotron" id='jumbotronCard'>
-            <h1 className="display-4">Inspiration for your next trip</h1>
+            <h1 className="display-5">Inspiration for your next trip</h1>
             <p className="lead">Your next trip, just a click away!</p>
           </div>
           <div className="row">

@@ -5,10 +5,10 @@ import Navbar from '../../components/Navbar/Navbar'
 import MapView from '../Maps/Map'
 import {useParams} from 'react-router-dom'
 import '../PropertyDetailedView/PropertyDetailedView.css'
-import Images from '../../data/images'
+import Rules from '../../components/Rules/Rules.jsx'
 
 function createPropertyDetailedView(property){
-
+  
   return (
     <div>
       <h4>{property.Title}</h4>
@@ -45,7 +45,7 @@ function createPropertyDetailedView(property){
     <br/><br/>
     <div className='row'>
       <div className='col-8'>
-        <h4>{property.Subtitle}</h4>
+        <h4>Entire {property.ApartmentType} hosted by Evolve</h4>
         <span>{property.Guests} Guests &bull; {property.Beds} bedrooms &bull; {property.Beds} beds &bull; {property.Bathrooms} baths</span>
         <br/><hr/>
         <p>{property.Description}
@@ -102,8 +102,6 @@ function createPropertyDetailedView(property){
       <MapView lat={property.lat} lng={property.long}/>
     </div>
     <hr/>
-    <h3>Hosted by Evolve</h3>
-
     </div>
   )
 }
@@ -112,10 +110,9 @@ function createPropertyDetailedView(property){
 function PropertyDetailedView() {
   const {propertyid} = useParams();
   const [detailedProperty, setProperty] = useState([]);
-  
+  const [user, setUser] = useState([]);
   useEffect( () => {
 
-    
     axios
         .get(`http://localhost:3002/property/${propertyid}` ,
           { 
@@ -130,13 +127,54 @@ function PropertyDetailedView() {
       .catch((err) => {
         console.log(err);
         //setError(err.response.data.msg);
-      });
+      })
+      axios.get('http://localhost:3002/getUserDetails', {
+        withCredentials: true
+      })
+      .then( (response) => {
+          setUser(response.data)
+      })
+      .catch((err) => {
+        console.log(err);
+        //setError(err.response.data.msg);
+      })
   }, [propertyid, detailedProperty._id]);
   return (
     <div className='container'>     
       <Navbar />
 
       {detailedProperty.length === 0 ? <div>No such property found!</div>: detailedProperty.map(createPropertyDetailedView)}
+
+        {user && user.map( (u) => {
+          return(
+            <div id='hostInformation'>
+              
+                  <img alt='host' className='rounded-circle' id='hostSymbol' src='https://cdn1.vectorstock.com/i/1000x1000/01/35/radio-host-and-guest-recording-interview-vector-34960135.jpg' />
+                  <h4 id='hostName'>Hosted by {u.name}</h4>               
+                <br/>
+                <div className='row'>
+                  <div className='col-7'>
+                      <h5>Message from the host: </h5>
+                      <br/>
+                      <p>{u.bio}</p>
+                  </div>
+                  <div className='col-4'>
+                      <button id='btnContactHost' className='btn btn-light' href= {`mailto: ${u.email}`}>Contact Host</button>
+                      <br/><br/><br/>
+                      <p>Response rate: 100%</p>
+                      <p>Response time: within an hour</p>
+                  </div>
+                </div>
+                <hr/>
+            </div>
+          )
+            
+        })}
+        <div id='thingsToKnow'>
+            <h5>Things to know</h5>
+            <br/>
+            <Rules />
+        </div>
         </div>
   )
 }

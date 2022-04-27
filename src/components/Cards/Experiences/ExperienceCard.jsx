@@ -6,7 +6,7 @@ function ExperienceCard() {
     <div className='container'>
       <br/><br/>
         <div className="jumbotron" id='experiencesection'>
-      <h1 className="display-4">Discover AirBnb experiences</h1>
+      <h1 className="display-5">Discover AirBnb experiences</h1>
       <p className="lead">Browse through our catalogs and discover the experiences we provide to ensure you have a memorable trip.</p>
       <br/>
     </div>
