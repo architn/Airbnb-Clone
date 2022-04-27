@@ -11,13 +11,10 @@ import {
     useParams
   } from "react-router-dom";
   import Images from '../../../data/images'
+import EditProperty from '../../../Views/EditProperty/EditProperty';
 import '../Property/PropertyCard.css'
 function PropertyCard(props) {
   const navigate = useNavigate();
-
-  function pageRefresh(){
-    window.location.reload(true);
-  }
 
   function deleteProperty(){
     axios.delete(`http://localhost:3002/deleteProperty/${props.roomid}`, (req, res) => {
@@ -50,7 +47,7 @@ function PropertyCard(props) {
       <p><b>From ${props.price}</b> / person</p>
      <hr/>
       <span>
-        <button className='btn btn-primary' id="btnEdit">EDIT</button>
+        <button className='btn btn-primary' id="btnEdit"><Link className='editLink' to={`/editProperty/${props.roomid}`}>EDIT</Link></button>
         <button type="button" className='btn btn-danger' id="btnDelete" data-ds-toggle="modal" data-bs-target="#exampleModal" onClick={deleteProperty}>DELETE</button>
        
         

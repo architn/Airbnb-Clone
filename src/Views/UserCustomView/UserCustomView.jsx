@@ -18,6 +18,8 @@ function createPropertiesJumbotron(properties){
           reviews = {3.9}
           price={properties.Price}
           img1 = {properties.img1}
+          description = {properties.Description}
+          apartmentType={properties.ApartmentType}
           />
          </div>
 }

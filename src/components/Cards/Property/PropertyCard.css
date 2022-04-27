@@ -82,3 +82,8 @@
 #btnDelete{
     float:right;
 }
+
+.editLink{
+    color: white;
+    text-decoration: none;
+}

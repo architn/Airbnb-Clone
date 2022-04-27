@@ -67,12 +67,12 @@ function SignUp() {
 
   
   return (
-    <div id='signInComponent'>
+    <div className="container" id='signInComponent'>
       <Navbar />
-    <div className="container">
+    <div>
           <div className="row">
             <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
-              <div className="card border-0 shadow-lg p-3 mb-5 bg-white rounded rounded-3 my-5" >
+              <div >
                 <div className="card-body p-4 p-sm-5" id='loginbox'>
                   <h5 className="card-title text-center mb-5 fw-light fs-5"><img src="images/airbnbLogo.png" alt="logo" /></h5>
                   <form onSubmit={submitHandler}>
@@ -105,13 +105,14 @@ function SignUp() {
                     <br /><br />
                     </div>
                      
-                    <button className="btn btn-danger" id='signup'>Sign Up</button>
+                    <button className="btn btn-danger" id='signup'>SIGN UP</button>
                   </form>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <br/><br/>
         </div>
  
   )
