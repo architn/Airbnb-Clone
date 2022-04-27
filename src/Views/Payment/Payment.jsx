@@ -121,8 +121,8 @@ function Payment() {
   const [name, setName] = useState("");
   const [expiry, setExpiry] = useState("");
   const [cvc, setCvc] = useState("");
-  const [checkInDate, setCheckInDate] = useState(new Date());
-  const [checkOutDate, setCheckOutDate] = useState(new Date());
+  const [checkInDate, setCheckInDate] = useState("");
+  const [checkOutDate, setCheckOutDate] = useState("");
   const [totalCost, setTotalCost] = useState(0);
   const [numberOfGuests, setNumberOfGuests] = useState(0);
   let [searchParams] = useSearchParams();
@@ -131,14 +131,14 @@ function Payment() {
   const navigate = useNavigate();
   const [property, setProperty] = useState([]);
   const delay = ms => new Promise(res => setTimeout(res, ms));
-  const [reservation, setReservation] = useState({
-    user: "",
-    propertyID: propertyid,
-    checkInDate: checkInDate,
-    checkOutDate: checkOutDate,
-    numberOfGuests: numberOfGuests,
-    totalCost: totalCost,
-  });
+  // const [reservation, setReservation] = useState({
+  //   user: "",
+  //   propertyID: propertyid,
+  //   checkInDate: checkInDate,
+  //   checkOutDate: checkOutDate,
+  //   numberOfGuests: numberOfGuests,
+  //   totalCost: totalCost,
+  // });
 
   const shuffled = Images.sort(() => 0.5 - Math.random());
 
@@ -169,18 +169,23 @@ function Payment() {
      },[] )
 
   const sendEmail = (e) => {
-    setReservation({
-      checkInDate: checkInDate,
-      checkOutDate: checkOutDate,
-      numberOfGuests: numberOfGuests,
-      propertyID: propertyid
-    }
+    // setReservation({
+    //   checkInDate: checkInDate,
+    //   checkOutDate: checkOutDate,
+    //   numberOfGuests: numberOfGuests,
+    //   propertyID: propertyid
+    // }
       
-    )
+    // )
     e.preventDefault();
-    console.log(reservation);
      axios
-      .post("http://localhost:3002/addReservation", reservation, {
+      .post("http://localhost:3002/addReservation", {
+        propertyID: propertyid,
+        checkInDate: checkInDate,
+        checkOutDate: checkOutDate,
+        numberOfGuests: numberOfGuests,
+        totalCost: totalCost,
+      }, {
         withCredentials: true,
       })
       .then( async (response) => {
@@ -439,11 +444,6 @@ function Payment() {
               </button>
             </div>
           </div>
-              <input type="hidden" name="checkInDate" value={checkInDate}/>
-              <input type="hidden" name="propertyID" value={propertyid} />
-              <input type="hidden" name="checkOutDate" value={checkOutDate} />
-              <input type="hidden" name="numberOfGuests" value={numberOfGuests} />
-              <input type="hidden" name="totalCost" value={totalCost} />
         </div>
       </form>
         </div>

@@ -75,7 +75,6 @@ router.get("/getUserDetails", (req, res) => {
 });
 
 router.post("/addReservation", async (req, res) => {
-  console.log("Hi");
   console.log(req.body);
   let session = req.session;
   if (!session.userid) {
@@ -86,7 +85,7 @@ router.post("/addReservation", async (req, res) => {
     property: req.body.propertyID,
     checkInDate: req.body.checkInDate,
     checkOutDate: req.body.checkOutDate, 
-    totalCost: req.body.totalCost, 
+    cost: req.body.totalCost, 
     numberOfGuests: req.body.numberOfGuests
   });
 

@@ -14,12 +14,12 @@ const reservationSchema = new Schema({
     },
 
     checkInDate: {
-        type: Date,
+        type: String,
 
     },
 
     checkOutDate: {
-        type: Date,
+        type: String,
 
     },
     cost: {
