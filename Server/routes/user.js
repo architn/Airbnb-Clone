@@ -158,7 +158,7 @@ router.post("/userSignIn", async (req, res, next) => {
 
 router.post("/addNewProperty", async (req, res) => {
   const shuffled = Images.sort(() => 0.5 - Math.random());
-
+  console.log(req);
   // Get sub-array of first n elements after shuffled
   let selected = shuffled.slice(0, 5);
   let session = req.session;
@@ -168,7 +168,7 @@ router.post("/addNewProperty", async (req, res) => {
   const propertyData = new property({
     user: session.userid,
     ApartmentType: req.body.ApartmentType,
-    SpaceType: req.body.Space,
+    Space: req.body.Space,
     Street: req.body.Street,
     City: req.body.City,
     State: req.body.State,
@@ -242,6 +242,9 @@ router.delete('/deleteUser/:id',  async (req, res) => {
 router.patch('/editUser', async(req, res) => {
   
   let session = req.session;
+  if (!session.userid) {
+    res.sendStatus(401);
+  }
   const doesUserExist = await user.findOne({__id: session.userid})
   if(doesUserExist){
     // Add validations for email ID
@@ -249,6 +252,47 @@ router.patch('/editUser', async(req, res) => {
      try{
         await user.updateOne({_id: session.userid},
         {$set : req.body })
+        res.status(201).send();
+        console.log("Updated succesfully!")
+     }
+     catch{
+      res.status(400).send();
+     }
+  }
+})
+
+
+router.post('/editProperty', async(req, res) => {
+  console.log(req.body);
+  let session = req.session;
+  if (!session.userid) {
+    res.sendStatus(401);
+  }
+  const doesPropertyExist = await property.findOne({_id: req.body._id})
+  console.log(doesPropertyExist._id);
+  if(doesPropertyExist){
+     try{
+        await property.updateOne({_id : doesPropertyExist._id},
+        {$set : {
+          ApartmentType: req.body.ApartmentType,
+          Space: req.body.Space,
+          Guests: req.body.Guests,
+          Beds: req.body.Beds,
+          Bathrooms: req.body.Bathrooms,
+          Title: req.body.Title,
+          Description: req.body.Description,
+          Price: req.body.Price,
+          features: {
+              isWifi: req.body.isWifi,
+              ac: req.body.ac,
+              bar: req.body.bar,
+              microwave: req.body.microwave,
+              fridge: req.body.fridge,
+              fireplace: req.body.fireplace,
+              toaster: req.body.toaster,
+              tv: req.body.tv,
+          }
+        } })
         res.status(201).send();
         console.log("Updated succesfully!")
      }

@@ -32,11 +32,11 @@ function PropertyCard(props) {
   // Get sub-array of first n elements after shuffled
   
   return (
-    <div id='propertyCard' class="card">
-    <img class="card-img-top" src={props.img1} alt="Property" id='eventImage' />
-    <div class="card-body">
+    <div id='propertyCard' className="card">
+    <img className="card-img-top" src={props.img1} alt="Property" id='eventImage' />
+    <div className="card-body">
     <Link className='titleLink' to={`/property/${props.roomid}`}>{props.title}</Link>
-      <p class="card-text"></p>
+      <p className="card-text"></p>
      <span>
        <img src='images/favorite.png' alt='favicon' id='favicon'/>
         <span id='ratingText'>{props.rating}</span>

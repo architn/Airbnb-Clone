@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import '../EditProperty/EditProperty.css'
+import "../EditProperty/EditProperty.css";
 import axios from "axios";
-import {useNavigate} from "react-router-dom"
-import {useParams} from 'react-router-dom'
-import Navbar from '../../components/Navbar/Navbar.jsx'
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import Navbar from "../../components/Navbar/Navbar.jsx";
 function validateIfNotNegativeGuest() {
   var value = document.getElementById("guest").value;
   if (value < 1) {
@@ -161,72 +161,64 @@ function validateBathFieldIsNotEmpty() {
   }
 }
 
-function EditProperty() {
-  const[property, setProperty] = useState([]);
-  const {propertyid} = useParams();
-  const [count, setCount] = useState(0);
-  const navigate = useNavigate();
+const EditProperty = () => {
+  const { propertyid } = useParams();
+  const [details, setDetails] = useState([]);
 
-  useEffect( () => {
+  useEffect(() => {
     axios
-    .get(`http://localhost:3002/property/${propertyid}` ,
-      { 
+      .get(`http://localhost:3002/property/${propertyid}`, {
         withCredentials: true,
-      }
-  )
-  .then((response) => {
-    if (response.status === 200) {
-      setProperty(response.data)
-      setCount(1)
-      console.log(property)
-    }
-  })
-  .catch((err) => {
-    console.log(err);
-    //setError(err.response.data.msg);
-  })
-  },[count])
-  const [details, setDetails] = useState({
-    Title: "",
-    Description: "",
-    Price: 0,
-    ApartmentType: "Choose Apartment Type",
-    Space: "",
-    Street: "",
-    City: "",
-    State: "",
-    Zip: "",
-    Country: "USA",
-    Guests: 0,
-    Beds: 0,
-    Bathrooms: 0,
-    Reviews: 0,
-    Rating: 0,
-    SearchParam: "",
-    isWifi: false,
-    ac: false,
-    bar: false,
-    microwave: false,
-    fridge: false,
-    fireplace: false,
-    toaster: false,
-    tv: false,
-  });
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          const property = response.data[0];
+          console.log(property);
+          setDetails({
+            "_id" :property?._id,
+            "Title" : property?.Title,
+            "Description" : property?.Description,
+            "Price": property?.Price,
+            "ApartmentType": property?.ApartmentType,
+            "Space": property?.Space,
+            "Street": property?.Street,
+            "City": property?.City,
+            "State": property?.State,
+            "Zip": property?.Zip,
+            "Country": property?.Country,
+            "Guests": property?.Guests,
+            "Beds": property?.Beds,
+            "Bathrooms": property?.Bathrooms,
+            "isWifi": property?.features.isWifi,
+            "ac": property?.features.ac,
+            "bar": property?.features.bar,
+            "microwave": property?.features.microwave,
+            "fridge": property?.features.fridge,
+            "fireplace": property?.features.fireplace,
+            "toaster": property?.features.toaster,
+            "tv": property?.features.tv,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        //setError(err.response.data.msg);
+      });
+  }, []);
+
 
   const submitHandler = (e) => {
-    e.preventDefault();
     console.log(details);
-
-    // Change to AXIOS.PATCH
+    e.preventDefault();
     axios
-      .post("http://localhost:3002/addNewProperty", details, {
+      .post("http://localhost:3002/editProperty", details, {
         withCredentials: true,
       })
       .then((response) => {
         if (response.status === 201) {
-          console.log("Property added successfully!");
-          alert('Property added!')
-          navigate('/hosting')
+          console.log("Property updated successfully!");
+          alert("Property Updated Successfully!");
+          //  navigate("/hosting");
         }
       });
   };
@@ -269,7 +261,6 @@ function EditProperty() {
                   type="text"
                   name="description"
                   id="description"
-                  
                   placeholder="Describe your property"
                   onBlur={validateDescFieldIsNotEmpty}
                   onChange={(e) =>
@@ -371,9 +362,10 @@ function EditProperty() {
                         placeholder="Street"
                         name="Street"
                         onBlur={validateStreetFieldIsNotEmpty}
-                        onChange={(e) =>
-                          setDetails({ ...details, Street: e.target.value })
-                        }
+                        readonly="readonly"
+                        // onChange={(e) =>
+                        //   setDetails({ ...details, Street: e.target.value })
+                        // }
                         value={details.Street}
                       />
                       <div id="StreeterrorMsg">Enter Street!</div>
@@ -387,9 +379,10 @@ function EditProperty() {
                         placeholder="City"
                         name="city"
                         onBlur={validateCityFieldIsNotEmpty}
-                        onChange={(e) =>
-                          setDetails({ ...details, City: e.target.value })
-                        }
+                        readonly="readonly"
+                        // onChange={(e) =>
+                        //   setDetails({ ...details, City: e.target.value })
+                        // }
                         value={details.City}
                       />
                       <div id="CityerrorMsg">Enter City!</div>
@@ -401,9 +394,10 @@ function EditProperty() {
                         name="state"
                         id="state"
                         onBlur={validateStateFieldIsNotEmpty}
-                        onChange={(e) =>
-                          setDetails({ ...details, State: e.target.value })
-                        }
+                        readonly="readonly"
+                        // onChange={(e) =>
+                        //   setDetails({ ...details, State: e.target.value })
+                        // }
                         value={details.State}
                       >
                         <option value="-1">Select State</option>
@@ -472,10 +466,11 @@ function EditProperty() {
                         id="zip"
                         placeholder="Postal Code"
                         name="zip"
+                        readonly="readonly"
                         onBlur={validateZipFieldIsNotEmpty}
-                        onChange={(e) =>
-                          setDetails({ ...details, Zip: e.target.value })
-                        }
+                        // onChange={(e) =>
+                        //   setDetails({ ...details, Zip: e.target.value })
+                        // }
                         value={details.Zip}
                       />
                       <div id="ZiperrorMsg">Enter a valid postal code!</div>
@@ -529,7 +524,7 @@ function EditProperty() {
                   value={details.Guests}
                   min={0}
                   max={10}
-                  onBlur = {validateGuestFieldIsNotEmpty}
+                  onBlur={validateGuestFieldIsNotEmpty}
                   onChange={(e) => {
                     if (!validateIfNotNegativeGuest()) {
                       setDetails({ ...details, Guests: e.target.value });
@@ -663,7 +658,6 @@ function EditProperty() {
             </div>
             <br></br>
 
-
             <label>What features do you have?</label>
             <br />
             <br />
@@ -674,6 +668,7 @@ function EditProperty() {
                   id="feature1"
                   name="Wifi"
                   className="featureInput"
+                  checked = {details.isWifi}
                   onChange={(e) =>
                     setDetails({ ...details, isWifi: e.target.checked })
                   }
@@ -685,6 +680,7 @@ function EditProperty() {
                   id="feature2"
                   name="feature2"
                   className="featureInput"
+                  checked = {details.ac}
                   onChange={(e) =>
                     setDetails({ ...details, ac: e.target.checked })
                   }
@@ -696,6 +692,7 @@ function EditProperty() {
                   id="feature3"
                   name="feature3"
                   className="featureInput"
+                  checked = {details.bar}
                   onChange={(e) =>
                     setDetails({ ...details, bar: e.target.checked })
                   }
@@ -707,6 +704,7 @@ function EditProperty() {
                   id="feature4"
                   name="feature4"
                   className="featureInput"
+                  checked = {details.microwave}
                   onChange={(e) =>
                     setDetails({ ...details, microwave: e.target.checked })
                   }
@@ -720,6 +718,7 @@ function EditProperty() {
                   id="feature5"
                   name="feature5"
                   className="featureInput"
+                  checked = {details.fridge}
                   onChange={(e) =>
                     setDetails({ ...details, fridge: e.target.checked })
                   }
@@ -731,6 +730,7 @@ function EditProperty() {
                   id="feature6"
                   name="feature6"
                   className="featureInput"
+                  checked = {details.fireplace}
                   onChange={(e) =>
                     setDetails({ ...details, fireplace: e.target.checked })
                   }
@@ -742,6 +742,7 @@ function EditProperty() {
                   id="feature7"
                   name="feature7"
                   className="featureInput"
+                  checked = {details.toaster}
                   onChange={(e) =>
                     setDetails({ ...details, toaster: e.target.checked })
                   }
@@ -753,6 +754,7 @@ function EditProperty() {
                   id="feature8"
                   name="feature8"
                   className="featureInput"
+                  checked = {details.tv}
                   onChange={(e) =>
                     setDetails({ ...details, tv: e.target.checked })
                   }
