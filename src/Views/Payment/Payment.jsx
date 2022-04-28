@@ -11,6 +11,24 @@ import {useParams} from 'react-router-dom'
 import {useNavigate} from "react-router-dom"
 
 
+function isEmpty(){
+  if(document.getElementById("cname").value.length == 0 ||
+  document.getElementById("fullName").value.length == 0 ||
+  document.getElementById("city").value.length == 0 ||
+  document.getElementById("zip").value.length == 0 ||
+  document.getElementById("email").value.length == 0 ||
+  document.getElementById("state").value == -1 ||
+  document.getElementById("ccnum").value.length == 0 ||
+  document.getElementById("cvc").value.length == 0 ||
+  document.getElementById("expmonth").value.length == 0)
+
+  {
+    alert("Please fill all the fields!")
+    return false;
+  }
+  return true;
+}
+
 function validateNameFieldIsNotEmpty() {
   var object = document.getElementById("cname");
   if (object.value === "") {
@@ -432,7 +450,7 @@ function Payment() {
             <input type="hidden" name="totalCost" value={totalCost} />
           <div className="row g-2 text-center justify-content-center my-4 font-weight-bold">
             <div className="col-2 subButton">
-              <button className="btn btn-danger" id="payment">
+              <button className="btn btn-danger" id="payment" onClick={isEmpty}>
                 CONFIRM RESERVATION
               </button>
             </div>
