@@ -239,7 +239,7 @@ router.delete('/deleteUser/:id',  async (req, res) => {
   res.status(201).send();
 })
 
-router.patch('/editUser', async(req, res) => {
+router.post('/editUser', async(req, res) => {
   
   let session = req.session;
   if (!session.userid) {
@@ -247,13 +247,11 @@ router.patch('/editUser', async(req, res) => {
   }
   const doesUserExist = await user.findOne({__id: session.userid})
   if(doesUserExist){
-    // Add validations for email ID
-    // Add validations for password
      try{
         await user.updateOne({_id: session.userid},
         {$set : req.body })
         res.status(201).send();
-        console.log("Updated succesfully!")
+        console.log("User Profile Updated succesfully!")
      }
      catch{
       res.status(400).send();
@@ -302,6 +300,32 @@ router.post('/editProperty', async(req, res) => {
   }
 })
 
+// router.post('/editUser', async(req, res) => {
+//   console.log(req.body);
+//   let session = req.session;
+//   if (!session.userid) {
+//     res.sendStatus(401);
+//   }
+//   const doesUserExist = await property.findOne({_id: req.body._id})
+//   console.log(doesUserExist._id);
+//   if(doesUserExist){
+//      try{
+//         await user.updateOne({_id : session.userid},
+//         {$set : {
+//           ApartmentType: req.body.ApartmentType,
+//           Space: req.body.Space
+//         } })
+//         res.status(201).send();
+//         console.log("Updated succesfully!")
+//      }
+//      catch{
+//       res.status(400).send();
+//      }
+//   }
+// })
+
+
+
 router.get('/getAllProperties', async (req, res) => {
       property.find({}, (err, results) => {
           res.send(results);
@@ -315,66 +339,6 @@ router.get('/getAllUsers', async (req, res) => {
   });
 
 })
-
-// router.post(
-//   "/edit",
-//   validateEmail(),
-//   validatePassword(),
-//   async (req, res, next) => {
-//     const result = validationResult(req);
-//     if (!result.isEmpty()) {
-//       console.log(result.errors.map((error) => error.msg).join(", "));
-//       return res.status(400).json(result);
-//     }
-//     const userToUpdate = await user.findOne({ email: req.query.email }).exec();
-//     console.log(userToUpdate);
-//     if (!userToUpdate) {
-//       res.status(400).send("User does not exist");
-//       return;
-//     }
-//     const hash = await bcrypt.hash(req.body.password, saltRounds);
-//     user.findOneAndUpdate(
-//       { _id: userToUpdate._id },
-//       { email: req.body.email, password: hash },
-//       { new: true },
-//       async (err, docs) => {
-//         if (err) {
-//           console.error("Email should be unique");
-//         } else {
-//           console.log("User updated successfully");
-//         }
-//         res.json(docs);
-//       }
-//     );
-//   }
-// );
-
-// router.delete("/delete", async (req, res, next) => {
-//   const userToDelete = await user.findOne({ email: req.query.email });
-//   if (!userToDelete) {
-//     console.log("User does not exist");
-//     return res.status(400).json({ msg: "User does not exist" });
-//   }
-//   bcrypt.compare(
-//     req.query.password,
-//     userToDelete.password,
-//     async (err, data) => {
-//       if (err) throw err;
-//       if (data) {
-//         await user.findByIdAndRemove(userToDelete._id).exec();
-//         console.log("User deleted successfully");
-//         return res.status(200).json({ msg: "User deleted successfully" });
-//       } else {
-//         console.log(
-//           "Not able to delete User since email or password provided does not match"
-//         );
-//         return res.status(400).json({
-//           msg: "Not able to delete User since email or password provided does not match",
-//         });
-//       }
-//     }
-//   );
-// });
 
 
 
