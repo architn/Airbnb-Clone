@@ -2,7 +2,7 @@ import React from 'react'
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import AdminView from '../Views/AdministratorView/AdminView';
 import EditProperty from '../Views/EditProperty/EditProperty';
-import Error from '../Views/Error';
+import Error from '../Views/Error/Error.jsx';
 import Events from '../Views/Events/Events';
 import Footer from '../Views/Footer/Footer';
 import LandingPage from '../Views/Home/LandingPage';
@@ -36,7 +36,7 @@ function RoutesApp() {
           <Route path='/admin' element={<AdminView/>}></Route>
           <Route path='/personalinfo' element={<PersonalInfo/>}></Route>
           <Route path='/property' element={<Rooms/>}></Route>
-          <Route path='/property/:propertyid' element={<PropertyDetailedView/>}></Route>
+          <Route path='/property/:propertyid/payment' element={<Payment/>}></Route>
           <Route path='/property/:propertyid' element={<PropertyDetailedView/>}></Route>
           <Route path='/editProperty/:propertyid' element={<EditProperty/>}></Route>
           <Route path='*' element={<Error/>}></Route>
