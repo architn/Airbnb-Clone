@@ -54,6 +54,9 @@ function PersonalInfo() {
             ...details,
             name: user?.name,
             email: user?.email,
+            address: user?.address,
+            mobile: user?.mobile,
+            bio: user?.bio
           });
         }
       });
