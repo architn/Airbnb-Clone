@@ -237,7 +237,7 @@ function EditProperty() {
       <div className="row px-5">
         <br />
         <br />
-        <h2>Add New Property</h2>
+        <h2>Edit Property</h2>
         <div>
           <form
             action="addProperty"
