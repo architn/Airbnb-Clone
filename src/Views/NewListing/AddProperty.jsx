@@ -162,6 +162,20 @@ function validateBathFieldIsNotEmpty() {
   }
 }
 
+function isEmpty(){
+  if(document.getElementById("guest").value == 0 || document.getElementById("bed").value == 0 || document.getElementById("bath") == 0
+  || document.getElementById("description").value.length == 0 || document.getElementById("title").value.length == 0
+  || document.getElementById("price").value == 0 || document.getElementById("aptType").value == -1 || document.getElementById("space").value == -1 
+  || document.getElementById("street").value.length == 0 || document.getElementById("city").value.length == 0
+  || document.getElementById("state").value == -1 || document.getElementById("zip").value == 0)
+
+  {
+    alert("Please fill all the fields!")
+    return false;
+  }
+  return true;
+}
+
 function AddProperty() {
   const navigate = useNavigate();
   const [details, setDetails] = useState({
@@ -741,7 +755,7 @@ function AddProperty() {
 
             <div className="row g-2 text-center justify-content-center my-4">
               <div className="col-2 subButton">
-                <button className="btn btn-danger" id="signup">
+                <button className="btn btn-danger" id="signup" onClick={isEmpty}>
                   Add Property
                 </button>
               </div>
