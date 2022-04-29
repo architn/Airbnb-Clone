@@ -278,7 +278,7 @@ router.delete('/deleteProperty/:id', async (req, res) => {
  */
 router.delete('/deleteReservation/:id', async (req, res) => {
   let reservationID = req.params.id;
-  await property.deleteOne({id: reservationID});
+  await reservation.deleteOne({id: reservationID});
   res.status(201).send();
 })
 
