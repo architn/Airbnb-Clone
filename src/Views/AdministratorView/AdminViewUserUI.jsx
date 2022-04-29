@@ -23,11 +23,11 @@ function AdminViewUserUI(props) {
         <p>{props.email}</p>
         <p><button className='btn btn-danger' onClick={deleteUser}>DELETE</button></p> */}
         <table className="table table-responsive-sm">
-         
         <tbody>
         <tr>
+          <span></span>
         <td style={{width:400}}>{props.name}</td>
-        <td style={{width:500}}>{props.email}</td>
+        <td style={{width:460}}>{props.email}</td>
         <td ><button className='btn btn-danger' onClick={deleteUser}>DELETE</button></td>
         </tr>
         </tbody>

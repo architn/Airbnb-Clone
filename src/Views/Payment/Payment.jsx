@@ -202,7 +202,7 @@ function Payment() {
       .then( async (response) => {
         if (response.status === 201) {
            setTimeout(20000);
-
+           window.location.reload(true);
         }
       });
     // emailjs.sendForm('service_wu950db', 'template_zqp8d76', e.target, '-cF8OdK8pPjA5-1Zz')
@@ -450,9 +450,48 @@ function Payment() {
             <input type="hidden" name="totalCost" value={totalCost} />
           <div className="row g-2 text-center justify-content-center my-4 font-weight-bold">
             <div className="col-2 subButton">
-              <button className="btn btn-danger" id="payment" onClick={isEmpty}>
+              <button type="button" className="btn btn-danger" id="payment" data-toggle="modal" data-target="#exampleModal">
                 CONFIRM RESERVATION
               </button>
+              <div
+                    class="modal fade"
+                    id="exampleModal"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">
+                            Confirm Payment
+                          </h5>
+                          <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                          >
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">Proceed to Pay?</div>
+                        <div class="modal-footer">
+                          <button id="cancelButton"
+                            type="button"
+                            class="btn btn-light"
+                            data-dismiss="modal"
+                          >
+                            CLOSE
+                          </button>
+                          <button id="saveChanges" type="submit" class="btn btn-danger">
+                            CONFIRM PAYMENT
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
             </div>
           </div>
         </div>
