@@ -43,7 +43,10 @@
         display: none; 
         color: red;
       }
-  
+
+    #modal-body{
+        font-weight: bolder;
+      }
     /* Do not use GLOBAL classes - REMOVE */
     /* #loginbox{
       background: linear-gradient(to right, #ec586c, #f34c54);

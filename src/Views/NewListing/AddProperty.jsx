@@ -804,7 +804,7 @@ function AddProperty() {
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
-                        <div class="modal-body">Are you sure you want to add the property?</div>
+                        <div id="modal-body" class="modal-body">Are you sure you want to add the property?</div>
                         <div class="modal-footer">
                           <button id="cancelButton"
                             type="button"
