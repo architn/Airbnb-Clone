@@ -6,6 +6,10 @@ import './BookingCard.css'
 
 function ReservationCard(props) {
     const [totalPrice, setTotalPrice] = useState(props.price);
+    var userID = sessionStorage.getItem('userid')
+    console.log(userID);
+    console.log(props.idOfPropertyOwner);
+    var doesUserOwnProperty = userID === props.idOfPropertyOwner ? true: false
     function calculatePrice(){
         let checkInDate = new Date(document.getElementById('checkInDate').value) ;
         let checkOutDate = new Date(document.getElementById('checkOutDate').value) ;
@@ -58,7 +62,7 @@ function ReservationCard(props) {
                             </div>
                             <br /> <br/><hr/>
                         </div>  
-                        {isUserLoggedIn 
+                        {isUserLoggedIn && !doesUserOwnProperty
                         ? 
                         <button id='btnReserve' className='btn btn-primary'>RESERVE</button>
                                 :

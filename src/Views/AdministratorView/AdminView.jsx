@@ -4,6 +4,9 @@ import Navbar from '../../components/Navbar/Navbar.jsx'
 import '../../Views/AdministratorView/AdminView.css'
 import AdminViewPropertyUI from './AdminViewPropertyUI.jsx';
 import AdminViewUserUI from './AdminViewUserUI.jsx';
+import '../../Views/AdministratorView/AdminViewUserUI.css'
+import Table from 'react-bootstrap/Table'
+
 
 
 function createUserAdminView(user){
@@ -36,7 +39,7 @@ function createPropertyAdminView(property){
 function AdminView() {
   const [users, setUsers] = useState([]);
   const [properties, setProperties] = useState([]);
-  const [isUserViews, setViews] = useState(true);
+  const [isUserViews, setViews] = useState(false);
 
   function onChangeEvent(){
     var value = document.getElementById("drop").value;
@@ -49,6 +52,8 @@ function AdminView() {
       setViews('user')
     }else document.getElementById("prop").placeholder = "Search";
   }
+
+
   useEffect( () => {
     axios.get('http://localhost:3002/getAllUsers', { withCredentials: true})
     .then( (response) => {
@@ -60,6 +65,8 @@ function AdminView() {
       setProperties(response.data)
     })
   }, [])
+
+
   return (
     <div className='container'>
       <Navbar />
@@ -79,7 +86,7 @@ function AdminView() {
           </div>
 
           <div className="col-4">
-          <div class="input-group rounded">
+          <div className="input-group rounded">
           <input id="prop" 
           type="search" 
           name="searchText"
@@ -97,18 +104,26 @@ function AdminView() {
         
         </div>
 
-      <table>
-        <th></th>
-      </table>
+      
         {isUserViews ? 
-        users.map(createUserAdminView) 
+       <div> 
+         <div className="row" id="tablerow">
+            <div className="col-4">Name</div>
+            <div className="col-4">Emails</div>
+            <div className="col-4">Actions</div>
+         </div>
+           <tr>
+           {users.map(createUserAdminView)}
+             </tr>
+          </div>
+      
         :  
         properties.map(createPropertyAdminView)}
     </div>
   )
 }
 
-
+// style={{backgroundColor:"black" ,color: "white"}}
 // function OnChangeEvent() {
   
   

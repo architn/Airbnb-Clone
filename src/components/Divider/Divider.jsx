@@ -4,7 +4,7 @@ import '../Divider/Divider.css'
 
 function Divider() {
   return (
-    <div class="container" id="divide">
+    <div className="container" id="divide">
       <hr /><br/>
     </div>
   )

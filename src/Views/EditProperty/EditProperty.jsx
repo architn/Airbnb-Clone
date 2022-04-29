@@ -164,6 +164,7 @@ function validateBathFieldIsNotEmpty() {
 const EditProperty = () => {
   const { propertyid } = useParams();
   const [details, setDetails] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -218,10 +219,13 @@ const EditProperty = () => {
         if (response.status === 201) {
           console.log("Property updated successfully!");
           alert("Property Updated Successfully!");
-          //  navigate("/hosting");
+          navigate("/hosting");
         }
+      })
+      .catch((err) => {
+        console.log(err);
       });
-  };
+  }
 
   return (
     <div className="container px-5">

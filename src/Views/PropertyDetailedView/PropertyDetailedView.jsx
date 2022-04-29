@@ -92,6 +92,7 @@ function createPropertyDetailedView(property){
         price={property.Price} 
         rating={4.3} 
         reviews={22}
+        idOfPropertyOwner={property.user}
         />
       </div>
     </div>

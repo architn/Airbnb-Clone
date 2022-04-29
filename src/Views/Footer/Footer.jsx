@@ -61,27 +61,27 @@ function Footer() {
       <div id="social-media-content" className="d-flex justify-content-around">
         <a id="contact"></a>
       <a href="mailto:airBnB@gmail.com"
-        ><button type="button" className="btn btn-link" data-toggle="tooltip" data-placement="top" title="Mail Us"><img src="images/email.png" alt=""  data-toggle="Twitter" className="social-media-icons" /></button></a
+        ><button type="button" className="btn btn-link" data-toggle="tooltip" data-placement="top" title="Mail Us"><img src="https://i.ibb.co/TvCbsQ9/email.png" alt=""  data-toggle="Twitter" className="social-media-icons" /></button></a
       >
-      <a href="tel:+18574379641"><button type="button" className="btn btn-link" data-toggle="tooltip" data-placement="top" title="Call Us"><img src="images/telephone-call.png" alt=""  data-toggle="Twitter" className="social-media-icons" /></button>
+      <a href="tel:+18574379641"><button type="button" className="btn btn-link" data-toggle="tooltip" data-placement="top" title="Call Us"><img src="https://i.ibb.co/YpF7gyt/telephone-call.png" alt=""  data-toggle="Twitter" className="social-media-icons" /></button>
       </a>
       <a
         href="https://www.linkedin.com/company/airbnb/"
         target="_blank"
       >
-      <button type="button" className="btn btn-link" data-toggle="tooltip" data-placement="top" title="LinkedIn"><img src="images/linkedin.png" alt=""  data-toggle="Twitter" className="social-media-icons" /></button>
+      <button type="button" className="btn btn-link" data-toggle="tooltip" data-placement="top" title="LinkedIn"><img src="https://i.ibb.co/sRykMNt/linkedin.png" alt=""  data-toggle="Twitter" className="social-media-icons" /></button>
       </a>
       <a
       href="https://twitter.com/Airbnb"
       target="_blank"
     >
-      <button type="button" className="btn btn-link" data-toggle="tooltip" data-placement="top" title="Twitter"><img src="images/twitter.png" alt=""  data-toggle="Twitter" className="social-media-icons" /></button>
+      <button type="button" className="btn btn-link" data-toggle="tooltip" data-placement="top" title="Twitter"><img src="https://i.ibb.co/mhsz6sK/twitter.png" alt=""  data-toggle="Twitter" className="social-media-icons" /></button>
       </a>
     <a
         href="https://www.instagram.com/airbnb/"
         target="_blank" data-toggle="Instagram"
       >
-      <button type="button" className="btn btn-link" data-toggle="tooltip" data-placement="top" title="Instagram"><img src="images/instagram.png" alt=""  data-toggle="Twitter" className="social-media-icons" /></button>
+      <button type="button" className="btn btn-link" data-toggle="tooltip" data-placement="top" title="Instagram"><img src="https://i.ibb.co/YPvD2nC/instagram.png" alt=""  data-toggle="Twitter" className="social-media-icons" /></button>
       </a>
     </div>
     </div>

@@ -48,6 +48,7 @@ function UserCustomView() {
   const [reservations, setReservations] = useState([]);
   const [user, setUser] = useState([]);
   useEffect(() => {
+   
     axios
       .get("http://localhost:3002/getPropertyByUser", {
         withCredentials: true,

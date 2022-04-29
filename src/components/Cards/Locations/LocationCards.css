@@ -30,3 +30,12 @@
 #distanceText{
     color: white;
 }
+#cardLocationSize{
+    width: 300px;
+    height: 200px;
+}
+
+.imageOfLocation{
+    width: 298px;
+    height: 160px;
+}
