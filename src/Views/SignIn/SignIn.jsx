@@ -38,7 +38,7 @@ function SignIn() {
       })
       .then((response) => {
         if (response.status === 200) {
-          console.log("Logged IN!");
+          console.log(response);
           sessionStorage.setItem("userid", details.id);
           sessionStorage.setItem("user", details);
           sessionStorage.setItem("email", details.email);
@@ -48,11 +48,9 @@ function SignIn() {
             name: details.name,
             email: details.email,
           });
-          navigate("/hosting");
-          window.location.reload(true);
-        }
-        else if(response.statusText.includes("admin")){
-          navigate("/admin");
+          if(response.data.isAdministrator === true) navigate("/admin");
+          else navigate("/hosting");
+           window.location.reload(true);
         }
       })
       .catch((err) => {
