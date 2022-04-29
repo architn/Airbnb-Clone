@@ -156,12 +156,12 @@ const Navbar = () => {
                     aria-expanded="false"
                   >
                     <img
-                      src="images/134216_menu_lines_hamburger_icon.png"
+                      src="https://i.ibb.co/M67rc88/134216-menu-lines-hamburger-icon.png"
                       alt="hamburger"
                       className="hamburger"
                     />
                     <img
-                      src="images/profile.png"
+                      src="https://i.ibb.co/31GNtkq/profile.png"
                       alt="profile"
                       id="profileLogo"
                       className="hamburger"
