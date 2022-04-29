@@ -50,9 +50,11 @@ function SignIn() {
           });
           if(user.isAdministrator === false){
             navigate("/hosting");
+            sessionStorage.setItem("isAdministrator", false);
             window.location.reload(true);
           }
        else{
+        sessionStorage.setItem("isAdministrator", true);
         navigate("/admin");
         window.location.reload(true);
        }

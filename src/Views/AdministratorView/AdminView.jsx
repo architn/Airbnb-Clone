@@ -6,7 +6,7 @@ import AdminViewPropertyUI from './AdminViewPropertyUI.jsx';
 import AdminViewUserUI from './AdminViewUserUI.jsx';
 import '../../Views/AdministratorView/AdminViewUserUI.css'
 import Table from 'react-bootstrap/Table'
-
+import Error from '../Error/Error.jsx'
 
 
 function createUserAdminView(user){
@@ -40,7 +40,8 @@ function AdminView() {
   const [users, setUsers] = useState([]);
   const [properties, setProperties] = useState([]);
   const [isUserViews, setViews] = useState(false);
-
+  const isAdminLoggedIn = sessionStorage.getItem('isAdministrator');
+  console.log(isAdminLoggedIn);
   function onChangeEvent(){
     var value = document.getElementById("drop").value;
     if(value==="Properties") {
@@ -69,8 +70,10 @@ function AdminView() {
 
   return (
     <div className='container'>
-      <Navbar />
-      <h4>Welcome to Administrator View</h4>
+      {isAdminLoggedIn ?
+      <div>
+        <Navbar />
+         <h4>Welcome to Administrator View</h4>
         <div className="row g-2 my-2">
         <label htmlFor='drop'>Search By: </label>
           <div className="col-4">
@@ -100,7 +103,7 @@ function AdminView() {
           </span>
         </div>
         </div>
-
+        <br/><br/><br/><br/>
         
         </div>
 
@@ -118,7 +121,26 @@ function AdminView() {
           </div>
       
         :  
-        properties.map(createPropertyAdminView)}
+        <div> 
+         <div className="row" id="tablecol">
+            <div className="col-2">Title</div>
+            <div className="col-2">City</div>
+            <div className="col-2">State</div>
+            <div className="col-2">Country</div>
+            <div className="col-2">Price</div>
+            <div className="col-2">Action</div>
+         </div>
+           <tr>
+           {properties.map(createPropertyAdminView)}
+             </tr>
+          </div>
+        
+        }
+      </div>
+      : <Error /> }
+
+
+     
     </div>
   )
 }
