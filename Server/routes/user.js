@@ -1,5 +1,4 @@
 const express = require("express");
-const { nextTick } = require("process");
 const user = require("../model/user");
 const router = express();
 const bcrypt = require("bcrypt");
@@ -21,6 +20,11 @@ const validatePassword = () => {
   ).matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/);
 };
 
+
+/**
+ * This post method is used for creating a new user by validating the email and password
+ * and creating a hash for the password and storing it in the Mongo database
+ */
 router.post("/userSignUp",
   validateEmail(),
   validatePassword(),
@@ -48,6 +52,10 @@ router.post("/userSignUp",
   }
 );
 
+/**
+ * This post method is used to authenticate the user by checking the email and password
+ * and then creating the session using express-session for that particular user 
+ */
 router.post("/userSignIn", async (req, res, next) => {
   const userAuth = await user.findOne({ email: req.body.email });
   
@@ -74,14 +82,19 @@ router.post("/userSignIn", async (req, res, next) => {
   });
 });
 
+/**
+ * This get method is used for logging out the user and destroying the session created for him
+ */
 router.get('/logout',(req,res) => {
   req.session.destroy();
   res.status(200).send();
   return;
-  // res.redirect('/');
 });
 
-
+/**
+ *  This get method is used to get all the properties added by the user and it is displayed only if
+ *  the user is logged in by using the session for that user
+ */
 router.get("/getPropertyByUser", (req, res) => {
   let session = req.session;
   if (!session.userid) {
@@ -97,6 +110,9 @@ router.get("/getPropertyByUser", (req, res) => {
   });
 });
 
+/**
+ * This get method is used for displaying the personal information of the user once he is logged in
+ */
 router.get("/getUserDetails", (req, res) => {
   let session = req.session;
   if (!session.userid) {
@@ -112,6 +128,9 @@ router.get("/getUserDetails", (req, res) => {
   });
 });
 
+/**
+ * This post method is used for booking a reservation of the property once the user is logged in
+ */
 router.post("/addReservation", async (req, res) => {
   console.log(req.body);
   let session = req.session;
@@ -138,7 +157,9 @@ router.post("/addReservation", async (req, res) => {
   }
 });
 
-
+/*
+ * This get method is used to all display the properties booked by that particular user 
+ */
 router.get('/getReservationsByUser', (req, res) => {
   let session = req.session;
   if (!session.userid) {
@@ -155,9 +176,10 @@ router.get('/getReservationsByUser', (req, res) => {
 
 });
 
-
+/**
+ * This get method is used to display all the properties based on the search criteria
+ */
 router.get("/getPropertyByLocation",(req, res) => {
-  // console.log(req.query.search);
   property.find({SearchParam : req.query.search}, function (err, user) {
     if (err) {
       res.send("Something went wrong");
@@ -169,7 +191,10 @@ router.get("/getPropertyByLocation",(req, res) => {
 });
 
 
-
+/**
+ * This post method is used to add a new property by the user which he wished to give for renting purpose
+ * The adding property can only be done if he is logged in
+ */
 router.post("/addNewProperty", async (req, res) => {
   const shuffled = Images.sort(() => 0.5 - Math.random());
   console.log(req);
@@ -225,6 +250,9 @@ router.post("/addNewProperty", async (req, res) => {
   }
 });
 
+/**
+ * This get method is used to display a detailed description of the property and the ability to book the property
+ */
 router.get("/property/:id", async (req, res) => {
   property.find({_id : req.params.id}, function (err, user) {
     if (err) {
@@ -236,24 +264,41 @@ router.get("/property/:id", async (req, res) => {
   });
 })
 
+/**
+ * This delete method is used to delete the property
+ */
 router.delete('/deleteProperty/:id', async (req, res) => {
   let propertyID = req.params.id;
   await property.deleteOne({id: propertyID});
   res.status(201).send();
 })
 
+/**
+ * This delete method is used to delete the reservation for the property
+ */
 router.delete('/deleteReservation/:id', async (req, res) => {
   let reservationID = req.params.id;
   await property.deleteOne({id: reservationID});
   res.status(201).send();
 })
 
+/**
+ * This delete method is used to delete the user which is accessible only by the admin
+ */
 router.delete('/deleteUser/:id',  async (req, res) => {
+  let session = req.session;
   let userID = req.params.id;
+  if (!session.userid && user.isAdministrator === false) {
+    res.sendStatus(401);
+    return;
+  }
   await user.deleteOne({id: userID});
   res.status(201).send();
 })
 
+/**
+ * This post method is used to edit the user details
+ */
 router.post('/editUser', async(req, res) => {
   
   let session = req.session;
@@ -275,6 +320,9 @@ router.post('/editUser', async(req, res) => {
   }
 })
 
+/**
+ * This post method is used to edit the property details which the user have added
+ */
 router.post('/editProperty', async(req, res) => {
   console.log(req.body);
   let session = req.session;
@@ -316,6 +364,9 @@ router.post('/editProperty', async(req, res) => {
   }
 })
 
+/**
+ *  This get method for getting all the properties listed for the admin view
+ */
 router.get('/getAllProperties', async (req, res) => {
       property.find({}, (err, results) => {
           res.send(results);
@@ -323,6 +374,9 @@ router.get('/getAllProperties', async (req, res) => {
 
 })
 
+/**
+ *  This get method for getting all the users listed for the admin view
+ */
 router.get('/getAllUsers', async (req, res) => {
   user.find({}, (err, results) => {
       res.send(results);
