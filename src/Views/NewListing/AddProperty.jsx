@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../NewListing/AddProperty.css";
 import axios from "axios";
-// import { response } from "../../../Server/routes/user";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 
@@ -226,7 +225,6 @@ function AddProperty() {
       .then((response) => {
         if (response.status === 201) {
           console.log("Property added successfully!");
-          alert("Property added!");
           navigate("/hosting");
           window.location.reload(true);
         }
@@ -804,7 +802,7 @@ function AddProperty() {
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
-                        <div class="modal-body">Are you sure you want to add the property?</div>
+                        <div id="modal-body" class="modal-body">Are you sure you want to add the property?</div>
                         <div class="modal-footer">
                           <button id="cancelButton"
                             type="button"

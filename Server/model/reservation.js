@@ -18,6 +18,11 @@ const reservationSchema = new Schema({
 
     },
 
+    title: {
+        type: String,
+
+    },
+
     checkOutDate: {
         type: String,
 

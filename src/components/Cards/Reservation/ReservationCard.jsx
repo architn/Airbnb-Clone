@@ -3,7 +3,6 @@ import axios from 'axios';
 import {useNavigate} from "react-router-dom"
 import Images from '../../../data/images'
 import '../Reservation/ReservationCard.css'
-
 import {
     BrowserRouter as Router,
     Switch,
@@ -31,7 +30,7 @@ function ReservationCard(props) {
     <div id='propertyCard' class="card">
     <img class="card-img-top" src={selected[0]} alt="Property" id='eventImage' />
     <div class="card-body">
-    <Link className='titleLink' to={`/property/${props.propertyID}`}>View Property</Link>
+    <Link id='propertyTitle' className='titleLink' to={`/property/${props.propertyID}`}>{props.title}</Link>
       <p class="card-text"></p>
      <span>
         <span id='ratingText'><label><img className='reservationSymbols' alt='checkin' src='https://img.icons8.com/ios/344/clock--v1.png'/> Check-In Date: </label>&nbsp;&nbsp;{props.checkInDate}<br/></span>
