@@ -165,18 +165,18 @@ function validateBathFieldIsNotEmpty() {
 function AddProperty() {
   function isEmpty() {
     if (
-      document.getElementById("guest").value == 0 ||
-      document.getElementById("bed").value == 0 ||
-      document.getElementById("bath") == 0 ||
-      document.getElementById("description").value.length == 0 ||
-      document.getElementById("title").value.length == 0 ||
-      document.getElementById("price").value == 0 ||
-      document.getElementById("aptType").value == -1 ||
-      document.getElementById("space").value == -1 ||
-      document.getElementById("street").value.length == 0 ||
-      document.getElementById("city").value.length == 0 ||
-      document.getElementById("state").value == -1 ||
-      document.getElementById("zip").value == 0
+      document.getElementById("guest").value === 0 ||
+      document.getElementById("bed").value === 0 ||
+      document.getElementById("bath") === 0 ||
+      document.getElementById("description").value.length === 0 ||
+      document.getElementById("title").value.length === 0 ||
+      document.getElementById("price").value === 0 ||
+      document.getElementById("aptType").value === -1 ||
+      document.getElementById("space").value === -1 ||
+      document.getElementById("street").value.length === 0 ||
+      document.getElementById("city").value.length === 0 ||
+      document.getElementById("state").value === -1 ||
+      document.getElementById("zip").value === 0
     ) {
       alert("Please fill all the fields!");
       return false;
@@ -239,14 +239,13 @@ function AddProperty() {
       <Navbar />
 
       <div className="row px-5">
-        <div className="col-6" id="propBackground">
+        <div className="col-5" id="propBackground">
           <h1 id="textHeading">Let your curiousity do the booking!</h1>
         </div>
 
-        <div className="col-6">
+        <div className="col-7">
           <br />
           <br />
-          <h2 className="title">Add New Property</h2>
           <div>
             <form
               onSubmit={submitHandler}
@@ -326,7 +325,7 @@ function AddProperty() {
                     }
                     value={details.ApartmentType}
                   >
-                    <option value="-1">Choose Apartment Type</option>
+                    <option value="-1">Choose Type</option>
                     <option value="Apartment">Apartment</option>
                     <option value="House">House</option>
                     <option value="SecondaryUnit">Secondary Unit</option>
