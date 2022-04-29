@@ -145,3 +145,13 @@ input[type=number]::-webkit-outer-spin-button {
 #description{
   height: 150px;
 }
+
+#saveChanges{
+  color: white;
+  font-weight: bold;
+}
+
+#cancelButton{
+  font-weight: bold;
+  border: 1px solid black;
+}

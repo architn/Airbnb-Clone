@@ -165,23 +165,23 @@ function validateBathFieldIsNotEmpty() {
 function AddProperty() {
   function isEmpty() {
     if (
-      document.getElementById("guest").value == 0 ||
-      document.getElementById("bed").value == 0 ||
-      document.getElementById("bath") == 0 ||
-      document.getElementById("description").value.length == 0 ||
-      document.getElementById("title").value.length == 0 ||
-      document.getElementById("price").value == 0 ||
-      document.getElementById("aptType").value == -1 ||
-      document.getElementById("space").value == -1 ||
-      document.getElementById("street").value.length == 0 ||
-      document.getElementById("city").value.length == 0 ||
-      document.getElementById("state").value == -1 ||
-      document.getElementById("zip").value == 0
+      document.getElementById("guest").value === 0 ||
+      document.getElementById("bed").value === 0 ||
+      document.getElementById("bath") === 0 ||
+      document.getElementById("description").value.length === 0 ||
+      document.getElementById("title").value.length === 0 ||
+      document.getElementById("price").value === 0 ||
+      document.getElementById("aptType").value === -1 ||
+      document.getElementById("space").value === -1 ||
+      document.getElementById("street").value.length === 0 ||
+      document.getElementById("city").value.length === 0 ||
+      document.getElementById("state").value === -1 ||
+      document.getElementById("zip").value === 0
     ) {
       alert("Please fill all the fields!");
       return false;
     }
-    document.getElementById("addProperty").disabled =false;
+    document.getElementById("addProperty").disabled = false;
     return true;
   }
 
@@ -235,18 +235,16 @@ function AddProperty() {
 
   return (
     <div>
-      
       <Navbar />
 
       <div className="row px-5">
-        <div className="col-6" id="propBackground">
+        <div className="col-5" id="propBackground">
           <h1 id="textHeading">Let your curiousity do the booking!</h1>
         </div>
 
-        <div className="col-6">
+        <div className="col-7">
           <br />
           <br />
-          <h2 className="title">Add New Property</h2>
           <div>
             <form
               onSubmit={submitHandler}
@@ -326,7 +324,7 @@ function AddProperty() {
                     }
                     value={details.ApartmentType}
                   >
-                    <option value="-1">Choose Apartment Type</option>
+                    <option value="-1">Choose Type</option>
                     <option value="Apartment">Apartment</option>
                     <option value="House">House</option>
                     <option value="SecondaryUnit">Secondary Unit</option>
@@ -781,27 +779,47 @@ function AddProperty() {
                     data-target="#exampleModal"
                     // disabled={true}
                   >
-                    Add Property
+                    ADD PROPERTY
                   </button>
-                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+                  <div
+                    class="modal fade"
+                    id="exampleModal"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-labelledby="exampleModalLabel"
+                    aria-hidden="true"
+                  >
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">
+                            Confirm Add Property
+                          </h5>
+                          <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close"
+                          >
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">Are you sure you want to add the property?</div>
+                        <div class="modal-footer">
+                          <button id="cancelButton"
+                            type="button"
+                            class="btn btn-light"
+                            data-dismiss="modal"
+                          >
+                            CLOSE
+                          </button>
+                          <button id="saveChanges" type="submit" class="btn btn-danger">
+                            SAVE CHANGES
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </form>

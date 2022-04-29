@@ -17,7 +17,13 @@ function ReservationCard(props) {
   
     function cancelReservation(){
       axios.delete(`http://localhost:3002/deleteReservation/${props.reservationID}`, (req, res) => {
-        // Implement Handling
+        
+      })
+      .then( (response) => {
+        if(response.status === 201){
+          alert('Property Successfully deleted!')
+          window.location.reload(true)
+        }
       })
     }
     let selected = shuffled.slice(0, 1);

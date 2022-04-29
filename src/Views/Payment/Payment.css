@@ -65,3 +65,13 @@
     width: 200px;
     float: right;
   }
+
+  #saveChanges{
+    color: white;
+    font-weight: bold;
+  }
+  
+  #cancelButton{
+    font-weight: bold;
+    border: 1px solid black;
+  }
