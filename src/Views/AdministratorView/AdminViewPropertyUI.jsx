@@ -25,14 +25,15 @@ function AdminViewPropertyUI(props) {
         <p>{props.city}, {props.state}, {props.country}</p>
         <p>{props.cost}</p>
         <p><button className='btn btn-danger' onClick={deleteProperty}>DELETE</button></p> */}
+        
         <table className="table table-responsive-sm">
         <tbody>
         <tr>
-        <td style={{width:300,style:"italic"}}>{props.title}</td>
+        <td style={{width:225,style:"italic"}}>{props.title}</td>
         <td style={{width:250, }}>{props.city}</td>
-        <td style={{width:250}}>{props.state}</td>
-        <td style={{width:250}}>{props.country}</td>
-        <td style={{width:250}}>{props.cost}</td>
+        <td style={{width:220}}>{props.state}</td>
+        <td style={{width:200}}>{props.country}</td>
+        <td style={{width:200}}>${props.cost}</td>
         <td ><button className='btn btn-danger'onClick={deleteProperty}>DELETE</button></td>
         </tr>
         </tbody>
