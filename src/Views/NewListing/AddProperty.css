@@ -1,3 +1,25 @@
+.title{
+  text-align: center;
+}
+
+textarea#description{
+  height:60px;
+}
+
+#propBackground{
+  background-image: repeating-linear-gradient(#e37988,#E61E4F,#E31C5F,#E61E4D,#E61E4D,#e37988);
+}
+
+#textHeading{
+  position: relative;
+  top: 380px; 
+  left: 15px;
+  padding: 30px;
+  color: white;
+  font-weight: bold;
+  font-family: 'Goudy Bookletter 1911',Georgia,"Times New Roman",serif;
+}
+
 .value-button {
   display: inline-block;
   border: 1px solid #ddd;

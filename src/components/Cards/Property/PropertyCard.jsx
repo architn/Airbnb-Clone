@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {React, useState} from 'react'
-import { Button, Modal } from 'react-bootstrap';
-import {useNavigate} from "react-router-dom"
+import { Button } from 'react-bootstrap';
+import {useNavigate} from "react-router-dom";
 
 import {
     BrowserRouter as Router,
@@ -48,9 +48,7 @@ function PropertyCard(props) {
      <hr/>
       <span>
         <button className='btn btn-primary' id="btnEdit"><Link className='editLink' to={`/editProperty/${props.roomid}`}>EDIT</Link></button>
-        <button type="button" className='btn btn-danger' id="btnDelete" data-ds-toggle="modal" data-bs-target="#exampleModal" onClick={deleteProperty}>DELETE</button>
-       
-        
+        <button type="button" className='btn btn-danger' id="btnDelete" data-ds-toggle="modal" data-bs-target="#exampleModal" onClick={deleteProperty}>DELETE</button> 
         <br/><br/>
         <hr/>
       </span>
