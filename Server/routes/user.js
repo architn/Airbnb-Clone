@@ -48,88 +48,6 @@ router.post("/userSignUp",
   }
 );
 
-router.get("/getPropertyByUser", (req, res) => {
-  let session = req.session;
-  if (!session.userid) {
-    res.sendStatus(401);
-  }
-  property.find({user : session.userid}, function (err, user) {
-    if (err) {
-      res.send("Something went wrong");
-    }
-    console.log(user);
-    res.json(user);
-  });
-});
-
-router.get("/getUserDetails", (req, res) => {
-  let session = req.session;
-  if (!session.userid) {
-    res.sendStatus(401);
-  }
-  user.find({_id : session.userid}, function (err, user) {
-    if (err) {
-      res.send("Something went wrong");
-    }
-    console.log(user);
-    res.json(user);
-  });
-});
-
-router.post("/addReservation", async (req, res) => {
-  console.log(req.body);
-  let session = req.session;
-  if (!session.userid) {
-    res.sendStatus(401);
-  }
-  const reservationData = new reservation({
-    user: session.userid,
-    property: req.body.propertyID,
-    checkInDate: req.body.checkInDate,
-    checkOutDate: req.body.checkOutDate, 
-    cost: req.body.totalCost, 
-    numberOfGuests: req.body.numberOfGuests
-  });
-
-  try {
-    console.log(reservationData);
-    let doc = await reservationData.save();
-    res.status(201).send(doc);
-    console.log("Reservation added successfully");
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-
-router.get('/getReservationsByUser', (req, res) => {
-  let session = req.session;
-  if (!session.userid) {
-    res.sendStatus(401);
-  }
-  reservation.find({user : session.userid}, function (err, user) {
-    if (err) {
-      res.send("Something went wrong");
-    }
-    console.log(user);
-    res.json(user);
-  });
-
-});
-
-
-router.get("/getPropertyByLocation",(req, res) => {
-  // console.log(req.query.search);
-  property.find({SearchParam : req.query.search}, function (err, user) {
-    if (err) {
-      res.send("Something went wrong");
-      return;
-    }
-    console.log(user);
-    res.json(user);
-  });
-});
-
 router.post("/userSignIn", async (req, res, next) => {
   const userAuth = await user.findOne({ email: req.body.email });
   
@@ -156,6 +74,102 @@ router.post("/userSignIn", async (req, res, next) => {
   });
 });
 
+router.get('/logout',(req,res) => {
+  req.sessrsion.destroy();
+  res.status(200).send();
+  return;
+  // res.redirect('/');
+});
+
+
+router.get("/getPropertyByUser", (req, res) => {
+  let session = req.session;
+  if (!session.userid) {
+    res.sendStatus(401);
+    return;
+  }
+  property.find({user : session.userid}, function (err, user) {
+    if (err) {
+      res.send("Something went wrong");
+    }
+    console.log(user);
+    res.json(user);
+  });
+});
+
+router.get("/getUserDetails", (req, res) => {
+  let session = req.session;
+  if (!session.userid) {
+    res.sendStatus(401);
+    return;
+  }
+  user.find({_id : session.userid}, function (err, user) {
+    if (err) {
+      res.send("Something went wrong");
+    }
+    console.log(user);
+    res.json(user);
+  });
+});
+
+router.post("/addReservation", async (req, res) => {
+  console.log(req.body);
+  let session = req.session;
+  if (!session.userid) {
+    res.sendStatus(401);
+    return;
+  }
+  const reservationData = new reservation({
+    user: session.userid,
+    property: req.body.propertyID,
+    checkInDate: req.body.checkInDate,
+    checkOutDate: req.body.checkOutDate, 
+    cost: req.body.totalCost, 
+    numberOfGuests: req.body.numberOfGuests
+  });
+
+  try {
+    console.log(reservationData);
+    let doc = await reservationData.save();
+    res.status(201).send(doc);
+    console.log("Reservation added successfully");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+
+router.get('/getReservationsByUser', (req, res) => {
+  let session = req.session;
+  if (!session.userid) {
+    res.sendStatus(401);
+    return;
+  }
+  reservation.find({user : session.userid}, function (err, user) {
+    if (err) {
+      res.send("Something went wrong");
+    }
+    console.log(user);
+    res.json(user);
+  });
+
+});
+
+
+router.get("/getPropertyByLocation",(req, res) => {
+  // console.log(req.query.search);
+  property.find({SearchParam : req.query.search}, function (err, user) {
+    if (err) {
+      res.send("Something went wrong");
+      return;
+    }
+    console.log(user);
+    res.json(user);
+  });
+});
+
+
+
 router.post("/addNewProperty", async (req, res) => {
   const shuffled = Images.sort(() => 0.5 - Math.random());
   console.log(req);
@@ -164,6 +178,7 @@ router.post("/addNewProperty", async (req, res) => {
   let session = req.session;
   if (!session.userid) {
     res.sendStatus(401);
+    return;
   }
   const propertyData = new property({
     user: session.userid,
@@ -244,6 +259,7 @@ router.post('/editUser', async(req, res) => {
   let session = req.session;
   if (!session.userid) {
     res.sendStatus(401);
+    return;
   }
   const doesUserExist = await user.findOne({__id: session.userid})
   if(doesUserExist){
@@ -259,12 +275,12 @@ router.post('/editUser', async(req, res) => {
   }
 })
 
-
 router.post('/editProperty', async(req, res) => {
   console.log(req.body);
   let session = req.session;
   if (!session.userid) {
     res.sendStatus(401);
+    return;
   }
   const doesPropertyExist = await property.findOne({_id: req.body._id})
   console.log(doesPropertyExist._id);
@@ -313,7 +329,6 @@ router.get('/getAllUsers', async (req, res) => {
   });
 
 })
-
 
 
 module.exports = router;
