@@ -100,7 +100,7 @@ function AdminView() {
           </span>
         </div>
         </div>
-
+        <br/><br/><br/><br/>
         
         </div>
 
@@ -118,7 +118,21 @@ function AdminView() {
           </div>
       
         :  
-        properties.map(createPropertyAdminView)}
+        <div> 
+         <div className="row" id="tablecol">
+            <div className="col-2">Title</div>
+            <div className="col-2">City</div>
+            <div className="col-2">State</div>
+            <div className="col-2">Country</div>
+            <div className="col-2">Price</div>
+            <div className="col-2">Action</div>
+         </div>
+           <tr>
+           {properties.map(createPropertyAdminView)}
+             </tr>
+          </div>
+        
+        }
     </div>
   )
 }

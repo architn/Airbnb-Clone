@@ -2,6 +2,12 @@
     margin-top: 2%;
 }
 
-#rowtable{
-    font-style: italic;
+#tablerow{
+    margin-left: 5%;
+    font-weight: bold;
+}
+
+#tablecol{
+    margin-left: 3%;
+    font-weight: bold;
 }
