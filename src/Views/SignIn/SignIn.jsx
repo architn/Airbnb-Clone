@@ -48,11 +48,9 @@ function SignIn() {
             name: details.name,
             email: details.email,
           });
-          navigate("/hosting");
-          //window.location.reload(true);
-        }
-        else if(response.statusText.includes("admin")){
-          navigate("/admin");
+          if(user.isAdministrator === false)
+            navigate("/hosting");
+            else navigate("/admin"); 
         }
       })
       .catch((err) => {
