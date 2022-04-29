@@ -38,19 +38,21 @@ function SignIn() {
       })
       .then((response) => {
         if (response.status === 200) {
-          console.log(response);
-          sessionStorage.setItem("userid", details.id);
-          sessionStorage.setItem("user", details);
-          sessionStorage.setItem("email", details.email);
+          console.log("Logged IN!");
+          const user = response.data;
+          sessionStorage.setItem("userid", user._id);
+          sessionStorage.setItem("email", user.email);
           sessionStorage.setItem("isUserLoggedIn", true);
-          sessionStorage.setItem("name", details.name);
+          sessionStorage.setItem("name", user.name);
           setUser({
             name: details.name,
             email: details.email,
           });
-          if(response.data.isAdministrator === true) navigate("/admin");
-          else navigate("/hosting");
-           window.location.reload(true);
+          navigate("/hosting");
+          //window.location.reload(true);
+        }
+        else if(response.statusText.includes("admin")){
+          navigate("/admin");
         }
       })
       .catch((err) => {

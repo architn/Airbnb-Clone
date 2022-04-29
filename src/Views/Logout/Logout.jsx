@@ -2,27 +2,29 @@ import React, { useEffect } from 'react'
 import Navbar from '../../components/Navbar/Navbar';
 import SignIn from '../SignIn/SignIn';
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 function Logout() {
-  
-  axios.get("http://localhost:3002/logout", {
-      withCredentials: true,
-    })
-    .then((response) => {
+  const navigate = useNavigate();
+
+  const logout = async () => {
+    try {
+      const response = await axios.get("http://localhost:3002/logout", {
+        withCredentials: true,
+      });
       if (response.status === 200) { 
         sessionStorage.removeItem("userid");
-        sessionStorage.removeItem("user");
         sessionStorage.removeItem("email");
         sessionStorage.setItem("isUserLoggedIn", false);
         sessionStorage.removeItem("name");
+        navigate('/');
       }
-    })
-    .catch((err) => {
-      console.log(err.response.data.msg);
-    });
-
+    } catch (err) {
+      console.log(err);
+    }
+  }
   useEffect(() => {
-    
+    logout();
   }, []);
   
 
