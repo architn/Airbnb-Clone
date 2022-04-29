@@ -33,12 +33,11 @@ function ReservationCard(props) {
     <Link id='propertyTitle' className='titleLink' to={`/property/${props.propertyID}`}>{props.title}</Link>
       <p class="card-text"></p>
      <span>
-       <img src='images/favorite.png' alt='favicon' id='favicon'/>
-        <span id='ratingText'>{props.checkInDate}</span>
-        <span id='upvotesText'>({props.checkOutDate})</span>
-        <span id='locationText'>{props.guests}</span>
+        <span id='ratingText'><label><img className='reservationSymbols' alt='checkin' src='https://img.icons8.com/ios/344/clock--v1.png'/> Check-In Date: </label>&nbsp;&nbsp;{props.checkInDate}<br/></span>
+        <span id='upvotesText'><label><img className='reservationSymbols' alt='checkin' src='https://img.icons8.com/ios/344/clock--v3.png'/> Checkout Date:  </label>&nbsp;&nbsp;{props.checkOutDate}<br/></span>
+        <span id='locationText'><label><img className='reservationSymbols' alt='checkin' src='https://cdn-icons.flaticon.com/png/512/641/premium/641132.png?token=exp=1651270048~hmac=e11153b53ee0d79a66ea4bf59ecb06f5'/> Number of Guests:  </label>&nbsp; {props.guests}</span>
      </span>
-    
+     <br/><br/>
       <p><b>Total Cost ${props.price}</b></p>
      <hr/>
       <span>

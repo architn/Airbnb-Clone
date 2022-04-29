@@ -1,3 +1,17 @@
 #propertyTitle{
     font-size: 120%;
 }
+
+#ratingText, #locationText, #upvotesText{
+    font-size: large;
+    margin-left: 1%;
+}
+
+
+.reservationSymbols{
+    width: 20px;
+}
+
+#titleLink{
+    font-size: large;
+}
