@@ -47,7 +47,6 @@ function PersonalInfo() {
       .then((response) => {
         // console.log(response.data[0]);
         if (response.status === 200) {
-          // setUserDetails(response.data)
           const user = response.data[0];
           console.log(user);
           setDetails({
