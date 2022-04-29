@@ -48,9 +48,15 @@ function SignIn() {
             name: details.name,
             email: details.email,
           });
-          if(user.isAdministrator === false)
+          if(user.isAdministrator === false){
             navigate("/hosting");
-            else navigate("/admin"); 
+            window.location.reload(true);
+          }
+       else{
+        navigate("/admin");
+        window.location.reload(true);
+       }
+         
         }
       })
       .catch((err) => {

@@ -18,6 +18,7 @@ function Logout() {
         sessionStorage.setItem("isUserLoggedIn", false);
         sessionStorage.removeItem("name");
         navigate('/');
+        window.location.reload(true);
       }
     } catch (err) {
       console.log(err);

@@ -60,7 +60,7 @@ const LoggedInMenu = () => {
             </Link>
             {"   "}
           </a>
-          <a className="dropdown-item">
+          <a className="dropdown-item" onClick={pageRefresh}>
             <Link className="navigation" to="/logout">
               Logout
             </Link>
