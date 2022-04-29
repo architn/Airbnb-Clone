@@ -780,7 +780,7 @@ function AddProperty() {
                     data-target="#exampleModal"
                     // disabled={true}
                   >
-                    Add Property
+                    ADD PROPERTY
                   </button>
                   <div
                     class="modal fade"
