@@ -86,7 +86,7 @@ function AdminView() {
           </div>
 
           <div className="col-4">
-          <div class="input-group rounded">
+          <div className="input-group rounded">
           <input id="prop" 
           type="search" 
           name="searchText"

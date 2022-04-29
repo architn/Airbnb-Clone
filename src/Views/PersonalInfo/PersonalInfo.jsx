@@ -47,16 +47,21 @@ function PersonalInfo() {
       .then((response) => {
         // console.log(response.data[0]);
         if (response.status === 200) {
-          // setUserDetails(response.data)
           const user = response.data[0];
           console.log(user);
           setDetails({
             ...details,
             name: user?.name,
             email: user?.email,
+            address: user?.address,
+            mobile: user?.mobile,
+            bio: user?.bio
           });
         }
-      });
+      })
+      .catch((err) => {
+        alert(err);
+      })
   }, []);
 
   const submitHandler = (e) => {
