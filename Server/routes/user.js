@@ -75,7 +75,7 @@ router.post("/userSignIn", async (req, res, next) => {
 });
 
 router.get('/logout',(req,res) => {
-  req.sessrsion.destroy();
+  req.session.destroy();
   res.status(200).send();
   return;
   // res.redirect('/');
