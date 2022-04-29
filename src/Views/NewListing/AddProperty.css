@@ -2,12 +2,15 @@
   text-align: center;
 }
 
+
 textarea#description{
   height:60px;
 }
 
 #propBackground{
-  background-image: repeating-linear-gradient(#e37988,#E61E4F,#E31C5F,#E61E4D,#E61E4D,#e37988);
+  background-image: url("https://cdn.filestackcontent.com/sPdmll3VRqqfPTZaG02z");
+  background-size: cover;
+  height: auto;
 }
 
 #textHeading{
@@ -35,6 +38,11 @@ textarea#description{
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+label {
+  font-weight: normal !important;
+  font-size: large !important;
 }
 
 input#numberBeds {
