@@ -144,7 +144,7 @@ router.post("/userSignIn", async (req, res, next) => {
       let session = req.session;
       session.userid = userAuth._id.toString();
       console.log("User logged in successfully");
-      return res.status(200).json({ msg: "User logged in successfully" });
+      return res.json(userAuth).status(200);
     } else {
       console.log(
         "Not able to login User since email or password provided does not match"
@@ -299,32 +299,6 @@ router.post('/editProperty', async(req, res) => {
      }
   }
 })
-
-// router.post('/editUser', async(req, res) => {
-//   console.log(req.body);
-//   let session = req.session;
-//   if (!session.userid) {
-//     res.sendStatus(401);
-//   }
-//   const doesUserExist = await property.findOne({_id: req.body._id})
-//   console.log(doesUserExist._id);
-//   if(doesUserExist){
-//      try{
-//         await user.updateOne({_id : session.userid},
-//         {$set : {
-//           ApartmentType: req.body.ApartmentType,
-//           Space: req.body.Space
-//         } })
-//         res.status(201).send();
-//         console.log("Updated succesfully!")
-//      }
-//      catch{
-//       res.status(400).send();
-//      }
-//   }
-// })
-
-
 
 router.get('/getAllProperties', async (req, res) => {
       property.find({}, (err, results) => {
