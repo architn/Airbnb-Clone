@@ -20,7 +20,7 @@ function ReservationCard(props) {
       })
       .then( (response) => {
         if(response.status === 201){
-          alert('Property Successfully deleted!')
+          // alert('Property Successfully deleted!')
           window.location.reload(true)
         }
       })

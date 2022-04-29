@@ -218,7 +218,7 @@ const EditProperty = () => {
       .then((response) => {
         if (response.status === 201) {
           console.log("Property updated successfully!");
-          alert("Property Updated Successfully!");
+          // alert("Property Updated Successfully!");
           navigate("/hosting");
           window.location.reload(true);
         }
