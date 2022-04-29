@@ -236,7 +236,7 @@ function AddProperty() {
       <Navbar />
 
       <div className="row px-5">
-        <div className="col-5" id="propBackground">
+        <div className="col-5" id="propBackground" >
           <h1 id="textHeading">Let your curiousity do the booking!</h1>
         </div>
 
@@ -264,7 +264,7 @@ function AddProperty() {
                     value={details.Title}
                   />
 
-                  <label for="title">Create your title</label>
+                  <label id="lblid" for="title">Create your title</label>
                   <div id="TitleerrorMsg">Enter Title!</div>
                 </div>
 
@@ -368,7 +368,7 @@ function AddProperty() {
                 <div class="col-9">
                   <div className="form-group">
                     <div className="row g-2 my-2">
-                      <div className="col-4">
+                      <div className="col-4" id="streetid">
                         <input
                           type="street"
                           class="form-control"
@@ -382,7 +382,7 @@ function AddProperty() {
                           value={details.Street}
                         />
                         <div id="StreeterrorMsg">Enter Street!</div>
-                      </div>
+                      </div><br/>
 
                       <div className="col-4">
                         <input
