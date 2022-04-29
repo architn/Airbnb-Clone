@@ -35,6 +35,7 @@ function CreateReservationCard(reservation) {
         checkOutDate={reservation.checkOutDate}
         guests={reservation.numberOfGuests}
         price={reservation.cost}
+        title={reservation.title}
       />
     </div>
   );

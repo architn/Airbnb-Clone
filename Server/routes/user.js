@@ -31,7 +31,7 @@ router.post("/userSignUp",
   async (req, res) => {
     const result = validationResult(req);
     if (!result.isEmpty()) {
-      console.log(result.errors.map((error) => error.msg).join(", "));
+      // console.log(result.errors.map((error) => error.msg).join(", "));
       return res.status(400).json(result);
     }
     const data = new user({
@@ -105,7 +105,7 @@ router.get("/getPropertyByUser", (req, res) => {
     if (err) {
       res.send("Something went wrong");
     }
-    console.log(user);
+    // console.log(user);
     res.json(user);
   });
 });
@@ -123,7 +123,7 @@ router.get("/getUserDetails", (req, res) => {
     if (err) {
       res.send("Something went wrong");
     }
-    console.log(user);
+    // console.log(user);
     res.json(user);
   });
 });
@@ -132,13 +132,15 @@ router.get("/getUserDetails", (req, res) => {
  * This post method is used for booking a reservation of the property once the user is logged in
  */
 router.post("/addReservation", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   let session = req.session;
   if (!session.userid) {
     res.sendStatus(401);
     return;
   }
+  const propertyData = await property.findOne({ _id: req.body.propertyID });
   const reservationData = new reservation({
+    title: propertyData.Title,
     user: session.userid,
     property: req.body.propertyID,
     checkInDate: req.body.checkInDate,
@@ -148,7 +150,7 @@ router.post("/addReservation", async (req, res) => {
   });
 
   try {
-    console.log(reservationData);
+    // console.log(reservationData);
     let doc = await reservationData.save();
     res.status(201).send(doc);
     console.log("Reservation added successfully");
@@ -170,7 +172,7 @@ router.get('/getReservationsByUser', (req, res) => {
     if (err) {
       res.send("Something went wrong");
     }
-    console.log(user);
+    // console.log(user);
     res.json(user);
   });
 
@@ -185,7 +187,7 @@ router.get("/getPropertyByLocation",(req, res) => {
       res.send("Something went wrong");
       return;
     }
-    console.log(user);
+    // console.log(user);
     res.json(user);
   });
 });
@@ -197,7 +199,7 @@ router.get("/getPropertyByLocation",(req, res) => {
  */
 router.post("/addNewProperty", async (req, res) => {
   const shuffled = Images.sort(() => 0.5 - Math.random());
-  console.log(req);
+  // console.log(req);
   // Get sub-array of first n elements after shuffled
   let selected = shuffled.slice(0, 5);
   let session = req.session;
@@ -241,7 +243,7 @@ router.post("/addNewProperty", async (req, res) => {
   });
 
   try {
-    console.log(propertyData);
+    // console.log(propertyData);
     let doc = await propertyData.save();
     res.status(201).send(doc);
     console.log("Property added successfully");
@@ -324,14 +326,14 @@ router.post('/editUser', async(req, res) => {
  * This post method is used to edit the property details which the user have added
  */
 router.post('/editProperty', async(req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   let session = req.session;
   if (!session.userid) {
     res.sendStatus(401);
     return;
   }
   const doesPropertyExist = await property.findOne({_id: req.body._id})
-  console.log(doesPropertyExist._id);
+  // console.log(doesPropertyExist._id);
   if(doesPropertyExist){
      try{
         await property.updateOne({_id : doesPropertyExist._id},
