@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../NewListing/AddProperty.css";
 import axios from "axios";
-// import { response } from "../../../Server/routes/user";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 
@@ -226,7 +225,6 @@ function AddProperty() {
       .then((response) => {
         if (response.status === 201) {
           console.log("Property added successfully!");
-          alert("Property added!");
           navigate("/hosting");
           window.location.reload(true);
         }
