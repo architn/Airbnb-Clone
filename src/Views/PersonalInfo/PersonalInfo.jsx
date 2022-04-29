@@ -58,7 +58,10 @@ function PersonalInfo() {
             bio: user?.bio
           });
         }
-      });
+      })
+      .catch((err) => {
+        alert(err);
+      })
   }, []);
 
   const submitHandler = (e) => {
