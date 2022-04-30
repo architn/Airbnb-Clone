@@ -162,6 +162,7 @@ function validateBathFieldIsNotEmpty() {
 }
 
 function AddProperty() {
+  const [allValidationsPassed, setAllValidationsPassed] = useState(false);
   function isEmpty() {
     if (
       document.getElementById("guest").value === 0 ||
@@ -180,7 +181,6 @@ function AddProperty() {
       alert("Please fill all the fields!");
       return false;
     }
-    document.getElementById("addProperty").disabled = false;
     return true;
   }
 
@@ -213,7 +213,16 @@ function AddProperty() {
     tv: false,
   });
 
-  const [openModal, setOpenModal] = useState(false);
+  function validateIfAllFieldsAreDisplayed(){
+    if( isEmpty() ){
+      setAllValidationsPassed(true)
+      console.log("I am in empty array")
+    }
+    else{
+      setAllValidationsPassed(false)
+      console.log("I am a fool")
+    }
+  }
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -775,49 +784,54 @@ function AddProperty() {
                     id="signup"
                     data-toggle="modal"
                     data-target="#exampleModal"
+                    onClick={validateIfAllFieldsAreDisplayed}
                     // disabled={true}
                   >
                     ADD PROPERTY
                   </button>
+                 {allValidationsPassed ? 
                   <div
-                    class="modal fade"
-                    id="exampleModal"
-                    tabindex="-1"
-                    role="dialog"
-                    aria-labelledby="exampleModalLabel"
-                    aria-hidden="true"
-                  >
-                    <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLabel">
-                            Confirm Add Property
-                          </h5>
-                          <button
-                            type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                          >
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div id="modal-body" class="modal-body">Are you sure you want to add the property?</div>
-                        <div class="modal-footer">
-                          <button id="cancelButton"
-                            type="button"
-                            class="btn btn-light"
-                            data-dismiss="modal"
-                          >
-                            CLOSE
-                          </button>
-                          <button id="saveChanges" type="submit" class="btn btn-danger">
-                            SAVE CHANGES
-                          </button>
-                        </div>
+                  class="modal fade"
+                  id="exampleModal"
+                  tabindex="-1"
+                  role="dialog"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                          Confirm Add Property
+                        </h5>
+                        <button
+                          type="button"
+                          class="close"
+                          data-dismiss="modal"
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div id="modal-body" class="modal-body">Are you sure you want to add the property?</div>
+                      <div class="modal-footer">
+                        <button id="cancelButton"
+                          type="button"
+                          class="btn btn-light"
+                          data-dismiss="modal"
+                        >
+                          CLOSE
+                        </button>
+                        <button id="saveChanges" type="submit" class="btn btn-danger">
+                          SAVE CHANGES
+                        </button>
                       </div>
                     </div>
                   </div>
+                </div>
+                  : 
+                    false
+                  }
                 </div>
               </div>
             </form>
