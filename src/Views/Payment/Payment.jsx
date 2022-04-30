@@ -530,6 +530,34 @@ function Payment() {
               />
             </div>
           </div>
+
+          <br></br>
+          <br></br>
+          <div className="card">
+            <div className="card-body">
+              <div id="attributeLabel">
+              <img className='ruleSymbol' alt='checkin' src='https://cdn1.iconfinder.com/data/icons/hotel-facilities-1/500/late-512.png'/>
+              <label for="checkInDate">CHECK IN DATE: </label>
+              <div id="attribute">{checkInDate}</div></div>
+              <hr></hr>
+
+              <div id="attributeLabel">
+              <img className='ruleSymbol' alt='checkin' src='https://cdn4.vectorstock.com/i/1000x1000/72/18/check-meeting-date-icon-simple-style-vector-22367218.jpg'/>
+              <label for="checkInDate">CHECK OUT DATE: </label>
+              <div id="attribute">{checkOutDate}</div></div>
+              <hr></hr>
+
+              <div id="attributeLabel">
+              <label for="numOfGuests"><img className='ruleSymbol' alt='checkin' src='https://cdn-icons-png.flaticon.com/512/185/185538.png'/>Number of Guests:</label>
+              <div id="attribute">{numberOfGuests}</div></div>
+              <hr></hr>
+
+              <div id="attributeLabel">
+              <label for="totalCost"><img className='ruleSymbol' alt='checkin' src='https://icon-library.com/images/cost-icon/cost-icon-1.jpg'/>Total Cost:</label>
+              <div id="attribute">{totalCost}</div></div>
+              <div></div>
+            </div>
+          </div>
         </div>
       </div>
 
