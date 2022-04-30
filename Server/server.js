@@ -6,6 +6,7 @@ const userRoutes = require("./routes/user");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const sessions = require("express-session");
+require('dotenv').config();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -17,26 +18,41 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:3000"],
+    origin: [process.env.REACT_APP_URL],
   })
 );
 const oneDay = 1000 * 60 * 60 * 24;
 
 //session middleware
-app.use(
-  sessions({
-    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
-    saveUninitialized: false,
-    cookie: { maxAge: oneDay },
-    resave: false,
-    store: MongoStore.create({ mongoUrl: "mongodb://localhost/AirBNB" }),
-  })
-);
+let sess = {
+  secret: process.env.SECRET,
+  saveUninitialized: false,
+  resave: false,
+  store: MongoStore.create({ mongoUrl: process.env.DB_CONNECTION_STRING }),
+  cookie: {
+    maxAge: oneDay,
+    secure: false,
+    sameSite: 'lax'
+  }
+}
+
+if (process.env.NODE_ENV === 'PRODUCTION') {
+  app.set('trust proxy', 1); // trust first proxy
+  sess.cookie.secure = true; // serve secure cookies
+  sess.cookie.sameSite = 'none';
+}
+
+app.use(sessions(sess));
 
 app.use("/", userRoutes);
 
-mongoose.connect("mongodb://localhost/AirBNB", { useNewUrlParser: true });
+app.get("/health", (req, res) => {
+  res.send("Running!");
+})
 
-app.listen(3002, function () {
-  console.log("listening on 3002");
+mongoose.connect(process.env.DB_CONNECTION_STRING, { useNewUrlParser: true });
+
+const port = process.env.PORT || 3002
+app.listen(port, function () {
+  console.log(`listening on ${port}`);
 });

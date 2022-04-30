@@ -115,7 +115,7 @@ function PropertyDetailedView() {
   useEffect( () => {
 
     axios
-        .get(`http://localhost:3002/property/${propertyid}` ,
+        .get(`${process.env.REACT_APP_BASE_URL}/property/${propertyid}` ,
           { 
             withCredentials: true,
           }
@@ -129,7 +129,7 @@ function PropertyDetailedView() {
         console.log(err);
         //setError(err.response.data.msg);
       })
-      axios.get('http://localhost:3002/getUserDetails', {
+      axios.get(`${process.env.REACT_APP_BASE_URL}/getUserDetails`, {
         withCredentials: true
       })
       .then( (response) => {

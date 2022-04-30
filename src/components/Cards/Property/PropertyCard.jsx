@@ -17,8 +17,7 @@ function PropertyCard(props) {
   const navigate = useNavigate();
 
   function deleteProperty(){
-    axios.delete(`http://localhost:3002/deleteProperty/${props.roomid}`, (req, res) => {
-      
+    axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteProperty/${props.roomid}`, (req, res) => {
     })
     .then( (response) => {
        if(response.status === 201){

@@ -56,12 +56,12 @@ function AdminView() {
 
 
   useEffect( () => {
-    axios.get('http://localhost:3002/getAllUsers', { withCredentials: true})
+    axios.get(`${process.env.REACT_APP_BASE_URL}/getAllUsers`, { withCredentials: true})
     .then( (response) => {
       setUsers(response.data)
     })
 
-    axios.get('http://localhost:3002/getAllProperties', { withCredentials: true})
+    axios.get(`${process.env.REACT_APP_BASE_URL}/getAllProperties`, { withCredentials: true})
     .then( (response) => {
       setProperties(response.data)
     })

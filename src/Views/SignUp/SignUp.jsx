@@ -46,7 +46,7 @@ function SignUp() {
     e.preventDefault();
     console.log(details);
     axios
-      .post("http://localhost:3002/userSignUp", details)
+      .post(`${process.env.REACT_APP_BASE_URL}/userSignUp`, details)
       .then((response) => {
         if (response.status === 201) {
           console.log("Logged IN!");

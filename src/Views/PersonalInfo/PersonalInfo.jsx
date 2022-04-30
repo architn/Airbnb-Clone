@@ -41,7 +41,7 @@ function PersonalInfo() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3002/getUserDetails", {
+      .get(`${process.env.REACT_APP_BASE_URL}/getUserDetails`, {
         withCredentials: true,
       })
       .then((response) => {
@@ -66,7 +66,7 @@ function PersonalInfo() {
 
   const submitHandler = (e) => {
     console.log(details);
-    axios.post("http://localhost:3002/editUser" , details, 
+    axios.post(`${process.env.REACT_APP_BASE_URL}/editUser` , details, 
 	{
         withCredentials: true,
       })

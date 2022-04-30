@@ -156,7 +156,7 @@ function Payment() {
     setNumberOfGuests(searchParams.get("numberOfGuests"));
 
     axios
-      .get(`http://localhost:3002/property/${propertyid}`, {
+      .get(`${process.env.REACT_APP_BASE_URL}/property/${propertyid}`, {
         withCredentials: true,
       })
       .then((response) => {
@@ -175,7 +175,7 @@ function Payment() {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:3002/addReservation",
+        `${process.env.REACT_APP_BASE_URL}/addReservation`,
         {
           propertyID: propertyid,
           checkInDate: checkInDate,

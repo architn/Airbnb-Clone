@@ -10,7 +10,7 @@ function AdminViewPropertyUI(props) {
 }
 
     function deleteProperty(){
-        axios.delete(`http://localhost:3002/deleteProperty/${props.id}`, {withCredentials: true})
+        axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteProperty/${props.id}`, {withCredentials: true})
         .then( (response) => {
           if(response.status === 201){
             window.location.reload(true);

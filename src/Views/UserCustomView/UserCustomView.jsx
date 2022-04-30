@@ -51,7 +51,7 @@ function UserCustomView() {
   useEffect(() => {
    
     axios
-      .get("http://localhost:3002/getPropertyByUser", {
+      .get(`${process.env.REACT_APP_BASE_URL}/getPropertyByUser`, {
         withCredentials: true,
       })
       .then((response) => {
@@ -65,7 +65,7 @@ function UserCustomView() {
         //setError(err.response.data.msg);
       });
     axios
-      .get("http://localhost:3002/getUserDetails", {
+      .get(`${process.env.REACT_APP_BASE_URL}/getUserDetails`, {
         withCredentials: true,
       })
       .then((response) => {
@@ -74,7 +74,7 @@ function UserCustomView() {
         }
       });
     axios
-      .get("http://localhost:3002/getReservationsByUser", {
+      .get(`${process.env.REACT_APP_BASE_URL}/getReservationsByUser`, {
         withCredentials: true,
       })
       .then((response) => {

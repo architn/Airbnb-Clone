@@ -32,9 +32,7 @@ function Properties() {
   
   let city = searchParams.get("searchCity");
     useEffect( () => {
-       axios
-        .get(
-          "http://localhost:3002/getPropertyByLocation",
+       axios.get(`${process.env.REACT_APP_BASE_URL}/getPropertyByLocation`,
         { params: { search: city } },
           { 
             withCredentials: true,

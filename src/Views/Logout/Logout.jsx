@@ -9,7 +9,7 @@ function Logout() {
 
   const logout = async () => {
     try {
-      const response = await axios.get("http://localhost:3002/logout", {
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/logout`, {
         withCredentials: true,
       });
       if (response.status === 200) { 

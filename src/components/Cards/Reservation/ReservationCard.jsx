@@ -15,7 +15,7 @@ function ReservationCard(props) {
     const navigate = useNavigate();
   
     function cancelReservation(){
-      axios.delete(`http://localhost:3002/deleteReservation/${props.reservationID}`, (req, res) => {
+      axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteReservation/${props.reservationID}`, (req, res) => {
         
       })
       .then( (response) => {

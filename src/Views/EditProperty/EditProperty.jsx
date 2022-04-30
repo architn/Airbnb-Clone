@@ -168,7 +168,7 @@ const EditProperty = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3002/property/${propertyid}`, {
+      .get(`${process.env.REACT_APP_BASE_URL}/property/${propertyid}`, {
         withCredentials: true,
       })
       .then((response) => {
@@ -212,7 +212,7 @@ const EditProperty = () => {
     console.log(details);
     e.preventDefault();
     axios
-      .post("http://localhost:3002/editProperty", details, {
+      .post(`${process.env.REACT_APP_BASE_URL}/editProperty`, details, {
         withCredentials: true,
       })
       .then((response) => {

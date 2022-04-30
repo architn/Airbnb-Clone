@@ -10,7 +10,7 @@ function AdminViewUserUI(props) {
   //let navigate = useNavigate();
 
     function deleteUser(){
-        axios.delete(`http://localhost:3002/deleteUser/${props.id}`, {withCredentials: true})
+        axios.delete(`${process.env.REACT_APP_BASE_URL}/deleteUser/${props.id}`, {withCredentials: true})
         .then( (response) => {
           if(response.status === 201){
             window.location.reload(true)
