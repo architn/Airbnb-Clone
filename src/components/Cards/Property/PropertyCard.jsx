@@ -43,7 +43,7 @@ function PropertyCard(props) {
      <hr/>
       <span>
         <button className='btn btn-primary' id="btnEdit"><Link className='editLink' to={`/editProperty/${props.roomid}`}>EDIT</Link></button>
-        <button type="button" className='btn btn-danger' id="btnDelete" data-ds-toggle="modal" data-bs-target="#exampleModal" onClick={deleteProperty}>DELETE</button> 
+        <button type="submit" className='btn btn-danger' id="btnDelete" data-ds-toggle="modal" data-bs-target="#exampleModal" onClick={deleteProperty}>DELETE</button> 
         <br/><br/>
         <hr/>
       </span>

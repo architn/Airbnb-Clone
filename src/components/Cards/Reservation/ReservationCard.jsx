@@ -40,8 +40,47 @@ function ReservationCard(props) {
       <p><b>Total Cost ${props.price}</b></p>
      <hr/>
       <span>
-        <button type="button" className='btn btn-danger' id="btnCancel" data-ds-toggle="modal" data-bs-target="#exampleModal" onClick={cancelReservation}>CANCEL RESERVATION</button>
-       
+        <button type="button" className='btn btn-danger' id="btnCancel" data-toggle="modal"
+                    data-target="#exampleModal">CANCEL RESERVATION</button>
+        <div
+                  class="modal fade"
+                  id="exampleModal"
+                  tabindex="-1"
+                  role="dialog"
+                  aria-labelledby="exampleModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                          Confirm Delete Reservation
+                        </h5>
+                        <button
+                          type="button"
+                          class="close"
+                          data-dismiss="modal"
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div id="modal-body" class="modal-body">Are you sure you want to delete the reservation?</div>
+                      <div class="modal-footer">
+                        <button id="cancelButton"
+                          type="button"
+                          class="btn btn-light"
+                          data-dismiss="modal"
+                        >
+                          CLOSE
+                        </button>
+                        <button id="saveChanges" type="submit" class="btn btn-danger" onClick={cancelReservation}>
+                          DELETE RESERVATION
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
         <br/><br/>
         <hr/>
       </span>
