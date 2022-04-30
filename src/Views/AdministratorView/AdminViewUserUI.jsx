@@ -29,26 +29,8 @@ function AdminViewUserUI(props) {
         <td style={{width:400}}>{props.name}</td>
         <td style={{width:460}}>{props.email}</td>
         <td >
-          <button className='btn btn-danger' type='button' data-toggle="modal" data-target="#exampleModal">DELETE</button>
-          <div className="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div className="modal-dialog" role="document">
-    <div className="modal-content">
-      <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Are you sure you want to delete this user?
-      </div>
-      <div class="modal-footer">
-        <button id='closeBtnn' type="button" className="btn btn-light" data-dismiss="modal">CLOSE</button>
-        <button type="submit" className="btn btn-danger" onClick={deleteUser}>DELETE USER</button>
-      </div>
-    </div>
-  </div>
-</div>
+          <button className='btn btn-danger' type='button' data-toggle="modal" data-target="#exampleModal"  onClick={deleteUser}>DELETE</button>
+          
         </td>
         </tr>
         </tbody>
