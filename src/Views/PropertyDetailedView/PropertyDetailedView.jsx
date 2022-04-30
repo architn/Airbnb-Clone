@@ -45,7 +45,7 @@ function createPropertyDetailedView(property){
     <br/><br/>
     <div className='row'>
       <div className='col-8'>
-        <h4>Entire {property.ApartmentType} hosted by Evolve</h4>
+        <h4>Entire {property.ApartmentType} hosted at {property.Street}</h4>
         <span>{property.Guests} Guests &bull; {property.Beds} bedrooms &bull; {property.Beds} beds &bull; {property.Bathrooms} baths</span>
         <br/><hr/>
         <p>{property.Description}
