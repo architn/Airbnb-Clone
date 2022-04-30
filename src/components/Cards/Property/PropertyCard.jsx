@@ -36,10 +36,7 @@ function PropertyCard(props) {
     <Link className='titleLink' to={`/property/${props.roomid}`}>{props.title}</Link>
       <p className="card-text"></p>
      <span>
-       <img src='images/favorite.png' alt='favicon' id='favicon'/>
-        <span id='ratingText'>{props.rating}</span>
-        <span id='upvotesText'>({props.reviews})</span>
-        <span id='locationText'>{props.street}</span>
+        <span id='locationText'>Apartment at {props.street}</span>
      </span>
     
       <p><b>From ${props.price}</b> / person</p>

@@ -216,11 +216,9 @@ function AddProperty() {
   function validateIfAllFieldsAreDisplayed(){
     if( isEmpty() ){
       setAllValidationsPassed(true)
-      console.log("I am in empty array")
     }
     else{
       setAllValidationsPassed(false)
-      console.log("I am a fool")
     }
   }
 
