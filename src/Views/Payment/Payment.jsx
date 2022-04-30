@@ -12,15 +12,15 @@ import { useNavigate } from "react-router-dom";
 
 function isEmpty() {
   if (
-    document.getElementById("cname").value.length == 0 ||
-    document.getElementById("fullName").value.length == 0 ||
-    document.getElementById("city").value.length == 0 ||
-    document.getElementById("zip").value.length == 0 ||
-    document.getElementById("email").value.length == 0 ||
-    document.getElementById("state").value == -1 ||
-    document.getElementById("ccnum").value.length == 0 ||
-    document.getElementById("cvc").value.length == 0 ||
-    document.getElementById("expmonth").value.length == 0
+    document.getElementById("cname").value.length === 0 ||
+    document.getElementById("fullName").value.length === 0 ||
+    document.getElementById("city").value.length === 0 ||
+    document.getElementById("zip").value.length === 0 ||
+    document.getElementById("email").value.length === 0 ||
+    document.getElementById("state").value === -1 ||
+    document.getElementById("ccnum").value.length === 0 ||
+    document.getElementById("cvc").value.length === 0 ||
+    document.getElementById("expmonth").value.length === 0
   ) {
     alert("Please fill all the fields!");
     return false;
@@ -147,18 +147,14 @@ function Payment() {
   const { propertyid } = useParams();
   const navigate = useNavigate();
   const [property, setProperty] = useState([]);
-  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-
-  const shuffled = Images.sort(() => 0.5 - Math.random());
-
-  // Get sub-array of first n elements after shuffled
-  let selected = shuffled.slice(0, 1);
+  
 
   useEffect(() => {
     setCheckInDate(searchParams.get("checkInDate"));
     setCheckOutDate(searchParams.get("checkOutDate"));
     setTotalCost(searchParams.get("totalCost"));
     setNumberOfGuests(searchParams.get("numberOfGuests"));
+
     axios
       .get(`http://localhost:3002/property/${propertyid}`, {
         withCredentials: true,
@@ -172,7 +168,7 @@ function Payment() {
         console.log(err);
         //setError(err.response.data.msg);
       });
-  }, [propertyid, searchParams]);
+  }, [ propertyid, searchParams]);
 
   const sendEmail = (e) => {
 
@@ -515,12 +511,16 @@ function Payment() {
           <h3>Property Summary</h3>
           <div className="card" id="propertySummary">
             <div id="propertyDiv">
-              <img
+              {property.map( (u) => {
+                return (
+                  <img
                 id="propertyView"
                 class="card-img-top"
-                src={selected[0]}
+                src={u.img1}
                 alt="Card cap"
               />
+                )
+              })}
             </div>
           </div>
 
