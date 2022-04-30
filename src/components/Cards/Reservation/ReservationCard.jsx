@@ -20,7 +20,6 @@ function ReservationCard(props) {
       })
       .then( (response) => {
         if(response.status === 201){
-          // alert('Property Successfully deleted!')
           window.location.reload(true)
         }
       })
@@ -35,7 +34,7 @@ function ReservationCard(props) {
      <span>
         <span id='ratingText'><label><img className='reservationSymbols' alt='checkin' src='https://img.icons8.com/ios/344/clock--v1.png'/> Check-In Date: </label>&nbsp;&nbsp;{props.checkInDate}<br/></span>
         <span id='upvotesText'><label><img className='reservationSymbols' alt='checkin' src='https://img.icons8.com/ios/344/clock--v3.png'/> Checkout Date:  </label>&nbsp;&nbsp;{props.checkOutDate}<br/></span>
-        <span id='locationText'><label><img className='reservationSymbols' alt='checkin' src='https://cdn-icons.flaticon.com/png/512/641/premium/641132.png?token=exp=1651275129~hmac=2a289dc26dddc7617421581c6550f52e'/> Number of Guests:  </label>&nbsp; {props.guests}</span>
+        <span id='locationText'><label><img className='reservationSymbols' alt='checkin' src='https://cdn-icons-png.flaticon.com/512/185/185538.png'/> Number of Guests:  </label>&nbsp; {props.guests}</span>
      </span>
      <br/><br/>
       <p><b>Total Cost ${props.price}</b></p>

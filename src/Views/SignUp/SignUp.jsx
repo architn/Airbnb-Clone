@@ -55,7 +55,7 @@ function SignUp() {
             email: details.email,
           });
           navigate("/login");
-          // window.location.reload(true);
+          window.location.reload(true);
         }
       })
       .catch((err) => {

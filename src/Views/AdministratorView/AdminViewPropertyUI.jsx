@@ -13,7 +13,6 @@ function AdminViewPropertyUI(props) {
         axios.delete(`http://localhost:3002/deleteProperty/${props.id}`, {withCredentials: true})
         .then( (response) => {
           if(response.status === 201){
-            alert('Successfully deleted!')
             window.location.reload(true);
           }
         })

@@ -22,10 +22,8 @@ function PropertyCard(props) {
     })
     .then( (response) => {
        if(response.status === 201){
-         alert('Successfully deleted');
-         setTimeout( () => {
-            navigate('/hosting')
-         }, 2000)
+        window.location.reload(true)
+
        }
     } )
   }

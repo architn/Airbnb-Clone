@@ -288,13 +288,9 @@ router.delete('/deleteReservation/:id', async (req, res) => {
  * This delete method is used to delete the user which is accessible only by the admin
  */
 router.delete('/deleteUser/:id',  async (req, res) => {
-  let session = req.session;
   let userID = req.params.id;
-  if (!session.userid && user.isAdministrator === false) {
-    res.sendStatus(401);
-    return;
-  }
-  await user.deleteOne({id: userID});
+  console.log(userID);
+  await user.findByIdAndDelete(userID);
   res.status(201).send();
 })
 
@@ -380,7 +376,7 @@ router.get('/getAllProperties', async (req, res) => {
  *  This get method for getting all the users listed for the admin view
  */
 router.get('/getAllUsers', async (req, res) => {
-  user.find({}, (err, results) => {
+  user.find({isAdministrator: {$ne: true}}, (err, results) => {
       res.send(results);
   });
 
