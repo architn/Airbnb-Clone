@@ -312,8 +312,8 @@ router.post('/editUser', async(req, res) => {
         res.status(201).send();
         console.log("User Profile Updated succesfully!")
      }
-     catch{
-      res.status(400).send();
+     catch(err){
+      res.status(400).send(err);
      }
   }
 })
@@ -356,8 +356,8 @@ router.post('/editProperty', async(req, res) => {
         res.status(201).send();
         console.log("Updated succesfully!")
      }
-     catch{
-      res.status(400).send();
+     catch(err){
+      res.status(400).send(err);
      }
   }
 })
