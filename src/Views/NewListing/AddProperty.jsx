@@ -244,12 +244,12 @@ function AddProperty() {
     <div>
       <Navbar />
 
-      <div className="row px-5">
-        <div className="col-5" id="propBackground" >
+      <div className="row px-5" id="body">
+        <div className="col-5 col-sm" id="propBackground" >
           <h1 id="textHeading">Let your curiousity do the booking!</h1>
         </div>
 
-        <div className="col-7">
+        <div className="col-7 ">
           <br />
           <br />
           <div>
@@ -258,10 +258,10 @@ function AddProperty() {
               className="form-group px-5"
               action="addNewProperty"
             >
-              <div className="row g-2 my-2">
+              <div className="row g-2 my-2 col-sm">
                 <div className="form-floating mb-3 col-4">
                   <input
-                    className="form-control"
+                    className="form-control form-control-sm"
                     type="text"
                     id="title"
                     name="title"
@@ -279,7 +279,7 @@ function AddProperty() {
 
                 <div className="form-floating mb-3 col-4">
                   <textarea
-                    className="form-control"
+                    className="form-control form-control-sm"
                     type="text"
                     name="description"
                     id="description"
@@ -298,7 +298,7 @@ function AddProperty() {
 
                 <div className="form-floating mb-3 col-4">
                   <input
-                    className="form-control"
+                    className="form-control form-control-sm"
                     id="price"
                     name="price"
                     type="number"

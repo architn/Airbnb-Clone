@@ -175,14 +175,7 @@ function Payment() {
   }, [propertyid, searchParams]);
 
   const sendEmail = (e) => {
-    // setReservation({
-    //   checkInDate: checkInDate,
-    //   checkOutDate: checkOutDate,
-    //   numberOfGuests: numberOfGuests,
-    //   propertyID: propertyid
-    // }
 
-    // )
     e.preventDefault();
     axios
       .post(
@@ -204,13 +197,13 @@ function Payment() {
           window.location.reload(true);
         }
       });
-    // emailjs.sendForm('service_wu950db', 'template_zqp8d76', e.target, '-cF8OdK8pPjA5-1Zz')
-    //   .then((result) => {
-    //       console.log(result.text);
-    //   }, (error) => {
-    //       console.log(error.text);
-    //   });
-    //   e.target.reset();
+    emailjs.sendForm('service_wu950db', 'template_zqp8d76', e.target, '-cF8OdK8pPjA5-1Zz')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+      e.target.reset();
     navigate("/hosting");
   };
 
