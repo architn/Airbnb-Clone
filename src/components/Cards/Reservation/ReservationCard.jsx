@@ -3,7 +3,6 @@ import axios from 'axios';
 import {useNavigate} from "react-router-dom"
 import Images from '../../../data/images'
 import '../Reservation/ReservationCard.css'
-
 import {
     BrowserRouter as Router,
     Switch,
@@ -21,7 +20,7 @@ function ReservationCard(props) {
       })
       .then( (response) => {
         if(response.status === 201){
-          alert('Property Successfully deleted!')
+          // alert('Property Successfully deleted!')
           window.location.reload(true)
         }
       })
@@ -31,12 +30,12 @@ function ReservationCard(props) {
     <div id='propertyCard' class="card">
     <img class="card-img-top" src={selected[0]} alt="Property" id='eventImage' />
     <div class="card-body">
-    <Link className='titleLink' to={`/property/${props.propertyID}`}>View Property</Link>
+    <Link id='propertyTitle' className='titleLink' to={`/property/${props.propertyID}`}>{props.title}</Link>
       <p class="card-text"></p>
      <span>
         <span id='ratingText'><label><img className='reservationSymbols' alt='checkin' src='https://img.icons8.com/ios/344/clock--v1.png'/> Check-In Date: </label>&nbsp;&nbsp;{props.checkInDate}<br/></span>
         <span id='upvotesText'><label><img className='reservationSymbols' alt='checkin' src='https://img.icons8.com/ios/344/clock--v3.png'/> Checkout Date:  </label>&nbsp;&nbsp;{props.checkOutDate}<br/></span>
-        <span id='locationText'><label><img className='reservationSymbols' alt='checkin' src='https://cdn-icons.flaticon.com/png/512/641/premium/641132.png?token=exp=1651270048~hmac=e11153b53ee0d79a66ea4bf59ecb06f5'/> Number of Guests:  </label>&nbsp; {props.guests}</span>
+        <span id='locationText'><label><img className='reservationSymbols' alt='checkin' src='https://cdn-icons.flaticon.com/png/512/641/premium/641132.png?token=exp=1651275129~hmac=2a289dc26dddc7617421581c6550f52e'/> Number of Guests:  </label>&nbsp; {props.guests}</span>
      </span>
      <br/><br/>
       <p><b>Total Cost ${props.price}</b></p>

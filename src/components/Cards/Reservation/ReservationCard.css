@@ -1,4 +1,6 @@
-
+#propertyTitle{
+    font-size: 120%;
+}
 
 #ratingText, #locationText, #upvotesText{
     font-size: large;
