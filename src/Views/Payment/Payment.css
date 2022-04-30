@@ -61,8 +61,9 @@
 
   }
 
-  #propertyView{
-    width: 200px;
+  #propertyView.card-img-top{
+    /* height: 300px;
+    width: 250px; */
     float: right;
   }
 
@@ -78,4 +79,18 @@
 
   #modal-body{
     font-weight: bolder;
+  }
+
+  #propertyDiv{
+    background-size: auto;
+  }
+
+  #attribute{
+    float: right;
+    font-size: 18px;
+    font-style: italic;
+  }
+
+  #attributeLabel{
+    font-size: 18px;
   }
