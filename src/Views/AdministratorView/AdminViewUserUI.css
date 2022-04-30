@@ -11,3 +11,7 @@
     margin-left: 3%;
     font-weight: bold;
 }
+
+#closeBtnn{
+    border: 1px solid black;
+}
