@@ -13,7 +13,7 @@ function AdminViewUserUI(props) {
         axios.delete(`http://localhost:3002/deleteUser/${props.id}`, {withCredentials: true})
         .then( (response) => {
           if(response.status === 201){
-            alert('Successfully deleted!')
+            window.location.reload(true)
           }
         })
     }
